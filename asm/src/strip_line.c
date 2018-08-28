@@ -23,7 +23,7 @@ char *space_space(char *str)
 	new = (char *)f_memalloc(sizeof(char) * f_strlen(str));
 	while (str[i] != '\0')
 	{
-		while (!f_isspace(str[i])
+		while (!f_isspace(str[i]))
 			new[n++] = str[i++];
 		if (f_isspace(str[i]) && !f_isspace(str[i - 1]))
 			new[n++] = ' ';
