@@ -18,7 +18,7 @@ enum	e_type
 	clean,
 	comment,
 	text,
-	op_sti,
+	op_sti
 };
 
 #endif
