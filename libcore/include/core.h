@@ -15,6 +15,7 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include "../../liblist/include/list.h"
 
 size_t					f_strlen(const char *s);
 void					*f_memalloc(size_t size);

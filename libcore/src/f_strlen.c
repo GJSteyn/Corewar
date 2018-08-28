@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core.h"
+#include "../include/core.h"
 
 size_t	f_strlen(const char *s)
 {

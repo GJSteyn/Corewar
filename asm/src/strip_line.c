@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core.h"
+#include "../../libcore/include/core.h"
+#include "../../liblist/include/list.h"
 
-char *space_space(char *str)
+char *strip_space(char *str)
 {
 	char	*new;
 	int		i;
@@ -30,17 +31,30 @@ char *space_space(char *str)
 		else
 			i++;
 	}
+	return (new);
 }
 
-t_list	*strip_line(t_list *line)
-{
-	char	*str;
-	t_list	tmp;
+// t_list	*strip_line(t_list *line)
+// {
+// 	char	*str;
+// 	t_list	*tmp;
 
-	tmp = line;
-	while (tmp)
-	{
-		str = strip_space(t_list *line);
-		tmp = tmp->next;
-	}
+// 	tmp = line;
+// 	while (tmp)
+// 	{
+// 		str = strip_space(line);
+// 		tmp = tmp->head->next;
+// 	}
+// 	return (line);
+// }
+
+
+#include <stdio.h>
+int	main()
+{
+	char *str;
+
+	str = "    this       is    the				 string			";
+	str = strip_space(str);
+	printf("%s\n", str);
 }

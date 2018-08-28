@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core.h"
+#include "../include/core.h"
 
 void	f_bzero(void *s, size_t n)
 {

@@ -10,33 +10,21 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libcore.a
-CC = clang
-CFLAGS = -Wall -Wextra -Werror
-INC := -I include
+NAME= libcore.a
 
-CORE_SRC = f_isspace.c f_memalloc.c f_strlen.c f_bezero.c 
-CORE = $(addprefix src/, $(CORE_SRC))
+CORE_SRC = src/f_isspace.c src/f_memalloc.c src/f_strlen.c src/f_bzero.c 
+# CORE = $(addprefix src/, $(CORE_SRC))
+OBJ_LIST = $(CORE:.c = .o)
 
-OBJ_LIST = $(patsubst %.c, %.o, $(CORE))
-BIN_PATH = obj
-BIN = $(addprefix $(BIN_PATH)/, $(OBJ_LIST))
-DEP := $(BIN:%.o=%.d)
-all : $(NAME)
+$(NAME):
+	gcc -Wall -Werror -Wextra -c $(CORE_SRC)
+	ar -rc $(NAME) $(OBJ_LIST)
+	ranlib $(NAME)
 
-$(NAME) : $(BIN)
-	ar rc $@ $?
-	ranlib $@
-
-$(BIN_PATH)/%.o :  %.c
-	@mkdir -p $(BIN_PATH)
-	@mkdir -p $(addprefix $(BIN_PATH)/,$(dir $<))
-	$(CC) $(CFLAGS) $(INC) -MMD -c $< -o $@
-
--include $(DEP)
+all:	$(NAME)
 
 clean :
-	rm -rf $(BIN_PATH)
+	rm -rf *.o
 
 fclean : clean
 	rm -f $(NAME)
