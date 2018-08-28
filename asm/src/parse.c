@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewars.c                                         :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 21:41:08 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/27 21:42:17 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/28 14:16:36 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "op.h"
+#include "parse.h"
 
 typedef char t_bin[CHAMP_MAX_SIZE];
 
@@ -18,13 +18,6 @@ typedef char t_bin[CHAMP_MAX_SIZE];
 # define HEADER_SIZE MAGIC_SIZE + PROG_NAME_LENGTH + COMMENT_LENGTH + 4
 
 // t_token_list can be replaced by any generic que structure (first in - first out)
-
-typdef struct	s_token
-{
-	e_type	type;
-	void	*value;
-	size_t	line;
-}				t_token;
 
 void	parse_name(t_token_list token_list, t_bin bin);
 void	parse_comment(t_token_list token_list, t_bin bin);
