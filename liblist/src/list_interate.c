@@ -12,14 +12,14 @@
 
 #include "list.h"
 
-void	list_interate(t_list *list, void (*data_mod)(void*))
+void	list_interate(t_list *list, void (*data_mod)(void**))
 {
 	t_list_node *current;
 
 	current = list->head;
 	while (current != NULL)
 	{
-		data_mod(current->data);
+		data_mod(&current->data);
 		current = current->next;
 	}
 }
