@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_memalloc.c                                       :+:      :+:    :+:   */
+/*   f_putstr_err.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/25 10:34:13 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:29:02 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/08/29 18:25:05 by pstubbs           #+#    #+#             */
+/*   Updated: 2018/08/29 18:28:13 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-void	*f_memalloc(size_t size)
+void	f_putstr_err(char *str)
 {
-	void *p;
+	int		i;
 
-	p = malloc(size);
-	if (!p)
-		return (NULL);
-	f_bzero(p, size);
-	return (p);
+	i = 0;
+	while (str[i])
+		write(2, &str[i++], 1);
 }
