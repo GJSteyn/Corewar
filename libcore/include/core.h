@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CORE_LIB_H
-# define CORE_LIB_H
+#ifndef CORE_H
+# define CORE_H
+
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "../../liblist/include/list.h"
+# include "list.h"
 
 size_t					f_strlen(const char *s);
 void					*f_memalloc(size_t size);
@@ -25,5 +26,6 @@ int						f_isdigit(int c);
 int						f_big_to_little_endian(char big[4]);
 void					f_little_to_big_endian(int little, char big[4]);
 long					f_atol(char *nbr, int *error);
+char					*f_dynamicstring(char **ori, char *add);
 
 #endif
