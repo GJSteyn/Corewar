@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:50:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 13:29:38 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/08/29 13:39:23 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,16 @@ void	strip_line(void **line)
 }
 
 #include <stdio.h>
-int	main()
+
+int	main(void)
 {
 	char *str;
 	char *new;
 	char *new2;
 
 	str = "    this   is    the \"this is a     description		\"	 string		#this is the comment";
-	// new = strip_space(str);
-	// new2 = strip_comment(new);
+	new = strip_space(str);
+	new2 = strip_comment(new);
 	
 	printf("%s\n", new2);
 	free(new);
