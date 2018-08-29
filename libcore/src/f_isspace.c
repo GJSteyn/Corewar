@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_copy.c                                        :+:      :+:    :+:   */
+/*   f_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/12 11:52:14 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 09:51:02 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/05/28 08:02:39 by kmarchan          #+#    #+#             */
+/*   Updated: 2018/06/02 14:19:20 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
-
-t_list	*list_copy(t_list *orig)
+int	f_isspace(char c)
 {
-	t_list	*copy;
-	size_t	i;
-
-	copy = list_create(orig->f_del_data);
-	i = -1;
-	while (++i < orig->size)
-		list_append(copy, list_get(orig, i));
-	return (copy);
+	if (c == ' ' || c == '\n' || c == '\t' || c == '\v' || c == '\f'
+			|| c == '\r')
+		return (1);
+	else
+		return (0);
 }

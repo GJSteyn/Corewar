@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_copy.c                                        :+:      :+:    :+:   */
+/*   f_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/12 11:52:14 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 09:51:02 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/05/17 17:49:19 by kmarchan          #+#    #+#             */
+/*   Updated: 2018/06/02 14:26:01 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
+#include "../include/core.h"
 
-t_list	*list_copy(t_list *orig)
+size_t	f_strlen(const char *s)
 {
-	t_list	*copy;
-	size_t	i;
+	size_t size;
 
-	copy = list_create(orig->f_del_data);
-	i = -1;
-	while (++i < orig->size)
-		list_append(copy, list_get(orig, i));
-	return (copy);
+	size = 0;
+	while (s[size] != '\0')
+	{
+		size++;
+	}
+	return (size);
 }

@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_getnode.c                                     :+:      :+:    :+:   */
+/*   get_lines.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/03 18:53:20 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 09:54:20 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/08/28 14:24:38 by gsteyn            #+#    #+#             */
+/*   Updated: 2018/08/28 15:25:43 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line.h"
 #include "list.h"
 
-t_list_node	*list_getnode(t_list *list, int i)
+t_list			*get_lines(char *path)
 {
-	t_list_node *ret;
-	size_t		j;
+	int			fd;
+	char		*in;
+	t_list		*ret;
 
-	if (i < 0)
-		j = list->size + i;
-	else
-		j = i;
-	if (j > list->size)
+	if ((fd = open(path, O_RDONLY)) == -1)
 		return (NULL);
-	ret = list->head;
-	while (ret->next && i--)
-		ret = ret->next;
+	ret = list_create(NULL);
+	while (get_next_line(fd, &in))
+	{
+		list_append(ret, in);
+		f_strdel(&in);
+	}
+	f_strdel(&in);
+	close(fd);
 	return (ret);
 }

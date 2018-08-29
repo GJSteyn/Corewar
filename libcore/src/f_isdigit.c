@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_clear.c                                       :+:      :+:    :+:   */
+/*   f_isdigit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/27 18:12:28 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 09:51:59 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/05/17 07:39:45 by pstubbs           #+#    #+#             */
+/*   Updated: 2018/08/29 12:11:37 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
-#include "support/include/f_memory.h"
+#include "core.h"
 
-void	list_clear(t_list *list)
+int	f_isdigit(int c)
 {
-	t_list_node	*cur;
-	t_list_node	*del;
-
-	cur = list->head;
-	while (cur)
+	if (c >= '0' && c <= '9')
 	{
-		del = cur;
-		cur = cur->next;
-		list->f_del_data(del->data);
-		del->data = NULL;
-		f_memdel((void**)&del);
+		return (1);
 	}
-	list->size = 0;
-	list_init(list, list->f_del_data);
+	else
+		return (0);
 }

@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_copy.c                                        :+:      :+:    :+:   */
+/*   f_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmarchan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/12 11:52:14 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 09:51:02 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/05/15 08:23:35 by kmarchan          #+#    #+#             */
+/*   Updated: 2018/06/02 14:17:47 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
+#include "../include/core.h"
 
-t_list	*list_copy(t_list *orig)
+void	f_bzero(void *s, size_t n)
 {
-	t_list	*copy;
-	size_t	i;
+	char *p;
 
-	copy = list_create(orig->f_del_data);
-	i = -1;
-	while (++i < orig->size)
-		list_append(copy, list_get(orig, i));
-	return (copy);
+	p = (char *)s;
+	while (n--)
+	{
+		p[n] = '\0';
+	}
 }
