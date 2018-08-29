@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_type.h                                           :+:      :+:    :+:   */
+/*   f_memset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: WSeegers <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 08:43:08 by wseegers         ###   ########.fr       */
+/*   Created: 2018/04/22 15:34:43 by WSeegers          #+#    #+#             */
+/*   Updated: 2018/05/28 06:29:34 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_TYPE_H
-# define E_TYPE_H
+#include <stddef.h>
 
-enum	e_type
+void	*f_memset(void *s, int c, size_t n)
 {
-	clean,
-	comment,
-	text,
-	op_sti
-};
-
-#endif
+	while (n > 0)
+		((unsigned char*)s)[--n] = (unsigned char)c;
+	return (s);
+}

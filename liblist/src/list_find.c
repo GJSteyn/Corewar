@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_type.h                                           :+:      :+:    :+:   */
+/*   list_find.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 08:43:08 by wseegers         ###   ########.fr       */
+/*   Created: 2018/06/11 08:06:30 by wseegers          #+#    #+#             */
+/*   Updated: 2018/06/13 08:39:48 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_TYPE_H
-# define E_TYPE_H
+#include "list.h"
 
-enum	e_type
+int	list_find(t_list *list, void *data)
 {
-	clean,
-	comment,
-	text,
-	op_sti
-};
+	t_list_node *next;
+	int			index;
 
-#endif
+	index = 0;
+	next = list->head;
+	while (next)
+	{
+		if (next->data == data)
+			return (index);
+		next = next->next;
+		index++;
+	}
+	return (-1);
+}

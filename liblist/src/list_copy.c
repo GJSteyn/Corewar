@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_type.h                                           :+:      :+:    :+:   */
+/*   list_copy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 08:43:08 by wseegers         ###   ########.fr       */
+/*   Created: 2018/06/12 11:52:14 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/28 13:07:06 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_TYPE_H
-# define E_TYPE_H
+#include "list.h"
 
-enum	e_type
+t_list	*list_copy(t_list *orig)
 {
-	clean,
-	comment,
-	text,
-	op_sti
-};
+	t_list	*copy;
+	size_t	i;
 
-#endif
+	copy = list_create(orig->f_del_data);
+	i = -1;
+	while (++i < orig->size)
+		list_append(copy, list_get(orig, i));
+	return (copy);
+}

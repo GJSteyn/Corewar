@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_type.h                                           :+:      :+:    :+:   */
+/*   f_membzero.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 08:43:08 by wseegers         ###   ########.fr       */
+/*   Created: 2018/04/14 21:35:05 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/28 14:17:28 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_TYPE_H
-# define E_TYPE_H
+#include "../include/f_memory.h"
 
-enum	e_type
+void	f_bzero(void *s, size_t n)
 {
-	clean,
-	comment,
-	text,
-	op_sti
-};
-
-#endif
+	f_memset(s, 0, n);
+}

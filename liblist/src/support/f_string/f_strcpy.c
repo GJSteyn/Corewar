@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_type.h                                           :+:      :+:    :+:   */
+/*   f_strcpy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 08:43:08 by wseegers         ###   ########.fr       */
+/*   Created: 2018/04/16 23:58:13 by WSeegers          #+#    #+#             */
+/*   Updated: 2018/08/28 14:18:26 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_TYPE_H
-# define E_TYPE_H
+#include "../include/f_memory.h"
+#include "../include/f_string.h"
 
-enum	e_type
+char	*f_strcpy(char *dest, const char *src)
 {
-	clean,
-	comment,
-	text,
-	op_sti
-};
-
-#endif
+	f_memccpy(dest, src, '\0', -1);
+	return (dest);
+}

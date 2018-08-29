@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_type.h                                           :+:      :+:    :+:   */
+/*   list_create.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 08:43:08 by wseegers         ###   ########.fr       */
+/*   Created: 2018/05/28 04:31:24 by wseegers          #+#    #+#             */
+/*   Updated: 2018/05/31 20:41:53 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_TYPE_H
-# define E_TYPE_H
+#include "list.h"
+#include "support/include/f_memory.h"
 
-enum	e_type
+t_list	*list_create(void (*del_data)(void*))
 {
-	clean,
-	comment,
-	text,
-	op_sti
-};
+	t_list *list;
 
-#endif
+	list = (t_list*)f_memalloc(sizeof(*list));
+	list_init(list, del_data);
+	return (list);
+}

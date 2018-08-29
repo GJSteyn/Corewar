@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_type.h                                           :+:      :+:    :+:   */
+/*   f_memcpy.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: WSeegers <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 08:43:08 by wseegers         ###   ########.fr       */
+/*   Created: 2018/04/21 02:04:35 by WSeegers          #+#    #+#             */
+/*   Updated: 2018/05/27 17:15:36 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_TYPE_H
-# define E_TYPE_H
+#include <stddef.h>
 
-enum	e_type
+void	*f_memcpy(void *dest, const void *src, size_t n)
 {
-	clean,
-	comment,
-	text,
-	op_sti
-};
+	unsigned char *d;
+	unsigned char *s;
 
-#endif
+	d = (unsigned char*)dest;
+	s = (unsigned char*)src;
+	while (n--)
+		*d++ = *s++;
+	return (dest);
+}
