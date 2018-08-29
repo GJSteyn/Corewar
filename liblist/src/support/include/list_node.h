@@ -6,12 +6,12 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 02:02:10 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/28 14:07:43 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/08/29 09:51:44 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef list_NODE_H
-# define list_NODE_H
+#ifndef LIST_NODE_H
+# define LIST_NODE_H
 
 typedef struct		s_list_node
 {

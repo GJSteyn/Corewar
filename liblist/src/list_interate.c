@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_clear.c                                       :+:      :+:    :+:   */
+/*   list_interate.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/27 18:12:28 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 09:51:59 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/08/29 10:11:49 by pstubbs           #+#    #+#             */
+/*   Updated: 2018/08/29 10:23:01 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
-#include "support/include/f_memory.h"
 
-void	list_clear(t_list *list)
+void	list_interate(t_list *list, void (*data_mod)(void**))
 {
-	t_list_node	*cur;
-	t_list_node	*del;
+	t_list_node *current;
 
-	cur = list->head;
-	while (cur)
+	current = list->head;
+	while (current != NULL)
 	{
-		del = cur;
-		cur = cur->next;
-		list->f_del_data(del->data);
-		del->data = NULL;
-		f_memdel((void**)&del);
+		data_mod(&current->data);
+		current = current->next;
 	}
-	list->size = 0;
-	list_init(list, list->f_del_data);
 }

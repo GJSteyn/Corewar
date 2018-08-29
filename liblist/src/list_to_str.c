@@ -6,14 +6,13 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/02 10:00:53 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/28 14:27:39 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/08/29 09:52:37 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "support/include/list_node.h"
 #include "list.h"
+#include "support/include/list_node.h"
 #include "support/include/f_string.h"
-
 
 char	*list_tostr(t_list *list, char divider, char *(to_str)(void*))
 {
