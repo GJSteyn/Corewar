@@ -6,11 +6,11 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/17 17:49:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:05:19 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/08/29 18:29:08 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/core.h"
+#include "core.h"
 
 size_t	f_strlen(const char *s)
 {

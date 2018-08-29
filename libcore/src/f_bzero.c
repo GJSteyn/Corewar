@@ -6,11 +6,11 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/15 08:23:35 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:04:59 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/08/29 18:28:54 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/core.h"
+#include "core.h"
 
 void	f_bzero(void *s, size_t n)
 {
