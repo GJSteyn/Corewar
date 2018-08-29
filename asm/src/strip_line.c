@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:50:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:39:04 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/08/29 18:46:11 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,20 +93,4 @@ char	*strip_line(char *line)
 
 	free(n_sp);
 	return (n_com);
-}
-
-int	main(void)
-{
-	char *str;
-	char *new;
-	int i;
-
-	i = 0;
-	str = "    this   is     the string \"this is a  \n   description		\"	 string  		and 	stuff	#this is the comment\n \
-	and more stuff. and another #try again \n and more";
-	new = strip_line((void *)str);
-
-	printf("\n%s\n\n\n\n", new);
-	free(new);
-	return (0);
 }
