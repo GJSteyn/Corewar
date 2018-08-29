@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 11:01:34 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/08/29 12:38:44 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/08/29 13:29:57 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,12 @@ int		errorcheck(char *nbr, int *error)
 	int	i;
 
 	i = 0;
-	while (nbr[i])
+	if (f_isdigit(nbr[i]) == 0)
 	{
-		if (f_isdigit(nbr[i]) == 0)
-		{
-			*error = 1;
-			return (1);
-		}
-		i++;
+		*error = 1;
+		return (1);
 	}
+	i++;
 	return (0);
 }
 
