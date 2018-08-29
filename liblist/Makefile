@@ -6,7 +6,7 @@
 #    By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/30 06:27:18 by wseegers          #+#    #+#              #
-#    Updated: 2018/08/28 14:29:00 by pstubbs          ###   ########.fr        #
+#    Updated: 2018/08/29 10:53:07 by pstubbs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ F_STRING_SRC = f_strdel.c f_strdup.c f_strlen.c \
 			   f_strnew.c f_strcpy.c f_strcjoin.c
 F_STRING = $(addprefix src/support/f_string/, $(F_STRING_SRC))
 
-list_SRC = list_append.c list_create.c list_node_create.c\
+list_SRC = list_append.c list_create.c list_node_create.c list_iterate.c \
 			 list_clear.c list_init.c list_pop.c list_insert.c\
 			 list_getnode.c list_rot.c list_get.c list_find.c\
 			 list_func_find.c list_copy.c list_mergesort.c list_to_str.c
