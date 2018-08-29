@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:50:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 12:08:14 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/08/29 13:29:38 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ char	*strip_space(char *str)
 	new = (char *)f_memalloc(sizeof(char) * f_strlen(str));
 	while (str[i] != '\0')
 	{
+		if (str[i] == '"')
+		{
+			new[n++] = str[i++];
+			while (str[i] != '"')
+				new[n++] = str[i++];
+		}
 		while (!f_isspace(str[i]))
 			new[n++] = str[i++];
 		if (i > 0 && f_isspace(str[i]) && !f_isspace(str[i - 1]))
@@ -71,9 +77,10 @@ int	main()
 	char *new;
 	char *new2;
 
-	str = "    this       is    the "this is a     description			"	 string		#this is the comment	";
-	new = strip_space(str);
-	new2 = strip_comment(new);
+	str = "    this   is    the \"this is a     description		\"	 string		#this is the comment";
+	// new = strip_space(str);
+	// new2 = strip_comment(new);
+	
 	printf("%s\n", new2);
 	free(new);
 	free(new2);
