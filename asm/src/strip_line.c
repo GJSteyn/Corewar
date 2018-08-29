@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:50:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 10:37:35 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/08/29 12:08:14 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,48 @@ char	*strip_space(char *str)
 	return (new);
 }
 
-void	strip_line(void **line)
+char	*strip_comment(char *str)
 {
-	char	*str;
-	char	*str2;
+	char	*new;
+	int		i;
 
-	str = strip_space((char*)(*line));
-	str2 = strip_comment(str);
-
-	free(line);
-	free(str);
-	*line = str2;
+	i = 0;
+	while (str[i] != '#' && str[i] != '\0')
+		i++;
+	new = (char *)f_memalloc(sizeof(char) * i);
+	if (f_isspace(str[i - 1]))
+		i--;
+	while (i--)
+		new[i] = str[i];
+	return (new);
 }
 
+void	strip_line(void **line)
+{
+	char	*n_sp;
+	char	*n_com;
+
+	n_sp = strip_space((char*)(*line));
+	n_com = strip_comment(n_sp);
+
+	free(line);
+	free(n_sp);
+	*line = n_com;
+}
 
 #include <stdio.h>
 int	main()
 {
 	char *str;
 	char *new;
+	char *new2;
 
-	str = "    this       is    the				 string			";
+	str = "    this       is    the "this is a     description			"	 string		#this is the comment	";
 	new = strip_space(str);
-	printf("%s\n", new);
+	new2 = strip_comment(new);
+	printf("%s\n", new2);
+	free(new);
+	free(new2);
+	return (0);
 }
 

@@ -1,0 +1,6 @@
+#compiled
+a.out
+*.o
+*.d
+*.a
+.DS_Store
