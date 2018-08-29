@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_live.c                                       :+:      :+:    :+:   */
+/*   s_label.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 10:55:53 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 15:52:51 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/29 15:57:19 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/29 18:05:01 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#ifndef S_LABEL_H
+# define S_LABEL_H
 
-size_t	parse_live(t_token_list *token_list, t_bin bin, size_t offset)
+# include <stddef.h>
+
+struct	s_label
 {
-	t_token *arg;
+	char	*name;
+	size_t	offset;
+	int		value;
+};
 
-	bin[offset] = 0x01;
-	arg = DEQUE_TOKEN(token_list);
+struct	s_dref_label
+{
+	char	*name;
+	size_t	offset;
+};
 
-}
+#endif
