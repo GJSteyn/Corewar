@@ -6,11 +6,12 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 15:06:40 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/29 15:22:16 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdbool.h"
+#ifndef S_OP_H
+# define S_OP_H
 
 struct	s_op
 {
@@ -20,6 +21,8 @@ struct	s_op
 	char	bytecode;
 	int		cost;
 	char	description[64];
-	int		unknown;
-	int		unknown;
+	int		unknown1;
+	int		unknown2;
 };
+
+#endif S_OP_H
