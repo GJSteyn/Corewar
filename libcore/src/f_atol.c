@@ -6,12 +6,10 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 11:01:34 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/08/29 12:10:42 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/08/29 12:38:44 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdlib.h>
 #include "core.h"
 
 int		errorcheck(char *nbr, int *error)
