@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_type.h                                           :+:      :+:    :+:   */
+/*   parse_live.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 08:47:37 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/29 10:55:53 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/29 11:15:47 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_TYPE_H
-# define E_TYPE_H
+#include "parse.h"
 
-enum	e_type
+size_t	parse_live(t_token_list token_list, t_bin bin, size_t offset)
 {
-	clean,
-	comment,
-	text,
-	op,
-	arg_r,
-	arg_dir,
-	arg_ind
-};
+	t_token *arg;
 
-#endif
+	bin[offset] = 0x01;
+	arg = DEQUE_TOKEN(token_list);
+
+}

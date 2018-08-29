@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_type.h                                           :+:      :+:    :+:   */
+/*   parse_op.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 08:47:37 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/29 09:09:23 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/29 10:53:24 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_TYPE_H
-# define E_TYPE_H
+#include "parse.h"
 
-enum	e_type
+size_t (*g_op_func[17])(t_token_list*, t_bin, size_t) =
 {
-	clean,
-	comment,
-	text,
-	op,
-	arg_r,
-	arg_dir,
-	arg_ind
+	parse_live
 };
-
-#endif

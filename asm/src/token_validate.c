@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   e_type.h                                           :+:      :+:    :+:   */
+/*   token_validate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 08:47:37 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/29 10:00:15 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/29 10:50:25 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef E_TYPE_H
-# define E_TYPE_H
+#include <stdlib.h>
+#include "s_token.h"
+#include "e_type.h"
 
-enum	e_type
+int		vailidate_token(struct s_token *token, enum e_type type)
 {
-	clean,
-	comment,
-	text,
-	op,
-	arg_r,
-	arg_dir,
-	arg_ind
-};
-
-#endif
+	if (token->type != type)
+	{
+		f_putstr_err(": Invalid token on line");
+		exit(0);
+	}
+	return (0);
+}
