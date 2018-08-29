@@ -18,7 +18,12 @@ enum	e_type
 	clean,
 	comment,
 	text,
-	op_sti
+	op,
+	label,
+	arg_r,
+	arg_dir,
+	arg_ind,
+	label_ref
 };
 
 #endif
