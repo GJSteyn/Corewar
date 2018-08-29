@@ -6,12 +6,12 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 14:29:36 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/28 14:35:08 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/08/29 09:37:01 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _CORE_LIB_H_
-# define _CORE_LIB_H_
+#ifndef CORE_LIB_H
+# define CORE_LIB_H
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
