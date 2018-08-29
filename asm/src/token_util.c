@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_op.c                                         :+:      :+:    :+:   */
+/*   token_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 09:09:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 10:53:24 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/29 18:50:19 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/29 19:02:31 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parse.h"
+#include "s_token.h"
 
-size_t (*g_op_func[17])(t_token_list*, t_bin, size_t) =
+void	destroy_token(struct s_token **token)
 {
-	parse_live
-};
+	free((*token)->value);
+	free(*token);
+	*token = NULL;
+}
+
+void	invalid_token(struct s_token *token, char *message)
+{
+	f_putnbr_err(token->line);
+	f_putstr_err(message);
+}

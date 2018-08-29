@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 10:55:53 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 15:52:51 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/29 18:14:42 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,4 @@ size_t	parse_live(t_token_list *token_list, t_bin bin, size_t offset)
 
 	bin[offset] = 0x01;
 	arg = DEQUE_TOKEN(token_list);
-
 }

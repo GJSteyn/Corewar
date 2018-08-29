@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 17:00:18 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 18:02:11 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/29 19:37:15 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static bool	chk_name(void *plabel, void *name)
 	return (!((*s1) - (*s2)));
 }
 
-void	parse_set_labels(t_bin bin)
+void		parse_set_labels(t_bin bin)
 {
 	t_label_list	*dref_list;
 	t_label_list	*label_list;
@@ -42,7 +42,7 @@ void	parse_set_labels(t_bin bin)
 	while ((dref = DEQUE_DREF(dref_list)))
 	{
 		label = list_func_find(label_list, chk_name, dref->name);
-		little_to_big_endian(label->value, bendian);
+		little_to_big_endian((int)label->offset, bendian);
 		bin[label->offset] = bendian[3];
 		bin[label->offset + 1] = bendian[4];
 	}

@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:51:12 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 17:15:09 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/29 19:19:38 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include "s_label.h"
 # include "list.h"
 # include "core.h"
+
+# define MAGIC_SIZE 4
+# define HEADER_SIZE MAGIC_SIZE + PROG_NAME_LENGTH + COMMENT_LENGTH + 4
 
 typedef char				t_bin[CHAMP_MAX_SIZE];
 typedef struct s_list		t_token_list;
@@ -41,9 +44,12 @@ size_t	parse_live(t_token_list *token_list, t_bin bin, size_t offset);
 # define LABEL_LIST_GET	(0)
 # define LABEL_LIST_CLEAR	(-1)
 
-t_label_list	*dref_list(int mode);
+t_label_list	*gdref_list(int mode);
 void			*add_dref(char *name, size_t offset);
-t_label_list	*label_list(int mode);
+t_label_list	*glabel_list(int mode);
 void			*add_label(char *name, size_t offset, int value);
+
+void			parse_comment(t_token_list *token_list, t_bin bin);
+void			parse_name(t_token_list *token_list, t_bin bin);
 
 #endif

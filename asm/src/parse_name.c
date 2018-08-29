@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_label.h                                          :+:      :+:    :+:   */
+/*   parse_name.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 15:57:19 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 19:38:01 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/29 19:16:31 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/29 19:17:53 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_LABEL_H
-# define S_LABEL_H
+#include "parse.h"
 
-# include <stddef.h>
-
-struct	s_label
+void	parse_name(t_token_list *token_list, t_bin bin)
 {
+	t_token *token;
 	char	*name;
-	size_t	offset;
-};
+	int		i;
 
-struct	s_dref_label
-{
-	char	*name;
-	size_t	offset;
-};
-
-t_label_list	*gdref_list(int mode);
-void			*add_dref(char *name, size_t offset);
-t_label_list	*glabel_list(int mode);
-void			*add_label(char *name, size_t offset);
-
-#endif
+	token = DEQUE_TOKEN(token_list);
+	if (token->type != name || !f_strlen((char *)token->value))
+		invalid_token(token, "expected : "NAME_CMD_STRING" [Name of bot]\n");
+	name = (char*)token->value;
+	bin = bin + MAGIC_SIZE;
+	i = -1;
+	while (i < PROG_NAME_LENGTH && *name)
+		*bin++ == *name++;
+	destroy_token(&token);
+}

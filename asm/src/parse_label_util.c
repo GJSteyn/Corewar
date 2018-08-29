@@ -6,13 +6,13 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 15:54:22 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 17:15:46 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/29 19:39:11 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static void	destroy_label(void *plabel)
+static void		destroy_label(void *plabel)
 {
 	t_label *label;
 
@@ -21,13 +21,13 @@ static void	destroy_label(void *plabel)
 	free(label);
 }
 
-void			*add_label(char *name, size_t offset, int value)
+void			*add_label(char *name, size_t offset)
 {
 	t_label	*label;
 
 	label = (t_label*)malloc(sizeof(t_label));
-	*label = (t_label){name, offset, value};
-	list_append(get_lable_list(0), label);
+	*label = (t_label){name, offset};
+	list_append(lable_list(LABEL_LIST_GET), label);
 }
 
 t_label_list	*glabel_list(int mode)
@@ -51,7 +51,7 @@ void			*add_dref(char *name, size_t offset)
 
 	label = (t_label*)malloc(sizeof(t_label));
 	*label = (t_dref_label){name, offset};
-	list_append(get_lable_list(0), label);
+	list_append(gdref_list(LABEL_LIST_GET), label);
 }
 
 t_label_list	*gdref_list(int mode)
