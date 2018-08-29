@@ -6,13 +6,13 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 11:01:34 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/08/29 13:29:57 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/08/29 18:06:03 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "core.h"
 
-int		errorcheck(char *nbr, int *error)
+static int		errorcheck(char *nbr, int *error)
 {
 	int	i;
 
@@ -26,7 +26,7 @@ int		errorcheck(char *nbr, int *error)
 	return (0);
 }
 
-long	f_atol(char *nbr, int *error)
+long			f_atol(char *nbr, int *error)
 {
 	long		ret;
 	int			in;

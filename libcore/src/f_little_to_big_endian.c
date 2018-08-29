@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_memalloc.c                                       :+:      :+:    :+:   */
+/*   f_little_to_big_endian.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/25 10:34:13 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:05:10 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/08/29 16:22:12 by pstubbs           #+#    #+#             */
+/*   Updated: 2018/08/29 18:05:50 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/core.h"
+#include "core.h"
 
-void	*f_memalloc(size_t size)
+void	f_little_to_big_endian(int little, char big[4])
 {
-	void *p;
-
-	p = malloc(size);
-	if (!p)
-		return (NULL);
-	f_bzero(p, size);
-	return (p);
+	big[0] = ((unsigned char*)&little)[3];
+	big[1] = ((unsigned char*)&little)[2];
+	big[2] = ((unsigned char*)&little)[1];
+	big[3] = ((unsigned char*)&little)[0];
 }

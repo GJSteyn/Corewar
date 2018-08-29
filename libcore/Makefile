@@ -6,7 +6,7 @@
 #    By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/30 06:27:18 by pstubbs           #+#    #+#              #
-#    Updated: 2018/08/29 14:03:51 by pstubbs          ###   ########.fr        #
+#    Updated: 2018/08/29 18:02:09 by pstubbs          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror
 INC := -I include
 
-CORE_SRC = f_bzero.c f_isspace.c f_memalloc.c f_strlen.c f_atol.c f_isdigit.c
+CORE_SRC = f_bzero.c f_isspace.c f_memalloc.c f_strlen.c f_atol.c f_isdigit.c \
+		f_little_to_big_endian.c f_big_to_little_endian.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))
