@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:50:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:46:38 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/08/29 18:55:35 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static char	*strip_space(char *str)
 		}
 		else if (!is_space(str[i]))
 			new[n++] = str[i];
-		else if (i > 0 && is_space(str[i]) && !f_isspace(str[i - 1]))
+		else if (i > 0 && is_space(str[i]) && !f_isspace(str[i - 1])
 			new[n++] = ' ';
 		i++;
 	}
@@ -92,5 +92,22 @@ char	*strip_line(char *line)
 	n_com = strip_comment(n_sp);
 
 	free(n_sp);
+	line = n_com;
 	return (n_com);
 }
+
+// int	main(void)
+// {
+// 	char *str;
+// 	char *new;
+// 	int i;
+
+// 	i = 0;
+// 	str = "    this   is   \n  the string \"this is a  \n   description		\"	 string  		and 	stuff	#this is the comment\n \
+// 	and more stuff. and another #try again \n and more";
+// 	new = strip_line((void *)str);
+
+// 	printf("\n%s\n\n\n\n", new);
+// 	free(new);
+// 	return (0);
+// }
