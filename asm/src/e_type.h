@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   e_type.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/28 14:01:33 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/29 18:31:39 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 enum	e_type
 {
-	clean,
+	name,
 	comment,
 	text,
 	op,
