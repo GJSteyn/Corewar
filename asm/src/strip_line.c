@@ -6,15 +6,13 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:50:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/30 08:54:47 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/08/30 08:55:50 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libcore/include/core.h"
 #include "../../liblist/include/list.h"
 #include "../../libcore/include/op.h"
-
-#include <stdio.h>
 
 static int		is_space(char c)
 {
