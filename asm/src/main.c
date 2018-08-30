@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_op.h                                             :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 16:42:28 by kmarchan         ###   ########.fr       */
+/*   Created: 2018/08/30 10:53:19 by kmarchan          #+#    #+#             */
+/*   Updated: 2018/08/30 11:12:45 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_OP_H
-# define S_OP_H
+#include "asm.h"
+#include <stdio.h>
 
-struct	s_op
+int		main(int argc, char **argv)
 {
-	char	mnu[5];
-	int		argc;
-	int		arg_type[3];
-	char	bytecode;
-	int		cost;
-	char	description[64];
-	int		unknown1;
-	int		unknown2;
-};
+	char	*no_sp;
+	char	*no_com;
 
-#endif
+	if (argc == 2)
+	{
+		no_sp = f_get_line(argv[1]);
+		no_com = strip_line(no_sp);
+		printf("%s", no_com);
+		free(no_com);
+		free(no_sp);
+	}
+	return (1);
+}

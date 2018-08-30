@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   f_get_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 16:23:59 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/08/29 17:52:46 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/08/30 11:11:36 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core.h"
-#include <unistd.h>
-#include <fcntl.h>
-#include <errno.h>
+#include "asm.h"
 
 static char		*f_strnew(size_t size)
 {
