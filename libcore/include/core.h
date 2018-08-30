@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 14:29:36 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/30 10:42:55 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/08/30 11:10:51 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
-// # include "list.h"
 
 size_t					f_strlen(const char *s);
 void					*f_memalloc(size_t size);

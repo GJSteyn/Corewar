@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 10:58:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/30 11:35:50 by kmarchan         ###   ########.fr       */
+/*   Created: 2018/08/30 10:53:19 by kmarchan          #+#    #+#             */
+/*   Updated: 2018/08/30 11:12:45 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include "asm.h"
+#include <stdio.h>
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <errno.h>
+int		main(int argc, char **argv)
+{
+	char	*no_sp;
+	char	*no_com;
 
-# include "core.h"
-# include "op.h"
-# include "list.h"
-
-char	*strip_line(char *line);
-char	*f_get_line(char *path);
-
-#endif
+	if (argc == 2)
+	{
+		no_sp = f_get_line(argv[1]);
+		no_com = strip_line(no_sp);
+		printf("%s", no_com);
+		free(no_com);
+		free(no_sp);
+	}
+	return (1);
+}
