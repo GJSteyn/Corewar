@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_token.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 14:10:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/28 14:12:45 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/30 14:14:05 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 
 struct	s_token
 {
-	enum e_type	type;
-	void		*value;
-	size_t		line;
+	enum e_type		type;
+	union u_value	value;
+	size_t			line;
 };
 
 #endif
