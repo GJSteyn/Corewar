@@ -6,21 +6,12 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:50:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/30 08:55:50 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/08/30 10:32:02 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../libcore/include/core.h"
-#include "../../liblist/include/list.h"
 #include "../../libcore/include/op.h"
-
-static int		is_space(char c)
-{
-	if (c == ' ' || c == '\t' || c == '\v' || c == '\f' || c == '\r')
-		return (1);
-	else
-		return (0);
-}
 
 static int		newl_over_space(char *str, char **new, int i, int n)
 {
@@ -28,6 +19,14 @@ static int		newl_over_space(char *str, char **new, int i, int n)
 		n--;
 	(*new)[n++] = str[i];
 	return (n);
+}
+
+static void		skip_quote(char *str, char **new, int *i, int *n)
+{
+	(*new)[(*n)++] = str[(*i)++];
+	while (str[*i] != '"' && str[*i] != '\0')
+		(*new)[(*n)++] = str[(*i)++];
+	(*new)[(*n)++] = str[(*i)++];
 }
 
 static char		*strip_space(char *str)
@@ -48,14 +47,14 @@ static char		*strip_space(char *str)
 				new[n++] = str[i++];
 			new[n++] = str[i++];
 		}
-		else if (!is_space(str[i]))
+		else if (!f_isspace_notnewl(str[i]))
 			n = newl_over_space(str, &new, i, n);
-		else if (i > 0 && is_space(str[i]) &&
+		else if (i > 0 && f_isspace_notnewl(str[i]) &&
 		!f_isspace(str[i - 1]) && str[i + 1] != '\n')
 			new[n++] = ' ';
 		i++;
 	}
-	(is_space(new[n - 1])) && (new[i - 1] = '\0');
+	(f_isspace_notnewl(new[n - 1])) && (new[i - 1] = '\0');
 	return (new);
 }
 
@@ -70,6 +69,8 @@ static char		*strip_comment(char *str)
 	new = (char *)f_memalloc(sizeof(char) * f_strlen(str));
 	while (str[i] != '\0')
 	{
+		if (str[i] == '"')
+			skip_quote(str, &new, &i, &n);
 		if (str[i] == COMMENT_CHAR)
 		{
 			if (str[i - 1] == ' ')
@@ -78,11 +79,9 @@ static char		*strip_comment(char *str)
 				i++;
 		}
 		else if (str[i] != COMMENT_CHAR)
-		{
 			new[n++] = str[i++];
-		}
 	}
-	if (is_space(str[n - 1]))
+	if (f_isspace_notnewl(str[n - 1]))
 		new[n - 1] = '\0';
 	return (new);
 }
@@ -98,4 +97,21 @@ char			*strip_line(char *line)
 	free(n_sp);
 	line = n_com;
 	return (n_com);
+}
+
+char			*f_get_line(char *path);
+#include <stdio.h>
+int	main(void)
+{
+	char *str;
+	char *new;
+	int i;
+
+	i = 0;
+	str = f_get_line("line.txt");
+	new = strip_line((void *)str);
+
+	printf("%s", new);
+	free(new);
+	return (0);
 }
