@@ -6,12 +6,11 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:50:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/30 10:46:15 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/08/30 11:05:28 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../libcore/include/core.h"
-#include "../../libcore/include/op.h"
+#include "asm.h"
 
 static int		newl_over_space(char *str, char **new, int i, int n)
 {
