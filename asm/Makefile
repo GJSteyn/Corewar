@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+         #
+#    By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/08/30 12:40:29 by kmarchan         ###   ########.fr        #
+#    Updated: 2018/08/30 13:06:20 by gsteyn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC2 := -I../liblist/include/
 
 LIB := -L. ../libcore/libcore.a ../liblist/liblist.a
 
-CORE_SRC = f_get_line.c main.c strip_line.c
+CORE_SRC = get_line.c main.c strip_line.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))
