@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:50:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/30 10:32:02 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/08/30 10:33:46 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,21 +97,4 @@ char			*strip_line(char *line)
 	free(n_sp);
 	line = n_com;
 	return (n_com);
-}
-
-char			*f_get_line(char *path);
-#include <stdio.h>
-int	main(void)
-{
-	char *str;
-	char *new;
-	int i;
-
-	i = 0;
-	str = f_get_line("line.txt");
-	new = strip_line((void *)str);
-
-	printf("%s", new);
-	free(new);
-	return (0);
 }
