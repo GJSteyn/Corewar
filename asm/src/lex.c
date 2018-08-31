@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/08/31 17:01:47 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/08/31 17:28:28 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,6 +300,11 @@ static void		add_token(char **str, size_t *line, t_list *list)
 	{
 		add_reg(list, str, *line);
 		// write(1, "Reg\n", 4);
+	}
+	else
+	{
+		printf("Lexical error on line: %d\n", *line);
+		exit(1);
 	}
 }
 
