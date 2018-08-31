@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_get_line.c                                       :+:      :+:    :+:   */
+/*   get_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -26,7 +26,7 @@ static char		*f_strnew(size_t size)
 	return (ret);
 }
 
-char			*f_get_line(char *path)
+char			*get_line(char *path)
 {
 	int			fd;
 	int			rcount;
