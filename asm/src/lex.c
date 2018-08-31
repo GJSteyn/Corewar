@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/08/31 11:28:21 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/08/31 17:01:47 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,15 @@
 #include "op.h"
 #include "s_token.h"
 #include <stdbool.h>
+#include <unistd.h>		// Remove
+#include <stdio.h>		// Remove
+
+typedef struct s_token		t_token;
 
 static void		token_destroy(void *token)
 {
-	if (((struct s_token*)token)->type == text)
-		free(((struct s_token*)token)->value.text);
+	if (((t_token*)token)->type == text)
+		free(((t_token*)token)->value.text);
 }
 
 static bool		f_strmatch(const char *str, char *match)
@@ -27,7 +31,7 @@ static bool		f_strmatch(const char *str, char *match)
 	size_t			i;
 
 	i = 0;
-	if (!*str || !*match)
+	if (!str || !match)
 		return (false);
 	while (match[i] && str[i])
 	{
@@ -53,16 +57,24 @@ static int		f_intlen(int n)
 	return (ret);
 }
 
-static char		*get_text(char *str)
+static bool		is_op(char *str)
 {
-	char			*tmp;
-	char			*ret;
+	int				i;
 
-	tmp = str + 1;
-	while (*tmp && *tmp != '"')
-		tmp++;
-	ret = f_strsub(str, 1, tmp - str - 2);
-	return (ret);
+	i = 16;
+	while (--i >= 0)								// checking from the back because st and sti cause issues
+	{
+		if (f_strmatch((g_op_tab[i]).mnu, str))
+			return (true);
+	}
+	return (false);
+}
+
+static bool		is_reg(char *str)
+{
+	if (*str == 'r' && f_isdigit(*(str + 1)))
+		return (true);
+	return (false);
 }
 
 static bool		is_label(char *str)
@@ -76,9 +88,9 @@ static bool		is_label(char *str)
 
 static void		add_newline(t_list *list, size_t line)
 {
-	struct s_token	*token;
+	t_token		*token;
 
-	token = (struct s_token*)f_memalloc(sizeof(struct s_token));
+	token = (t_token*)f_memalloc(sizeof(t_token));
 	token->type = eol;
 	token->line = line;
 	list_append(list, token);
@@ -86,20 +98,20 @@ static void		add_newline(t_list *list, size_t line)
 
 static void		add_name(t_list *list, size_t line)
 {
-	struct s_token	*token;
+	t_token		*token;
 
-	token = (struct s_token*)f_memalloc(sizeof(struct s_token));
+	token = (t_token*)f_memalloc(sizeof(t_token));
 	token->type = keyword;
 	token->value.keyword = name;
 	token->line = line;
 	list_append(list, token);
 }
 
-static void		add_comment(t_list *list)
+static void		add_comment(t_list *list, size_t line)
 {
-	struct s_token	*token;
+	t_token		*token;
 
-	token = (struct s_token*)f_memalloc(sizeof(struct s_token));
+	token = (t_token*)f_memalloc(sizeof(t_token));
 	token->type = keyword;
 	token->value.keyword = comment;
 	token->line = line;
@@ -108,65 +120,127 @@ static void		add_comment(t_list *list)
 
 static void		add_text(t_list *list, char **str, size_t line)
 {
-	struct s_token	*token;
-	char			*string;
+	t_token		*token;
+	char		*tmp;
 
-	token = (struct s_token*)f_memalloc(sizeof(struct s_token));
-	string = get_text(str);
-	*str += f_strlen(string) + 2;
+	token = (t_token*)f_memalloc(sizeof(t_token));
+	tmp = *str + 1;
+	while (*tmp && *tmp != '"')
+		tmp++;
 	token->type = text;
-	token->value.text = string;
 	token->line = line;
+	token->value.text = f_strsub(*str + 1, 0, tmp - *str - 1);
+	*str += f_strlen(token->value.text) + 2;
 	list_append(list, token);
 }
 
 static void		add_number(t_list *list, char **str, size_t line)
 {
-	struct s_token	*token;
+	t_token		*token;
+	int			error;							// because it's required by f_atol
 
-	token = (struct s_token*)f_memalloc(sizeof(struct s_token));
+	token = (t_token*)f_memalloc(sizeof(t_token));
 	token->type = number;
-	token->value.number = (int)f_atol(*str);
+	token->value.number = (int)f_atol(*str, &error);
 	token->line = line;
 	*str += f_intlen(token->value.number);
 	list_append(list, token);
 }
 
+static void		add_label_arg(t_list *list, char **str, size_t line)
+{
+	t_token		*token;
+	char		*tmp;
+
+	tmp = *str;
+	token = (t_token*)f_memalloc(sizeof(t_token));
+	token->type = label_arg;
+	while (f_strchr(LABEL_CHARS, *tmp))
+		tmp++;
+	if (tmp - *str == 0)
+	{
+		write(2, "Label arg error\n", 17);			// Replace with better error or handle error differently
+		exit(1);
+	}
+	token->value.text = f_strsub(*str, 0, tmp - *str);
+	token->line = line;
+	*str += tmp - *str;
+	list_append(list, token);
+}
+
+static void		add_label_def(t_list *list, char **str, size_t line)
+{
+	t_token		*token;
+	char		*tmp;
+
+	token = (t_token*)f_memalloc(sizeof(t_token));
+	token->type = label_def;
+	tmp = *str;
+	while (*tmp != ':')
+		tmp++;
+	token->value.text = f_strsub(*str, 0, tmp - *str);
+	*str += tmp - *str + 1;
+	token->line = line;
+	list_append(list, token);
+}
+
 static void		add_arg(t_list *list, char **str, size_t line)
 {
-	struct s_token	*token;
+	t_token		*token;
 
-	token = (struct s_token*)f_memalloc(sizeof(struct s_token));
+	token = (t_token*)f_memalloc(sizeof(t_token));
 	token->type = arg;
-	if (*str + 1 == ':')
+	token->line = line;
+	if (*(*str + 1) == ':')
 	{
 		token->value.arg = label;
 		*str += 2;
+		list_append(list, token);
+		add_label_arg(list, str, line);
 	}
 	else
 	{
 		token->value.arg = direct;
 		*str += 1;
+		list_append(list, token);
 	}
+}
+
+static void		add_separator(t_list *list, size_t line)
+{
+	t_token		*token;
+
+	token = (t_token*)f_memalloc(sizeof(t_token));
+	token->type = separator;
 	token->line = line;
 	list_append(list, token);
 }
 
-static void		add_label(t_list *list, char **str, size_t line)
+static void		add_op(t_list *list, char **str, size_t line)
 {
-	struct s_token	*token;
-	char			*tmp;
-	char			*label;
+	t_token		*token;
+	int			op_type;
 
-	token = (struct s_token*)f_memalloc(sizeof(struct s_token));
-	token->type = label;
-	tmp = *str;
-	while (*tmp != ':')
-		tmp++;
-	label = f_strsub(*str, 0, tmp - *str - 1);
-	token->value.text = label;
-	*str += tmp - *str + 1;
+	op_type = 15;
+	token = (t_token*)f_memalloc(sizeof(t_token));
+	token->type = op;
+	while (!f_strmatch(g_op_tab[op_type].mnu, *str))
+		op_type--;
+	token->value.op = op_type + 1;
 	token->line = line;
+	*str += f_strlen(g_op_tab[op_type].mnu);
+	list_append(list, token);
+}
+
+static void		add_reg(t_list *list, char **str, size_t line)
+{
+	t_token		*token;
+
+	token = (t_token*)f_memalloc(sizeof(t_token));
+	token->type = arg;
+	token->value.arg = reg;
+	token->line = line;
+	(*str)++;
 	list_append(list, token);
 }
 
@@ -177,28 +251,59 @@ static void		add_token(char **str, size_t *line, t_list *list)
 		add_newline(list, *line);
 		(*line)++;
 		(*str)++;
+		// write(1, "Newline\n", 8);
 	}
 	else if (f_strmatch(*str, NAME_CMD_STRING))
 	{
 		add_name(list, *line);
 		*str += f_strlen(NAME_CMD_STRING);
+		// write(1, "Name\n", 5);
 	}
 	else if (f_strmatch(*str, COMMENT_CMD_STRING))
 	{
 		add_comment(list, *line);
 		*str += f_strlen(COMMENT_CMD_STRING);
+		// write(1, "Comment\n", 8);
 	}
 	else if (**str == '"')
+	{
 		add_text(list, str, *line);				// Should str be incremented here?			(rather than in the function that gets called here)
+		// write(1, "String\n", 7);
+	}
 	else if (f_isdigit(**str) || **str == '-')
+	{
 		add_number(list, str, *line);			// Should str be incremented here?
+		// write(1, "Number\n", 7);
+	}
 	else if (**str == DIRECT_CHAR)
+	{
 		add_arg(list, str, *line);				// Should str be incremented here?
+		// write(1, "Direct\n", 7);
+	}
 	else if (is_label(*str))
-		add_label(list, str, *line);			// Should str be incremented here?
+	{
+		add_label_def(list, str, *line);			// Should str be incremented here?
+		// write(1, "Label\n", 6);
+	}
+	else if (**str == SEPARATOR_CHAR)
+	{
+		add_separator(list, *line);
+		(*str)++;
+		// write(1, "Separator\n", 10);
+	}
+	else if (is_op(*str))
+	{
+		add_op(list, str, *line);
+		// write(1, "Op\n", 3);
+	}
+	else if (is_reg(*str))
+	{
+		add_reg(list, str, *line);
+		// write(1, "Reg\n", 4);
+	}
 }
 
-t_list			lex(char *clean_line)
+t_list			*lex(char *clean_line)
 {
 	t_list			*ret;
 	size_t			line;
@@ -206,7 +311,7 @@ t_list			lex(char *clean_line)
 
 	ret = list_create(token_destroy);
 	line = 0;
-	it = line;
+	it = clean_line;
 	while (*it)
 	{
 		if (f_isspace(*it) && *it != '\n')		// Should f_isspace be checking for '\n'?
@@ -214,4 +319,5 @@ t_list			lex(char *clean_line)
 		else
 			add_token(&it, &line, ret);
 	}
+	return (ret);
 }
