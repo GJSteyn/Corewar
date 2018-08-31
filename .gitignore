@@ -1,8 +1,12 @@
 #compiled
-a.out
 *.o
 *.d
 *.a
 .DS_Store
 *.plist
 *.json
+obj
+
+#executable
+a.out
+asm
