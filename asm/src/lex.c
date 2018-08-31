@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/08/30 18:55:17 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/08/31 11:28:21 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 
 static void		token_destroy(void *token)
 {
-	free(((struct s_token*)token)->value);
+	if (((struct s_token*)token)->type == text)
+		free(((struct s_token*)token)->value.text);
 }
 
 static bool		f_strmatch(const char *str, char *match)
@@ -179,7 +180,7 @@ static void		add_token(char **str, size_t *line, t_list *list)
 	}
 	else if (f_strmatch(*str, NAME_CMD_STRING))
 	{
-		add_name(list, *line)
+		add_name(list, *line);
 		*str += f_strlen(NAME_CMD_STRING);
 	}
 	else if (f_strmatch(*str, COMMENT_CMD_STRING))
