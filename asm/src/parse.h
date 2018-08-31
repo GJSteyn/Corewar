@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:51:12 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 19:19:38 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/31 08:46:00 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,10 @@ size_t	parse_live(t_token_list *token_list, t_bin bin, size_t offset);
 # define LABEL_LIST_CLEAR	(-1)
 
 t_label_list	*gdref_list(int mode);
-void			*add_dref(char *name, size_t offset);
+void			*add_gdref(char *name, size_t offset);
 t_label_list	*glabel_list(int mode);
-void			*add_label(char *name, size_t offset, int value);
+void			*add_glabel(char *name, size_t offset);
 
-void			parse_comment(t_token_list *token_list, t_bin bin);
-void			parse_name(t_token_list *token_list, t_bin bin);
+t_header		*parse_header(t_token_list *token_list);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 08:02:36 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/31 08:50:13 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ enum	e_op
 	zjmp,
 	ldi,
 	sti,
-	fork,
+	op_fork, //conflicts with function fork
 	lld,
 	lldi,
 	lfork,
@@ -43,10 +43,10 @@ enum	e_type
 {
 	keyword,
 	text,
-	label,
+	label_def, //conflicts with type label
 	op,
 	arg,
-	arg_label,
+	label_arg, //changed for consistancy
 	number,
 	eol
 };

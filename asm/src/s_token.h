@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 14:10:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 08:02:32 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/31 08:43:23 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ struct	s_token
 };
 
 void	destroy_token(struct s_token **token);
+int		vailidate_token(struct s_token *token, enum e_type type,
+			union u_value value);
 
 #endif

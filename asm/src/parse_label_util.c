@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 15:54:22 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 19:39:11 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/31 08:22:31 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void		destroy_label(void *plabel)
 	free(label);
 }
 
-void			*add_label(char *name, size_t offset)
+void			*add_glabel(char *name, size_t offset)
 {
 	t_label	*label;
 
@@ -45,7 +45,7 @@ t_label_list	*glabel_list(int mode)
 	return (list);
 }
 
-void			*add_dref(char *name, size_t offset)
+void			*add_gdref(char *name, size_t offset)
 {
 	t_dref_label	*label;
 

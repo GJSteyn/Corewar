@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:50:19 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 19:02:31 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/31 08:59:22 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	destroy_token(struct s_token **token)
 {
-	free((*token)->value);
+	if ((*token)->type == text)
+		free((*token)->value.text);
 	free(*token);
 	*token = NULL;
 }
