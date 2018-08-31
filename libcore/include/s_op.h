@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 15:22:16 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/31 08:48:03 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,4 @@ struct	s_op
 	int		unknown2;
 };
 
-#endif S_OP_H
+#endif

@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_token.h                                          :+:      :+:    :+:   */
+/*   f_strcmp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 14:10:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 08:43:23 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/31 08:34:47 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/31 08:36:06 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_TOKEN_H
-# define S_TOKEN_H
-
-# include <stdlib.h>
-# include <stddef.h>
-
-# include "e_type.h"
-# include "core.h"
-
-struct	s_token
+int		f_strcmp(const char *s1, const char *s2)
 {
-	enum e_type		type;
-	union u_value	value;
-	size_t			line;
-};
-
-void	destroy_token(struct s_token **token);
-int		vailidate_token(struct s_token *token, enum e_type type,
-			union u_value value);
-
-#endif
+	while (*s1 == *s2)
+	{
+		if (!*s1++)
+			return (0);
+		s2++;
+	}
+	return (*s1 - *s2);
+}

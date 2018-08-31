@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_token.h                                          :+:      :+:    :+:   */
+/*   token_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 14:10:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 08:43:23 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/29 18:50:19 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/31 08:59:22 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_TOKEN_H
-# define S_TOKEN_H
+#include "s_token.h"
 
-# include <stdlib.h>
-# include <stddef.h>
-
-# include "e_type.h"
-# include "core.h"
-
-struct	s_token
+void	destroy_token(struct s_token **token)
 {
-	enum e_type		type;
-	union u_value	value;
-	size_t			line;
-};
+	if ((*token)->type == text)
+		free((*token)->value.text);
+	free(*token);
+	*token = NULL;
+}
 
-void	destroy_token(struct s_token **token);
-int		vailidate_token(struct s_token *token, enum e_type type,
-			union u_value value);
-
-#endif
+void	invalid_token(struct s_token *token, char *message)
+{
+	f_putnbr_err(token->line);
+	f_putstr_err(message);
+}

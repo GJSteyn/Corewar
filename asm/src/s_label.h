@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_token.h                                          :+:      :+:    :+:   */
+/*   s_label.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 14:10:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 08:43:23 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/29 15:57:19 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/31 08:52:25 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_TOKEN_H
-# define S_TOKEN_H
+#ifndef S_LABEL_H
+# define S_LABEL_H
 
-# include <stdlib.h>
 # include <stddef.h>
+# include "list.h"
 
-# include "e_type.h"
-# include "core.h"
-
-struct	s_token
+struct	s_label
 {
-	enum e_type		type;
-	union u_value	value;
-	size_t			line;
+	char	*name;
+	size_t	offset;
 };
 
-void	destroy_token(struct s_token **token);
-int		vailidate_token(struct s_token *token, enum e_type type,
-			union u_value value);
+struct	s_dref_label
+{
+	char	*name;
+	size_t	offset;
+};
+
+typedef	t_list t_label_list;
+
+t_label_list	*gdref_list(int mode);
+void			*add_dref(char *name, size_t offset);
+t_label_list	*glabel_list(int mode);
+void			*add_label(char *name, size_t offset);
 
 #endif

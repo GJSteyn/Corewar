@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_token.h                                          :+:      :+:    :+:   */
+/*   s_instruction.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 14:10:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 08:43:23 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/31 09:20:44 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/31 09:40:59 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_TOKEN_H
-# define S_TOKEN_H
-
-# include <stdlib.h>
-# include <stddef.h>
-
+# include "op.h"
 # include "e_type.h"
-# include "core.h"
 
-struct	s_token
+struct	s_instruction
 {
-	enum e_type		type;
-	union u_value	value;
-	size_t			line;
+	enum e_op		op;
+	enum e_arg_code arg_type[MAX_ARGS_NUMBER];
+	int				arg_value[MAX_ARGS_NUMBER];
 };
-
-void	destroy_token(struct s_token **token);
-int		vailidate_token(struct s_token *token, enum e_type type,
-			union u_value value);
-
-#endif

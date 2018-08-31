@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_token.h                                          :+:      :+:    :+:   */
+/*   parse_live.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 14:10:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 08:43:23 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/29 10:55:53 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/29 18:14:42 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_TOKEN_H
-# define S_TOKEN_H
+#include "parse.h"
 
-# include <stdlib.h>
-# include <stddef.h>
-
-# include "e_type.h"
-# include "core.h"
-
-struct	s_token
+size_t	parse_live(t_token_list *token_list, t_bin bin, size_t offset)
 {
-	enum e_type		type;
-	union u_value	value;
-	size_t			line;
-};
+	t_token *arg;
 
-void	destroy_token(struct s_token **token);
-int		vailidate_token(struct s_token *token, enum e_type type,
-			union u_value value);
-
-#endif
+	bin[offset] = 0x01;
+	arg = DEQUE_TOKEN(token_list);
+}
