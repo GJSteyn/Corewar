@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.wethinkcode.co.z    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 15:17:22 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/08/31 17:13:38 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/08/31 22:10:52 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		main(int argc, char **argv)
 		free(no_sp);
 
 		node = list->head;
-		while (node->next)
+		while (node)
 		{
 			printf("%zu: ", ((t_token*)node->data)->line);
 			print_type((t_token*)node->data);
