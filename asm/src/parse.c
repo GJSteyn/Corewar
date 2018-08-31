@@ -6,13 +6,13 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/27 21:41:08 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/29 19:51:57 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/31 09:20:17 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-size_t	parse_op(t_op op, t_token_list *token_list, t_bin bin, size_t offset)
+size_t	parse_op(t_op op, t_token_list *token_list, t_bin bin)
 {
 	char	*encode;
 	int		i;
@@ -30,7 +30,7 @@ size_t	parse_op(t_op op, t_token_list *token_list, t_bin bin, size_t offset)
 	return (offset);
 }
 
-size_t	parse_code(t_token_list *token_list, t_bin bin)
+size_t	parse_code(t_token_list *token_list, t_code_list code_list)
 {
 	t_token	*token;
 	size_t	offset;

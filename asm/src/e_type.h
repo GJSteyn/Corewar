@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 08:50:13 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/31 09:40:14 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 enum	e_op
 {
+	blank, 
 	live,
 	ld,
 	st,
@@ -53,9 +54,11 @@ enum	e_type
 
 enum	e_arg_code
 {
+	blank,
+	reg,
 	direct,
+	index,
 	label,
-	reg
 };
 
 union	u_value
