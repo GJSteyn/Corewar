@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.wethinkcode.co.z    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/08/31 21:39:03 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/08/31 21:50:55 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,19 @@ static bool		is_label(char *str)
 	return (false);
 }
 
-static void		add_newline(t_list *list, size_t line)
+static void		add_newline(t_list *list, char **str, size_t *line)
 {
 	t_token		*token;
 
 	token = (t_token*)f_memalloc(sizeof(t_token));
 	token->type = eol;
-	token->line = line;
+	token->line = *line;
+	(*str)++;
+	(*line)++;
 	list_append(list, token);
 }
 
-static void		add_name(t_list *list, size_t line)
+static void		add_name(t_list *list, char **str, size_t line)
 {
 	t_token		*token;
 
@@ -104,10 +106,11 @@ static void		add_name(t_list *list, size_t line)
 	token->type = keyword;
 	token->value.keyword = name;
 	token->line = line;
+	*str += f_strlen(NAME_CMD_STRING);
 	list_append(list, token);
 }
 
-static void		add_comment(t_list *list, size_t line)
+static void		add_comment(t_list *list, char **str, size_t line)
 {
 	t_token		*token;
 
@@ -115,6 +118,7 @@ static void		add_comment(t_list *list, size_t line)
 	token->type = keyword;
 	token->value.keyword = comment;
 	token->line = line;
+	*str += f_strlen(COMMENT_CMD_STRING);
 	list_append(list, token);
 }
 
@@ -207,13 +211,14 @@ static void		add_arg(t_list *list, char **str, size_t line)
 	}
 }
 
-static void		add_separator(t_list *list, size_t line)
+static void		add_separator(t_list *list, char **str, size_t line)
 {
 	t_token		*token;
 
 	token = (t_token*)f_memalloc(sizeof(t_token));
 	token->type = separator;
 	token->line = line;
+	(*str)++;
 	list_append(list, token);
 }
 
@@ -250,47 +255,42 @@ static void		add_token(char **str, size_t *line, t_list *list)
 	if (**str == '\n')
 	{
 		// write(1, "Newline\n", 8);
-		add_newline(list, *line);
-		(*line)++;
-		(*str)++;
+		add_newline(list, str, line);
 	}
 	else if (f_strmatch(*str, NAME_CMD_STRING))
 	{
 		// write(1, "Name\n", 5);
-		add_name(list, *line);
-		*str += f_strlen(NAME_CMD_STRING);
+		add_name(list, str, *line);
 	}
 	else if (f_strmatch(*str, COMMENT_CMD_STRING))
 	{
 		// write(1, "Comment\n", 8);
-		add_comment(list, *line);
-		*str += f_strlen(COMMENT_CMD_STRING);
+		add_comment(list, str, *line);
 	}
 	else if (**str == '"')
 	{
 		// write(1, "String\n", 7);
-		add_text(list, str, *line);				// Should str be incremented here?			(rather than in the function that gets called here)
+		add_text(list, str, *line);
 	}
 	else if (f_isdigit(**str) || **str == '-')
 	{
 		// write(1, "Number\n", 7);
-		add_number(list, str, *line);			// Should str be incremented here?
+		add_number(list, str, *line);
 	}
 	else if (**str == DIRECT_CHAR)
 	{
 		// write(1, "Direct\n", 7);
-		add_arg(list, str, *line);				// Should str be incremented here?
+		add_arg(list, str, *line);
 	}
 	else if (is_label(*str))
 	{
 		// write(1, "Label\n", 6);
-		add_label_def(list, str, *line);			// Should str be incremented here?
+		add_label_def(list, str, *line);
 	}
 	else if (**str == SEPARATOR_CHAR)
 	{
 		// write(1, "Separator\n", 10);
-		add_separator(list, *line);
-		(*str)++;
+		add_separator(list, str, *line);
 	}
 	else if (is_op(*str))
 	{
