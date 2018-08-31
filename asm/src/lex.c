@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.wethinkcode.co.z    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/08/31 21:50:55 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/08/31 21:54:15 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -313,17 +313,15 @@ t_list			*lex(char *clean_line)
 {
 	t_list			*ret;
 	size_t			line;
-	char			*it;
 
 	ret = list_create(token_destroy);
 	line = 0;
-	it = clean_line;
-	while (*it)
+	while (*clean_line)
 	{
-		if (f_isspace(*it) && *it != '\n')		// Should f_isspace be checking for '\n'?
-			it++;
+		if (f_isspace(*clean_line) && *clean_line != '\n')		// Should f_isspace be checking for '\n'?
+			clean_line++;
 		else
-			add_token(&it, &line, ret);
+			add_token(&clean_line, &line, ret);
 	}
 	return (ret);
 }
