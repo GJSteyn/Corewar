@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   e_type.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 09:40:14 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/31 15:05:34 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,17 @@ enum	e_type
 	arg,
 	label_arg, //changed for consistancy
 	number,
-	eol
+	eol,
+	separator
 };
 
 enum	e_arg_code
 {
-	blank,
+	arg_blank, //conflicts with e_op blank
 	reg,
 	direct,
-	index,
-	label,
+	indirect, //"index" is a "redefinition"
+	label		//this should never be necessary, since one of the types is label_arg
 };
 
 union	u_value
