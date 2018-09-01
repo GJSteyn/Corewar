@@ -6,11 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2018/09/01 13:24:50 by wseegers         ###   ########.fr       */
-=======
-/*   Updated: 2018/09/01 13:21:38 by wseegers         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2018/09/01 13:34:00 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
