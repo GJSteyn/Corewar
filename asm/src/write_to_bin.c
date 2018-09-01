@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:53:58 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/09/01 14:08:14 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/01 14:41:14 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ void	write_data(char bin[MEM_SIZE], char *data, int *i, int max)
 {
 	int	x;
 	int	tmpi;
+	int	len;
 
 	x = 0;
 	tmpi = *i;
-	while (data[x])
+	len = f_strlen(data);
+	while (x <= len)
 	{
 		bin[tmpi] = data[x];
 		x++;
@@ -66,7 +68,7 @@ int		write_header_to_bin(char bin[MEM_SIZE], t_header *header)//, t_code *code)
 	f_little_to_big_endian(header->prog_size, bin + i);
 	i += 4;
 	write_data(bin, header->comment, &i, COMMENT_LENGTH + 1);
-	return (i);
+	return (i + 1);
 }
 
 int		write_int_to_bytecode(char bin[MEM_SIZE], int *i, int type, int data)
@@ -107,35 +109,36 @@ void	write_to_bin(char *path, t_header *header)//, t_list *code))
 	int		i;
 
 	fd = open(path, O_RDWR);
+	f_bzero(bin, MEM_SIZE);
 	i = write_header_to_bin(bin, header);
-	write_cmd_to_bin(bin, &i);
+	// write_cmd_to_bin(bin, &i);
 	write(fd, bin, i);
 }
 
-int main()
-{
-	t_header *header;
+// int main()
+// {
+// 	t_header *header;
 
-	header = (t_header*)malloc(sizeof(t_header));
-	header->magic = COREWAR_EXEC_MAGIC;
-	header->prog_size = 49;
-	memcpy(header->prog_name, "IVY\0", 3);
-	memcpy(header->comment, "THIS PROGRAMS NAME IS IVY, IN REF TO IVY TOWER\0", 46);
-	write_to_bin("test.cor", header);
+// 	header = (t_header*)malloc(sizeof(t_header));
+// 	header->magic = COREWAR_EXEC_MAGIC;
+// 	header->prog_size = 49;
+// 	memcpy(header->prog_name, "IVY\0", 3);
+// 	memcpy(header->comment, "THIS PROGRAMS NAME IS IVY, IN REF TO IVY TOWER\0", 46);
+// 	write_to_bin("test.cor", header);
 
-	// int	t = 2;
-	char c;
-	f_little_to_big_endian(2, &c);
+// 	// int	t = 2;
+// 	char c;
+// 	f_little_to_big_endian(2, &c);
 
-	print_bits(((unsigned char*)&c)[0]);
-	print_bits(((unsigned char*)&c)[1]);
-	print_bits(((unsigned char*)&c)[2]);
-	print_bits(((unsigned char*)&c)[3]);
-	// write(1, "\n", 1);
+// 	print_bits(((unsigned char*)&c)[0]);
+// 	print_bits(((unsigned char*)&c)[1]);
+// 	print_bits(((unsigned char*)&c)[2]);
+// 	print_bits(((unsigned char*)&c)[3]);
+// 	// write(1, "\n", 1);
 
-	// if (((unsigned char*)&c)[0] & 255)
+// 	// if (((unsigned char*)&c)[0] & 255)
 
 
 
-	return (1);
-}
+// 	return (1);
+// }

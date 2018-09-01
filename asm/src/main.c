@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 10:53:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/01 13:06:59 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/01 14:32:56 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ int		main(int argc, char **argv)
 	{
 		no_sp = get_line(argv[1]);
 		no_com = strip_line(no_sp);
-		puts("debug");
 		token_list = lex(no_com);
 		header = parse_header(token_list);
-		printf("name: %s\n", header->prog_name);
-		printf("comment: %s\n", header->comment);
+		header->prog_size = 23;
 		free(no_com);
 		free(no_sp);
+		write_to_bin("/goinfre/pstubbs/Documents/Corewar/asm/src/test.cor", header);
 	}
 	return (1);
 }
