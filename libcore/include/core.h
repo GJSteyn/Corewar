@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 14:29:36 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/01 09:57:26 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/01 13:03:20 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ char					*f_strnew(size_t size);
 char					*f_strchr(const char *s, int c);
 int						f_strcmp(const char *s1, const char *s2);
 char					*f_strncpy(char *dest, const char *src, size_t n);
+void					f_putstr_err(char *str);
 
 #endif

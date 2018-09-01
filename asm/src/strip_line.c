@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strip_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:50:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/31 09:58:47 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/01 13:14:52 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char		*strip_comment(char *str)
 
 	i = 0;
 	n = 0;
-	new = (char *)f_memalloc(sizeof(char) * f_strlen(str));
+	new = (char *)f_memalloc(sizeof(char) * (f_strlen(str) + 1));
 	while (str[i] != '\0')
 	{
 		if (str[i] == '"')

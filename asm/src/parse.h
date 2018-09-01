@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:51:12 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 08:46:00 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/01 11:40:15 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <stdlib.h>
 # include <stddef.h>
+
+# include <stdio.h> // debugging
 
 # include "op.h"
 # include "e_type.h"
@@ -33,8 +35,9 @@ typedef struct s_list		t_label_list;
 typedef struct s_label		t_label;
 typedef struct s_dref_label	t_dref_label;
 
-# define DEQUE_TOKEN(list) ((t_token*)list_pop(list, 0))
-# define DEQUE_DREF(list) ((t_dref_label*)list_pop(list, 0))
+# define DEQUE_TOKEN(list)	((t_token*)list_pop(list, 0))
+# define PEEK_TOKEN(list)	((t_token*)list_get(list, 0))
+# define DEQUE_DREF(list)	((t_dref_label*)list_pop(list, 0))
 
 size_t (*g_op_func[17])(t_token_list*, t_bin, size_t);
 

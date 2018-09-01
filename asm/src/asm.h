@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 10:58:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/30 13:06:20 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/01 12:49:34 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@
 # include "op.h"
 # include "list.h"
 
+# include "parse.h"
+
 char	*strip_line(char *line);
 char	*get_line(char *path);
+t_list	*lex(char *clean_line);
 
 #endif

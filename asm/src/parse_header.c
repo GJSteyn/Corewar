@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 08:06:00 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 11:27:18 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/01 13:00:33 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,39 +15,61 @@
 typedef	enum e_type		t_type;
 typedef union u_value	t_value;
 
+size_t	parse_eol(t_token_list *token_list)
+{
+	t_token *token;
+	size_t	nr;
+
+	nr = 0;
+	while (PEEK_TOKEN(token_list)->type == (t_type)eol)
+	{
+		token = DEQUE_TOKEN(token_list);
+		token_destroy(&token);
+		nr++;
+	}
+	return (nr);
+}
+
 static void	parse_comment(t_token_list *token_list, t_header *header)
 {
 	t_token *token;
-	char	*name;
-	int		i;
 	t_value chk_value;
 
 	chk_value.keyword = comment;
-	vailidate_token((token = DEQUE_TOKEN(token_list)), (t_type)keyword,
+	token_validate((token = DEQUE_TOKEN(token_list)), (t_type)keyword,
 		chk_value);
-	destroy_token(&token);
+	token_destroy(&token);
 	chk_value.text = NULL;
-	vailidate_token((token = DEQUE_TOKEN(token_list)), (t_type)text, chk_value);
+	token_validate((token = DEQUE_TOKEN(token_list)), (t_type)text, chk_value);
 	f_strncpy(header->comment, token->value.text, COMMENT_LENGTH);
-	destroy_token(&token);
+	token_destroy(&token);
+	if (parse_eol(token_list) < 1)
+	{
+		printf("expected eol\n");
+		exit(0);	//improve error handling
+	}
 }
 
 static void	parse_name(t_token_list *token_list, t_header *header)
 {
 	t_token *token;
-	char	*name;
-	int		i;
 	t_value chk_value;
 
 	chk_value.keyword = name;
-	vailidate_token((token = DEQUE_TOKEN(token_list)), (t_type)keyword,
+	token_validate((token = DEQUE_TOKEN(token_list)), (t_type)keyword,
 		chk_value);
-	destroy_token(&token);
+	token_destroy(&token);
 	chk_value.text = NULL;
-	vailidate_token((token = DEQUE_TOKEN(token_list)), (t_type)text, chk_value);
+	token_validate((token = DEQUE_TOKEN(token_list)), (t_type)text, chk_value);
 	f_strncpy(header->prog_name, token->value.text, PROG_NAME_LENGTH);
-	destroy_token(&token);
+	token_destroy(&token);
+	if (parse_eol(token_list) < 1)
+	{
+		printf("expected eol\n");
+		exit(0);	//improve error handling
+	}
 }
+
 
 t_header	*parse_header(t_token_list *token_list)
 {
@@ -55,6 +77,8 @@ t_header	*parse_header(t_token_list *token_list)
 
 	header = (t_header*)malloc(sizeof(t_header));
 	header->magic = COREWAR_EXEC_MAGIC;
+	parse_eol(token_list);
 	parse_name(token_list, header);
 	parse_comment(token_list, header);
+	return (header);
 }
