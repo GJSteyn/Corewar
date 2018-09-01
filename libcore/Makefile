@@ -6,7 +6,7 @@
 #    By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/30 06:27:18 by pstubbs           #+#    #+#              #
-#    Updated: 2018/09/01 09:46:20 by wseegers         ###   ########.fr        #
+#    Updated: 2018/09/01 09:57:27 by wseegers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CFLAGS = -Wall -Wextra -Werror
 INC := -I include
 
 CORE_SRC = f_bzero.c f_isspace.c f_memalloc.c f_strlen.c f_atol.c f_isdigit.c \
-			f_strcmp.c f_strncpy.c f_strchr.c f_strsub.c f_strnew.c \
-			f_dynamicstring.c
+		f_little_to_big_endian.c f_big_to_little_endian.c f_dynamicstring.c \
+		f_isspace_notnewl.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))

@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_get_line.c                                       :+:      :+:    :+:   */
+/*   get_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 16:23:59 by gsteyn            #+#    #+#             */
 /*   Updated: 2018/08/31 15:43:02 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core.h"
-#include <unistd.h>
-#include <fcntl.h>
-#include <errno.h>
+#include "asm.h"
 
 // static char		*f_strnew(size_t size)
 // {
@@ -29,7 +26,7 @@
 // 	return (ret);
 // }
 
-char			*f_get_line(char *path)
+char			*get_line(char *path)
 {
 	int			fd;
 	int			rcount;

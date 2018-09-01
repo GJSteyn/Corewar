@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_memalloc.c                                       :+:      :+:    :+:   */
+/*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/25 10:34:13 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:29:02 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/08/30 10:58:44 by kmarchan          #+#    #+#             */
+/*   Updated: 2018/08/30 13:06:20 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core.h"
+#ifndef ASM_H
+# define ASM_H
 
-void	*f_memalloc(size_t size)
-{
-	void *p;
+# include <unistd.h>
+# include <fcntl.h>
+# include <errno.h>
 
-	p = malloc(size);
-	if (!p)
-		return (NULL);
-	f_bzero(p, size);
-	return (p);
-}
+# include "core.h"
+# include "op.h"
+# include "list.h"
+
+char	*strip_line(char *line);
+char	*get_line(char *path);
+
+#endif

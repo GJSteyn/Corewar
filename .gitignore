@@ -1,5 +1,4 @@
 #compiled
-a.out
 *.o
 *.d
 *.a
@@ -7,3 +6,9 @@ a.out
 *.plist
 .vscode/settings.json
 resources/*
+*.json
+obj
+
+#executable
+a.out
+asm

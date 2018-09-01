@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_memalloc.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/25 10:34:13 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:29:02 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/08/30 10:53:19 by kmarchan          #+#    #+#             */
+/*   Updated: 2018/08/30 13:06:20 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core.h"
+#include "asm.h"
+#include <stdio.h>
 
-void	*f_memalloc(size_t size)
+int		main(int argc, char **argv)
 {
-	void *p;
+	char	*no_sp;
+	char	*no_com;
 
-	p = malloc(size);
-	if (!p)
-		return (NULL);
-	f_bzero(p, size);
-	return (p);
+	if (argc == 2)
+	{
+		no_sp = get_line(argv[1]);
+		no_com = strip_line(no_sp);
+		printf("%s", no_com);
+		free(no_com);
+		free(no_sp);
+	}
+	return (1);
 }

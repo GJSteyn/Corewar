@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_memalloc.c                                       :+:      :+:    :+:   */
+/*   f_isspace_notnewl.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/25 10:34:13 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:29:02 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/08/30 10:26:56 by kmarchan          #+#    #+#             */
+/*   Updated: 2018/08/30 10:27:10 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core.h"
-
-void	*f_memalloc(size_t size)
+int		f_isspace_notnewl(char c)
 {
-	void *p;
-
-	p = malloc(size);
-	if (!p)
-		return (NULL);
-	f_bzero(p, size);
-	return (p);
+	if (c == ' ' || c == '\t' || c == '\v' || c == '\f' || c == '\r')
+		return (1);
+	else
+		return (0);
 }
