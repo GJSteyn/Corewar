@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+         #
+#    By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/30 06:27:18 by pstubbs           #+#    #+#              #
-#    Updated: 2018/08/31 16:16:41 by gsteyn           ###   ########.fr        #
+#    Updated: 2018/09/01 09:46:20 by wseegers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CFLAGS = -Wall -Wextra -Werror
 INC := -I include
 
 CORE_SRC = f_bzero.c f_isspace.c f_memalloc.c f_strlen.c f_atol.c f_isdigit.c \
-			f_strcmp.c f_strncpy.c f_strchr.c f_strsub.c f_strnew.c
+			f_strcmp.c f_strncpy.c f_strchr.c f_strsub.c f_strnew.c \
+			f_dynamicstring.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))
