@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lex.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.wethinkcode.co.z    +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/08/31 21:54:15 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/01 13:24:50 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 typedef struct s_token		t_token;
 
-static void		token_destroy(void *token)
+static void		destroy_token(void *token)
 {
 	if (((t_token*)token)->type == text)
 		free(((t_token*)token)->value.text);
@@ -232,7 +232,7 @@ static void		add_op(t_list *list, char **str, size_t line)
 	token->type = op;
 	while (!f_strmatch(g_op_tab[op_type].mnu, *str))
 		op_type--;
-	token->value.op = op_type + 1;
+	token->value.op = g_op_tab[op_type].bytecode;
 	token->line = line;
 	*str += f_strlen(g_op_tab[op_type].mnu);
 	list_append(list, token);
@@ -304,7 +304,7 @@ static void		add_token(char **str, size_t *line, t_list *list)
 	}
 	else
 	{
-		printf("Lexical error on line: %d\n", *line);
+		printf("Lexical error on line: %zu\n", *line);
 		exit(1);
 	}
 }
@@ -314,7 +314,7 @@ t_list			*lex(char *clean_line)
 	t_list			*ret;
 	size_t			line;
 
-	ret = list_create(token_destroy);
+	ret = list_create(destroy_token);
 	line = 0;
 	while (*clean_line)
 	{
