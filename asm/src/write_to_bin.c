@@ -6,12 +6,23 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:53:58 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/08/31 11:32:33 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/01 14:08:14 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include <stdio.h> //
+
+
+void	print_bits(unsigned char octec)
+{
+	int i = 256;
+	while(i >>=1)
+	{
+		(octec & i) ? write(1,"1",1) : write(1, "0", 1);
+	}
+	write(1, " ", 1);
+}
 
 void	write_overflow(char bin[MEM_SIZE], int *i, int x, int max)
 {
@@ -27,7 +38,7 @@ void	write_overflow(char bin[MEM_SIZE], int *i, int x, int max)
 	*i = tmp;
 }
 
-void	write_data(char bin[MEM_SIZE], char *data ,int *i, int max)
+void	write_data(char bin[MEM_SIZE], char *data, int *i, int max)
 {
 	int	x;
 	int	tmpi;
@@ -36,7 +47,7 @@ void	write_data(char bin[MEM_SIZE], char *data ,int *i, int max)
 	tmpi = *i;
 	while (data[x])
 	{
-		bin[tmpi] = data[x]; 
+		bin[tmpi] = data[x];
 		x++;
 		tmpi++;
 	}
@@ -44,13 +55,10 @@ void	write_data(char bin[MEM_SIZE], char *data ,int *i, int max)
 	write_overflow(bin, i, x, max);
 }
 
-void	write_to_bin(char *path, t_header *header)//, t_code *code)
+int		write_header_to_bin(char bin[MEM_SIZE], t_header *header)//, t_code *code)
 {
-	char	bin[MEM_SIZE];
 	int		i;
-	int		fd;
 
-	fd = open(path, O_RDWR);
 	f_little_to_big_endian(header->magic, bin);
 	i = 4;
 	write_data(bin, header->prog_name, &i, PROG_NAME_LENGTH + 1);
@@ -58,7 +66,50 @@ void	write_to_bin(char *path, t_header *header)//, t_code *code)
 	f_little_to_big_endian(header->prog_size, bin + i);
 	i += 4;
 	write_data(bin, header->comment, &i, COMMENT_LENGTH + 1);
-	write(fd, bin, i + 1);
+	return (i);
+}
+
+int		write_int_to_bytecode(char bin[MEM_SIZE], int *i, int type, int data)
+{
+	char	c[4];
+	int		tmpi;
+
+	tmpi = *i;
+	f_little_to_big_endian(data, c);
+	if (type == 0)	//opcode
+	{
+		bin[tmpi] = c[3];
+		tmpi++;
+	}
+	else if (type == 1)
+	{
+		bin[tmpi] = c[2];
+		bin[tmpi + 1] = c[3];
+		tmpi += 2;
+	}
+	return (tmpi);
+}
+
+void	write_cmd_to_bin(char bin[MEM_SIZE], int *i)
+{
+	int		tmpi;
+
+	tmpi = write_int_to_bytecode(bin, i, 1, 2);
+	*i = tmpi;
+	tmpi = write_int_to_bytecode(bin, i, 1, 2654);
+	*i = tmpi;
+}
+
+void	write_to_bin(char *path, t_header *header)//, t_list *code))
+{
+	char	bin[MEM_SIZE];
+	int		fd;
+	int		i;
+
+	fd = open(path, O_RDWR);
+	i = write_header_to_bin(bin, header);
+	write_cmd_to_bin(bin, &i);
+	write(fd, bin, i);
 }
 
 int main()
@@ -71,25 +122,20 @@ int main()
 	memcpy(header->prog_name, "IVY\0", 3);
 	memcpy(header->comment, "THIS PROGRAMS NAME IS IVY, IN REF TO IVY TOWER\0", 46);
 	write_to_bin("test.cor", header);
+
+	// int	t = 2;
+	char c;
+	f_little_to_big_endian(2, &c);
+
+	print_bits(((unsigned char*)&c)[0]);
+	print_bits(((unsigned char*)&c)[1]);
+	print_bits(((unsigned char*)&c)[2]);
+	print_bits(((unsigned char*)&c)[3]);
+	// write(1, "\n", 1);
+
+	// if (((unsigned char*)&c)[0] & 255)
+
+
+
 	return (1);
 }
-
-// typedef struct		s_header
-// {
-// 	unsigned int		magic;
-// 	char				prog_name[PROG_NAME_LENGTH + 1];
-// 	unsigned int		prog_size;
-// 	char				comment[COMMENT_LENGTH + 1];
-// }					t_header;
-
-// #endif
-
-// typedef	char t_bin[MEM_SIZE];
-
-// void	f_little_to_big_endian(int little, char big[4])
-// {
-// 	big[0] = ((unsigned char*)&little)[3];
-// 	big[1] = ((unsigned char*)&little)[2];
-// 	big[2] = ((unsigned char*)&little)[1];
-// 	big[3] = ((unsigned char*)&little)[0];
-// }
