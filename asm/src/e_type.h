@@ -3,27 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   e_type.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/28 14:01:33 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/08/31 15:05:34 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef E_TYPE_H
 # define E_TYPE_H
 
+enum	e_op
+{
+	blank, 
+	live,
+	ld,
+	st,
+	add,
+	sub,
+	and,
+	or,
+	xor,
+	zjmp,
+	ldi,
+	sti,
+	op_fork, //conflicts with function fork
+	lld,
+	lldi,
+	lfork,
+	aff
+};
+
+enum	e_keyword
+{
+	name,
+	comment
+};
+
 enum	e_type
 {
-	clean,
-	comment,
+	keyword,
 	text,
+	label_def, //conflicts with type label
 	op,
-	label,
-	arg_r,
-	arg_dir,
-	arg_ind,
-	label_ref
+	arg,
+	label_arg, //changed for consistancy
+	number,
+	eol,
+	separator
+};
+
+enum	e_arg_code
+{
+	arg_blank, //conflicts with e_op blank
+	reg,
+	direct,
+	indirect, //"index" is a "redefinition"
+	label		//this should never be necessary, since one of the types is label_arg
+};
+
+union	u_value
+{
+	int				number;
+	char			*text;
+	enum e_keyword	keyword;
+	enum e_op		op;
+	enum e_arg_code	arg;
 };
 
 #endif

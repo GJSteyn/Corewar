@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+         #
+#    By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/08/30 13:06:20 by gsteyn           ###   ########.fr        #
+#    Updated: 2018/09/01 13:02:53 by wseegers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ INC2 := -I../liblist/include/
 
 LIB := -L. ../libcore/libcore.a ../liblist/liblist.a
 
-CORE_SRC = get_line.c main.c strip_line.c
+CORE_SRC = get_line.c main.c strip_line.c lex.c \
+			parse_header.c token_util.c token_validate.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))

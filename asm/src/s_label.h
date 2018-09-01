@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   s_label.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 10:58:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/01 12:49:34 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/29 15:57:19 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/31 08:52:25 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#ifndef S_LABEL_H
+# define S_LABEL_H
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <errno.h>
-
-# include "core.h"
-# include "op.h"
+# include <stddef.h>
 # include "list.h"
 
-# include "parse.h"
+struct	s_label
+{
+	char	*name;
+	size_t	offset;
+};
 
-char	*strip_line(char *line);
-char	*get_line(char *path);
-t_list	*lex(char *clean_line);
+struct	s_dref_label
+{
+	char	*name;
+	size_t	offset;
+};
+
+typedef	t_list t_label_list;
+
+t_label_list	*gdref_list(int mode);
+void			*add_dref(char *name, size_t offset);
+t_label_list	*glabel_list(int mode);
+void			*add_label(char *name, size_t offset);
 
 #endif

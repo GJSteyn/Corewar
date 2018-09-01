@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   token_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 10:58:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/01 12:49:34 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/29 18:50:19 by wseegers          #+#    #+#             */
+/*   Updated: 2018/09/01 12:56:00 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include "s_token.h"
+#include <stdio.h> //debugging
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <errno.h>
+void	token_destroy(struct s_token **token)
+{
+	if ((*token)->type == text)
+		free((*token)->value.text);
+	free(*token);
+	*token = NULL;
+}
 
-# include "core.h"
-# include "op.h"
-# include "list.h"
+void	invalid_token(struct s_token *token, char *message)
+{
+	//f_putnbr_err(token->line);
+	//f_putstr_err(message);
 
-# include "parse.h"
-
-char	*strip_line(char *line);
-char	*get_line(char *path);
-t_list	*lex(char *clean_line);
-
-#endif
+	(void)token;
+	printf("Invalid token: %s\n", message);
+}

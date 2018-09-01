@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   f_strncpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 10:58:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/01 12:49:34 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/31 09:02:59 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/31 09:04:09 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
+#include <stddef.h>
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <errno.h>
+char	*f_strncpy(char *dest, const char *src, size_t n)
+{
+	size_t i;
 
-# include "core.h"
-# include "op.h"
-# include "list.h"
-
-# include "parse.h"
-
-char	*strip_line(char *line);
-char	*get_line(char *path);
-t_list	*lex(char *clean_line);
-
-#endif
+	i = 0;
+	while (src[i] && i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	while (i < n)
+		dest[i++] = '\0';
+	return (dest);
+}

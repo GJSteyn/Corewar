@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.h                                              :+:      :+:    :+:   */
+/*   s_instruction.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/30 10:58:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/01 12:49:34 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/31 09:20:44 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/31 09:40:59 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ASM_H
-# define ASM_H
-
-# include <unistd.h>
-# include <fcntl.h>
-# include <errno.h>
-
-# include "core.h"
 # include "op.h"
-# include "list.h"
+# include "e_type.h"
 
-# include "parse.h"
-
-char	*strip_line(char *line);
-char	*get_line(char *path);
-t_list	*lex(char *clean_line);
-
-#endif
+struct	s_instruction
+{
+	enum e_op		op;
+	enum e_arg_code arg_type[MAX_ARGS_NUMBER];
+	int				arg_value[MAX_ARGS_NUMBER];
+};

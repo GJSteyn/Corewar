@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   strip_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:50:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/30 11:05:28 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/01 13:14:52 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int		newl_over_space(char *str, char **new, int i, int n)
+static void		newl_over_space(char *str, char **new, int *i, int *n)
 {
-	if (str[i] == '\n' && (*new)[n - 1] == ' ')
-		n--;
-	(*new)[n++] = str[i];
-	return (n);
+	if (str[*i] == '\n' && (*new)[(*n) - 1] == ' ')
+		(*n)--;
+	(*new)[(*n)++] = str[*i];
 }
 
 static void		skip_quote(char *str, char **new, int *i, int *n)
@@ -44,16 +43,16 @@ static char		*strip_space(char *str)
 			new[n++] = str[i++];
 			while (str[i] != '"')
 				new[n++] = str[i++];
-			new[n++] = str[i++];
+			new[n++] = str[i];
 		}
 		else if (!f_isspace_notnewl(str[i]))
-			n = newl_over_space(str, &new, i, n);
+			newl_over_space(str, &new, &i, &n);
 		else if (i > 0 && f_isspace_notnewl(str[i]) &&
 		!f_isspace(str[i - 1]) && str[i + 1] != '\n')
 			new[n++] = ' ';
 		i++;
 	}
-	(f_isspace_notnewl(new[n - 1])) && (new[i - 1] = '\0');
+	(f_isspace_notnewl(new[n - 1])) && (new[n - 1] = '\0');
 	return (new);
 }
 
@@ -65,7 +64,7 @@ static char		*strip_comment(char *str)
 
 	i = 0;
 	n = 0;
-	new = (char *)f_memalloc(sizeof(char) * f_strlen(str));
+	new = (char *)f_memalloc(sizeof(char) * (f_strlen(str) + 1));
 	while (str[i] != '\0')
 	{
 		if (str[i] == '"')
