@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:53:58 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/09/01 14:41:14 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/02 13:09:14 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,26 +92,32 @@ int		write_int_to_bytecode(char bin[MEM_SIZE], int *i, int type, int data)
 	return (tmpi);
 }
 
-void	write_cmd_to_bin(char bin[MEM_SIZE], int *i)
+void	write_cmd_to_bin(t_list_node *current ,char bin[MEM_SIZE], int *i)
 {
 	int		tmpi;
 
-	tmpi = write_int_to_bytecode(bin, i, 1, 2);
+	tmpi = write_int_to_bytecode(bin, i, 0, current->data->opcode);
 	*i = tmpi;
 	tmpi = write_int_to_bytecode(bin, i, 1, 2654);
 	*i = tmpi;
 }
 
-void	write_to_bin(char *path, t_header *header)//, t_list *code))
+void	write_to_bin(char *path, t_header *header, t_list *code)
 {
-	char	bin[MEM_SIZE];
+	char		bin[MEM_SIZE];
+	t_list_node *current;
 	int		fd;
 	int		i;
 
 	fd = open(path, O_RDWR);
 	f_bzero(bin, MEM_SIZE);
 	i = write_header_to_bin(bin, header);
-	// write_cmd_to_bin(bin, &i);
+	current = code->head;
+	while (current != NULL)
+	{
+		write_cmd_to_bin(current ,bin, &i);
+		current = current->next;
+	}
 	write(fd, bin, i);
 }
 
