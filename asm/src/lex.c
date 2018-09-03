@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lex.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.wethinkcode.co.z    +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/08/31 21:54:15 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/03 13:38:02 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,6 @@ static void		add_label_arg(t_list *list, char **str, size_t line)
 	}
 	token->value.text = f_strsub(tmp, 0, *str - tmp);
 	token->line = line;
-	(*str)++;
 	list_append(list, token);
 }
 
@@ -198,7 +197,7 @@ static void		add_arg(t_list *list, char **str, size_t line)
 	token->line = line;
 	if (*(*str + 1) == ':')
 	{
-		token->value.arg = label;
+		token->value.arg = direct;
 		*str += 2;
 		list_append(list, token);
 		add_label_arg(list, str, line);
