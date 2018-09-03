@@ -1,8 +1,13 @@
 #compiled
-a.out
 *.o
 *.d
 *.a
 .DS_Store
 *.plist
 .vscode/settings.json
+*.json
+obj
+
+#executable
+a.out
+asm
