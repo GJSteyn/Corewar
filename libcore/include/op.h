@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/08/29 15:02:36 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/04 21:40:28 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ typedef char			t_arg_type;
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
+
+# define AT_NAME				(4)
+# define AT_PROG_SIZE			(AT_NAME + PROG_NAME_LENGTH)
+# define AT_CODE				(AT_PROG_SIZE + 4 + COMMENT_LENGTH)
 
 typedef struct		s_header
 {
