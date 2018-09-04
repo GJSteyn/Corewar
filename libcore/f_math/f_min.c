@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_strlen.c                                         :+:      :+:    :+:   */
+/*   f_min.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/17 17:49:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:29:08 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/05/30 09:17:36 by wseegers          #+#    #+#             */
+/*   Updated: 2018/05/30 09:19:58 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core.h"
-
-size_t	f_strlen(const char *s)
+long	f_min(long base, long test)
 {
-	size_t size;
-
-	size = 0;
-	while (s[size] != '\0')
-	{
-		size++;
-	}
-	return (size);
+	if (base < test)
+		return (base);
+	return (test);
 }
