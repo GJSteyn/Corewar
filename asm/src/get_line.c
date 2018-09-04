@@ -12,19 +12,19 @@
 
 #include "asm.h"
 
-static char		*f_strnew(size_t size)
-{
-	size_t	i;
-	char	*ret;
+// static char		*f_strnew(size_t size)
+// {
+// 	size_t	i;
+// 	char	*ret;
 
-	i = 0;
-	ret = (char*)f_memalloc(size + 1);
-	if (!ret)
-		return (NULL);
-	while (i < size)
-		ret[i++] = '\0';
-	return (ret);
-}
+// 	i = 0;
+// 	ret = (char*)f_memalloc(size + 1);
+// 	if (!ret)
+// 		return (NULL);
+// 	while (i < size)
+// 		ret[i++] = '\0';
+// 	return (ret);
+// }
 
 char			*get_line(char *path)
 {
