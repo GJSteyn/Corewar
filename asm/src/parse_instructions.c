@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:57:41 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/04 22:39:04 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/04 23:35:24 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,12 @@ static size_t	parse_eol(t_token_list *token_list)
 	return (nr);
 }
 
-static void			add_arg(t_instr *instr, t_token_list *token_list, t_op operation)
+static void			add_arg(t_instr *instr, t_token_list *token_list, t_op operation, int i)
 {
 	t_token			*token;
 
 	token = DEQUE_TOKEN(token_list);
-	if (token->type == number)
-	{
-		if (!operation.arg_type[i] & (t_arg_code)indirect)
-		{
-			f_putstr_err("Invalid Token indirect number");						// Better error handling please.
-			exit(1);
-		}
-		instr->arg_type[i] = indirect;
-		instr->arg_value = token->value.number;
-	}
-	else if (token->type == label_arg)
-	{
-		if (!operation.arg_type[i] & )
-	}
-
+	if ()
 
 
 
@@ -74,7 +60,7 @@ static void			add_instruction(t_instr_list *instr_list, t_token_list *token_list
 	token = DEQUE_TOKEN(token_list);
 	operation = g_op_tab[token->value.op - 1];
 	instr->op = token->value.op;
-	token_destroy(token);
+	token_destroy(&token);
 	while (++i < operation.argc)
 	{
 		add_arg(instr, token_list, operation, i);
@@ -101,6 +87,7 @@ t_instr_list		*parse_instructions(t_token_list *token_list)
 		{
 			token = DEQUE_TOKEN(token_list);
 			add_glabel(token->value.text, offset);
+			token_destroy(&token);
 		}
 		else if (PEEK_TOKEN(token_list)->type == op)
 			add_instruction(intsr_list, token_list);

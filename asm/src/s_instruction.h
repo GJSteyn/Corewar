@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 09:20:44 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/04 18:27:01 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/04 22:15:05 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ struct	s_instruction
 	enum e_arg_code arg_type[MAX_ARGS_NUMBER];
 	int				arg_value[MAX_ARGS_NUMBER];
 };
+
+void		instruction_destroy(struct s_instruction *instruction);
 
 
 /*
