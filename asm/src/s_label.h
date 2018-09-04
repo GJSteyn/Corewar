@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_label.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 15:57:19 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 08:52:25 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/04 18:50:18 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ struct	s_label
 struct	s_dref_label
 {
 	char	*name;
+	int		*value;
 	size_t	offset;
 };
 
-typedef	t_list t_label_list;
+typedef	t_list	t_label_list;
 
 t_label_list	*gdref_list(int mode);
 void			*add_dref(char *name, size_t offset);

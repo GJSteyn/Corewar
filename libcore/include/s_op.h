@@ -6,12 +6,14 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/04 15:17:11 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/04 17:45:41 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef S_OP_H
 # define S_OP_H
+
+# include <stdbool.h>
 
 struct	s_op
 {
@@ -21,7 +23,7 @@ struct	s_op
 	char	bytecode;
 	int		cost;
 	char	description[64];
-	int		unknown1;
+	bool	has_encoding_byte;
 	int		unknown2;
 };
 

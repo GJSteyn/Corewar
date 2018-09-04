@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 10:53:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/01 13:06:59 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/04 17:41:42 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int		main(int argc, char **argv)
 	char		*no_com;
 	t_list		*token_list;
 	t_header	*header;
+	t_list		*instructions;
 
 	if (argc == 2)
 	{
@@ -28,6 +29,7 @@ int		main(int argc, char **argv)
 		puts("debug");
 		token_list = lex(no_com);
 		header = parse_header(token_list);
+		instructions = parse_instructions(token_list);
 		printf("name: %s\n", header->prog_name);
 		printf("comment: %s\n", header->comment);
 		free(no_com);

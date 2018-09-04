@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_label_util.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 15:54:22 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 08:22:31 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/04 17:30:39 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ t_label_list	*glabel_list(int mode)
 	return (list);
 }
 
-void			*add_gdref(char *name, size_t offset)
+void			*add_gdref(char *name, int *value, size_t offset)
 {
 	t_dref_label	*label;
 
 	label = (t_label*)malloc(sizeof(t_label));
-	*label = (t_dref_label){name, offset};
+	*label = (t_dref_label){name, value, offset};
 	list_append(gdref_list(LABEL_LIST_GET), label);
 }
 
