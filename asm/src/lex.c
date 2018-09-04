@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/03 13:49:28 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/04 23:30:04 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ static void		add_label_def(t_list *list, char **str, size_t line)
 	list_append(list, token);
 }
 
-static void		add_arg(t_list *list, char **str, size_t line)
+static void		add_direct(t_list *list, char **str, size_t line)
 {
 	t_token		*token;
 
@@ -200,6 +200,30 @@ static void		add_arg(t_list *list, char **str, size_t line)
 	token->value.arg = direct;
 	*str += 1;
 	list_append(list, token);
+	if (*(*str + 1) == ':')
+		add_label_arg(list, str, line);
+	else if (f_isdigit(*(*str + 1)) || *(*str + 1) == '-')
+		add_number(list, str, line);
+	else
+	{
+		f_putstr_err("Lexical error {direct value}");				// Use f_fprintf to print with line number.
+		exit(1);
+	}
+}
+
+static void		add_indirect(t_list *list, char **str, size_t line)
+{
+	t_token		*token;
+
+	token = (t_token*)f_memalloc(sizeof(t_token));
+	token->type = arg;
+	token->line = line;
+	token->value.arg = indirect;
+	list_append(list, token);
+	if (*(*str + 1) == ':')
+		add_label_arg(list, str, line);
+	else
+		add_number(list, str, line);
 }
 
 static void		add_separator(t_list *list, char **str, size_t line)
@@ -232,12 +256,14 @@ static void		add_op(t_list *list, char **str, size_t line)
 static void		add_reg(t_list *list, char **str, size_t line)
 {
 	t_token		*token;
+	int			error;
 
 	token = (t_token*)f_memalloc(sizeof(t_token));
-	token->type = arg;
-	token->value.arg = reg;
+	token->type = reg;
 	token->line = line;
 	(*str)++;
+	token->value.number = f_atol(*str, &error);
+	*str += f_intlen(token->value.number);
 	list_append(list, token);
 }
 
@@ -263,20 +289,15 @@ static void		add_token(char **str, size_t *line, t_list *list)
 		write(1, "Text\n", 5);
 		add_text(list, str, *line);
 	}
-	else if (f_isdigit(**str) || **str == '-')
+	else if (f_isdigit(**str) || **str == '-' || **str == ':')				// Try and add specific direct or indirect numbers
 	{
-		write(1, "Number\n", 7);
-		add_number(list, str, *line);
+		write(1, "Indirect\n", 7);
+		add_indirect(list, str, *line);
 	}
 	else if (**str == DIRECT_CHAR)
 	{
 		write(1, "Direct\n", 7);
-		add_arg(list, str, *line);
-	}
-	else if (**str == ':')
-	{
-		write(1, "Label_arg\n", 10);
-		add_label_arg(list, str, *line);
+		add_direct(list, str, *line);
 	}
 	else if (is_label(*str))
 	{
