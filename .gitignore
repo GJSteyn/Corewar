@@ -5,7 +5,10 @@
 .DS_Store
 *.plist
 .vscode/settings.json
+<<<<<<< HEAD
 resources/*
+=======
+>>>>>>> lexer
 *.json
 obj
 

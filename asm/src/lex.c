@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lex.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/01 13:34:00 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/04 15:16:44 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ static void		add_label_arg(t_list *list, char **str, size_t line)
 	t_token		*token;
 	char		*tmp;
 
+	(*str)++;
 	tmp = *str;
 	token = (t_token*)f_memalloc(sizeof(t_token));
 	token->type = label_arg;
@@ -168,8 +169,8 @@ static void		add_label_arg(t_list *list, char **str, size_t line)
 		exit(1);
 	}
 	token->value.text = f_strsub(tmp, 0, *str - tmp);
+	write(1, "Hello", 5);
 	token->line = line;
-	(*str)++;
 	list_append(list, token);
 }
 
@@ -196,19 +197,9 @@ static void		add_arg(t_list *list, char **str, size_t line)
 	token = (t_token*)f_memalloc(sizeof(t_token));
 	token->type = arg;
 	token->line = line;
-	if (*(*str + 1) == ':')
-	{
-		token->value.arg = label;
-		*str += 2;
-		list_append(list, token);
-		add_label_arg(list, str, line);
-	}
-	else
-	{
-		token->value.arg = direct;
-		*str += 1;
-		list_append(list, token);
-	}
+	token->value.arg = direct;
+	*str += 1;
+	list_append(list, token);
 }
 
 static void		add_separator(t_list *list, char **str, size_t line)
@@ -254,52 +245,57 @@ static void		add_token(char **str, size_t *line, t_list *list)
 {
 	if (**str == '\n')
 	{
-		// write(1, "Newline\n", 8);
+		write(1, "Newline\n", 8);
 		add_newline(list, str, line);
 	}
 	else if (f_strmatch(*str, NAME_CMD_STRING))
 	{
-		// write(1, "Name\n", 5);
+		write(1, "Name\n", 5);
 		add_name(list, str, *line);
 	}
 	else if (f_strmatch(*str, COMMENT_CMD_STRING))
 	{
-		// write(1, "Comment\n", 8);
+		write(1, "Comment\n", 8);
 		add_comment(list, str, *line);
 	}
 	else if (**str == '"')
 	{
-		// write(1, "String\n", 7);
+		write(1, "Text\n", 5);
 		add_text(list, str, *line);
 	}
 	else if (f_isdigit(**str) || **str == '-')
 	{
-		// write(1, "Number\n", 7);
+		write(1, "Number\n", 7);
 		add_number(list, str, *line);
 	}
 	else if (**str == DIRECT_CHAR)
 	{
-		// write(1, "Direct\n", 7);
+		write(1, "Direct\n", 7);
 		add_arg(list, str, *line);
+	}
+	else if (**str == ':')
+	{
+		write(1, "Label_arg\n", 10);
+		add_label_arg(list, str, *line);
 	}
 	else if (is_label(*str))
 	{
-		// write(1, "Label\n", 6);
+		write(1, "label\n", 6);
 		add_label_def(list, str, *line);
 	}
 	else if (**str == SEPARATOR_CHAR)
 	{
-		// write(1, "Separator\n", 10);
+		write(1, "Separator\n", 11);
 		add_separator(list, str, *line);
 	}
 	else if (is_op(*str))
 	{
-		// write(1, "Op\n", 3);
+		write(1, "Op\n", 3);
 		add_op(list, str, *line);
 	}
 	else if (is_reg(*str))
 	{
-		// write(1, "Reg\n", 4);
+		write(1, "Register\n", 9);
 		add_reg(list, str, *line);
 	}
 	else
@@ -318,7 +314,7 @@ t_list			*lex(char *clean_line)
 	line = 0;
 	while (*clean_line)
 	{
-		if (f_isspace(*clean_line) && *clean_line != '\n')		// Should f_isspace be checking for '\n'?
+		if (f_isspace_notnewl(*clean_line))
 			clean_line++;
 		else
 			add_token(&clean_line, &line, ret);
