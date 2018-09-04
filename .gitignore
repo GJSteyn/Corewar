@@ -6,7 +6,10 @@
 *.plist
 .vscode/settings.json
 <<<<<<< HEAD
+<<<<<<< HEAD
 resources/*
+=======
+>>>>>>> lexer
 =======
 >>>>>>> lexer
 *.json
