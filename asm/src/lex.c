@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/04 23:30:04 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/04 23:44:48 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,12 +259,12 @@ static void		add_reg(t_list *list, char **str, size_t line)
 	int			error;
 
 	token = (t_token*)f_memalloc(sizeof(t_token));
-	token->type = reg;
+	token->type = arg;
+	token->value.arg = reg;
 	token->line = line;
 	(*str)++;
-	token->value.number = f_atol(*str, &error);
-	*str += f_intlen(token->value.number);
 	list_append(list, token);
+	add_number(list, str, line);
 }
 
 static void		add_token(char **str, size_t *line, t_list *list)
