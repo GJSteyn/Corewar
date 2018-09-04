@@ -6,11 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2018/09/04 15:16:44 by gsteyn           ###   ########.fr       */
-=======
-/*   Updated: 2018/09/04 23:30:04 by gsteyn           ###   ########.fr       */
->>>>>>> lexer
+/*   Updated: 2018/09/04 23:48:03 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,8 +200,6 @@ static void		add_direct(t_list *list, char **str, size_t line)
 	token->value.arg = direct;
 	*str += 1;
 	list_append(list, token);
-<<<<<<< HEAD
-=======
 	if (*(*str + 1) == ':')
 		add_label_arg(list, str, line);
 	else if (f_isdigit(*(*str + 1)) || *(*str + 1) == '-')
@@ -215,7 +209,6 @@ static void		add_direct(t_list *list, char **str, size_t line)
 		f_putstr_err("Lexical error {direct value}");				// Use f_fprintf to print with line number.
 		exit(1);
 	}
->>>>>>> lexer
 }
 
 static void		add_indirect(t_list *list, char **str, size_t line)
@@ -266,12 +259,12 @@ static void		add_reg(t_list *list, char **str, size_t line)
 	int			error;
 
 	token = (t_token*)f_memalloc(sizeof(t_token));
-	token->type = reg;
+	token->type = arg;
+	token->value.arg = reg;
 	token->line = line;
 	(*str)++;
-	token->value.number = f_atol(*str, &error);
-	*str += f_intlen(token->value.number);
 	list_append(list, token);
+	add_number(list, str, line);
 }
 
 static void		add_token(char **str, size_t *line, t_list *list)
@@ -298,22 +291,13 @@ static void		add_token(char **str, size_t *line, t_list *list)
 	}
 	else if (f_isdigit(**str) || **str == '-' || **str == ':')				// Try and add specific direct or indirect numbers
 	{
-<<<<<<< HEAD
-		write(1, "Number\n", 7);
-		add_number(list, str, *line);
-=======
 		write(1, "Indirect\n", 7);
 		add_indirect(list, str, *line);
->>>>>>> lexer
 	}
 	else if (**str == DIRECT_CHAR)
 	{
 		write(1, "Direct\n", 7);
-<<<<<<< HEAD
-		add_arg(list, str, *line);
-=======
 		add_direct(list, str, *line);
->>>>>>> lexer
 	}
 	else if (**str == ':')
 	{

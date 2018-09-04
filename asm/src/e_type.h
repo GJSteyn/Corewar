@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/04 23:37:21 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/04 23:46:32 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ enum	e_type
 	op,
 	arg,
 	label_arg, //changed for consistancy
-	reg,
 	number,
 	eol,
 	separator
