@@ -2,6 +2,7 @@
 *.o
 *.d
 *.a
+*.core
 .DS_Store
 *.plist
 .vscode/settings.json

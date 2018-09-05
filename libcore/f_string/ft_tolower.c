@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_isspace.c                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: WSeegers <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/28 08:02:39 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:05:24 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/04/21 00:16:11 by WSeegers          #+#    #+#             */
+/*   Updated: 2018/05/23 10:32:25 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	f_isspace(char c)
+#include "libft.h"
+
+int		ft_tolower(int c)
 {
-	if (c == ' ' || c == '\n' || c == '\t' || c == '\v' || c == '\f'
-			|| c == '\r')
-		return (1);
-	else
-		return (0);
+	char chr;
+
+	if (c == -1)
+		return (-1);
+	if (c >= 0 && c < 256)
+	{
+		chr = c;
+		if (ft_isupper(c))
+			return (c | 0x20);
+	}
+	return (c);
 }

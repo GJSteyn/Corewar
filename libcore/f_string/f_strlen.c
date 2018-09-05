@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_memalloc.c                                       :+:      :+:    :+:   */
+/*   f_strlen.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/25 10:34:13 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:29:02 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/05/27 17:39:36 by wseegers          #+#    #+#             */
+/*   Updated: 2018/05/28 08:07:43 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core.h"
+#include <stddef.h>
 
-void	*f_memalloc(size_t size)
+size_t	f_strlen(const char *str)
 {
-	void *p;
+	size_t len;
 
-	p = malloc(size);
-	if (!p)
-		return (NULL);
-	f_bzero(p, size);
-	return (p);
+	len = 0;
+	while (*str++)
+		len++;
+	return (len);
 }
