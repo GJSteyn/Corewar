@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 15:54:22 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/04 17:30:39 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/05 05:20:37 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ static void		destroy_label(void *plabel)
 	free(label);
 }
 
-void			*add_glabel(char *name, size_t offset)
+void			add_glabel(char *name, size_t offset)
 {
 	t_label	*label;
 
 	label = (t_label*)malloc(sizeof(t_label));
 	*label = (t_label){name, offset};
-	list_append(lable_list(LABEL_LIST_GET), label);
+	list_append(glabel_list(LABEL_LIST_GET), label);
 }
 
 t_label_list	*glabel_list(int mode)
@@ -45,11 +45,11 @@ t_label_list	*glabel_list(int mode)
 	return (list);
 }
 
-void			*add_gdref(char *name, int *value, size_t offset)
+void			add_gdref(char *name, int *value, size_t offset)
 {
 	t_dref_label	*label;
 
-	label = (t_label*)malloc(sizeof(t_label));
+	label = (t_dref_label*)malloc(sizeof(t_dref_label));
 	*label = (t_dref_label){name, value, offset};
 	list_append(gdref_list(LABEL_LIST_GET), label);
 }
