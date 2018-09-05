@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 17:00:18 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/04 17:46:24 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/05 00:45:02 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void		parse_set_labels(void)
 	label_list = glabel_list(LABEL_LIST_GET);
 	while ((dref = DEQUE_DREF(dref_list)))
 	{
-		label = list_func_find(label_list, chk_name, dref->name);
+		label = list_func_find(label_list, chk_name, dref->name); // catch labels that don't exist
 		*(dref->value) = label->offset - dref->offset;
 	}
 	gdref_list(LABEL_LIST_CLEAR);
