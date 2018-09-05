@@ -6,7 +6,7 @@
 #    By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/30 06:27:18 by pstubbs           #+#    #+#              #
-#    Updated: 2018/09/05 05:12:48 by gsteyn           ###   ########.fr        #
+#    Updated: 2018/09/05 08:05:48 by gsteyn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ F_CNTL_SRC = f_exit.c
 F_CNTL = $(addprefix f_cntl/, $(F_CNTL_SRC))
 
 CORE_SRC = f_atol.c f_isspace_notnewl.c f_little_to_big_endian.c \
-		   f_big_to_little_endian.c f_dynamicstring.c
+		   f_big_to_little_endian.c f_dynamicstring.c op.c
 CORE = $(addprefix core/, $(CORE_SRC))
 
 S_VECTOR_SRC = vector_add.c vector_create.c vector_free.c vector_get.c\
