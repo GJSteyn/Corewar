@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   s_op.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/01 09:57:26 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/05 02:00:58 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef S_OP_H
 # define S_OP_H
+
+# include <stdbool.h>
 
 struct	s_op
 {
@@ -21,7 +23,7 @@ struct	s_op
 	char	bytecode;
 	int		cost;
 	char	description[64];
-	int		unknown1;
+	int		has_encoding_byte;
 	int		unknown2;
 };
 

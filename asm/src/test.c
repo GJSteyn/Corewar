@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.wethinkcode.co.z    +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 15:17:22 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/08/31 22:10:52 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/03 13:31:51 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include "s_token.h"
 #include "list.h"
+#include "asm.h"
 #include "op.h"
 #include <stdlib.h>
 
@@ -59,7 +60,7 @@ int		main(int argc, char **argv)
 
 	if (argc == 2)
 	{
-		no_sp = f_get_line(argv[1]);
+		no_sp = get_line(argv[1]);
 		list = lex(no_sp);
 		free(no_sp);
 

@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_putstr_err.c                                     :+:      :+:    :+:   */
+/*   f_isblank.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 18:25:05 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/08/29 18:28:13 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/04/21 13:51:54 by WSeegers          #+#    #+#             */
+/*   Updated: 2018/06/02 00:48:11 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core.h"
-
-void	f_putstr_err(char *str)
+int		f_isblank(int c)
 {
-	int		i;
-
-	i = f_strlen(str);
-	write(2, str, i);
+	return (c == ' ' || c == '\t');
 }

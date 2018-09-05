@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 08:06:00 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/01 13:00:33 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/04 18:30:05 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 typedef	enum e_type		t_type;
 typedef union u_value	t_value;
 
-size_t	parse_eol(t_token_list *token_list)
+static size_t	parse_eol(t_token_list *token_list)
 {
 	t_token *token;
 	size_t	nr;
@@ -30,7 +30,7 @@ size_t	parse_eol(t_token_list *token_list)
 	return (nr);
 }
 
-static void	parse_comment(t_token_list *token_list, t_header *header)
+static void		parse_comment(t_token_list *token_list, t_header *header)
 {
 	t_token *token;
 	t_value chk_value;
@@ -50,7 +50,7 @@ static void	parse_comment(t_token_list *token_list, t_header *header)
 	}
 }
 
-static void	parse_name(t_token_list *token_list, t_header *header)
+static void		parse_name(t_token_list *token_list, t_header *header)
 {
 	t_token *token;
 	t_value chk_value;
@@ -71,7 +71,7 @@ static void	parse_name(t_token_list *token_list, t_header *header)
 }
 
 
-t_header	*parse_header(t_token_list *token_list)
+t_header		*parse_header(t_token_list *token_list)
 {
 	t_header *header;
 

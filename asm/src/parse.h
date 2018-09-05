@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:51:12 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/01 11:40:15 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/05 08:52:01 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef char				t_bin[CHAMP_MAX_SIZE];
 typedef struct s_list		t_token_list;
 typedef struct s_token		t_token;
 typedef struct s_list		t_label_list;
+typedef struct s_list		t_instr_list;
 typedef struct s_label		t_label;
 typedef struct s_dref_label	t_dref_label;
 
@@ -48,10 +49,15 @@ size_t	parse_live(t_token_list *token_list, t_bin bin, size_t offset);
 # define LABEL_LIST_CLEAR	(-1)
 
 t_label_list	*gdref_list(int mode);
-void			*add_gdref(char *name, size_t offset);
+void			add_gdref(char *name, int *value, size_t offset);
 t_label_list	*glabel_list(int mode);
-void			*add_glabel(char *name, size_t offset);
+void			add_glabel(char *name, size_t offset);
 
 t_header		*parse_header(t_token_list *token_list);
+
+void			parse_set_labels(void);
+
+void			instruction_destroy(void *instruction);
+t_instr_list	*parse_instructions(t_token_list *token_list, t_header *head);
 
 #endif

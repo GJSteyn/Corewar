@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/31 15:05:34 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/04 23:46:32 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ enum	e_type
 enum	e_arg_code
 {
 	arg_blank, //conflicts with e_op blank
-	reg,
+	reg,		// remove this without messing up the positions of the other enums?
 	direct,
-	indirect, //"index" is a "redefinition"
-	label		//this should never be necessary, since one of the types is label_arg
+	label,		//this should never be necessary, since one of the types is label_arg
+	indirect //"index" is a "redefinition"
 };
 
 union	u_value
