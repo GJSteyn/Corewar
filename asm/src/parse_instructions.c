@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:57:41 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/05 10:08:40 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/05 10:53:03 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,6 @@ t_instr_list		*parse_instructions(t_token_list *token_list, t_header *header)
 		else if (token->type == op)
 			offset += add_instruction(instr_list, token, token_list, &offset);
 		token_destroy(&token);
-		parse_eol(token_list);
 	}
 	parse_set_labels();
 	header->prog_size = (unsigned int)offset;
