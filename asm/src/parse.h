@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:51:12 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 03:24:42 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/05 04:54:15 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ t_label_list	*glabel_list(int mode);
 void			*add_glabel(char *name, size_t offset);
 
 t_header		*parse_header(t_token_list *token_list);
+
+void			parse_set_labels(void);
 
 #endif
