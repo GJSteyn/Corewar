@@ -6,17 +6,16 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/05 04:48:18 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/05 10:12:51 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list.h"
 #include "core.h"
 #include "op.h"
+#include "f_print.h"
 #include "s_token.h"
 #include <stdbool.h>
-#include <unistd.h>		// Remove
-#include <stdio.h>		// Remove
 
 typedef struct s_token		t_token;
 
@@ -165,7 +164,7 @@ static void		add_label_arg(t_list *list, char **str, size_t line)
 		(*str)++;
 	if (*str - tmp == 0)
 	{
-		write(2, "Label arg error\n", 17);			// Replace with better error or handle error differently
+		f_fprintf(STDERR, "Label arg error: Line %zu\n", line);			// Replace with better error or handle error differently
 		exit(1);
 	}
 	token->value.text = f_strsub(tmp, 0, *str - tmp);
@@ -205,7 +204,7 @@ static void		add_direct(t_list *list, char **str, size_t line)
 		add_number(list, str, line);
 	else
 	{
-		f_putstr_err("Lexical error {direct value}");				// Use f_fprintf to print with line number.
+		f_fprintf(STDERR, "Lexical error {direct value}: Line %zu\n", line);				// Use f_fprintf to print with line number.
 		exit(1);
 	}
 }
@@ -269,32 +268,32 @@ static void		add_token(char **str, size_t *line, t_list *list)
 {
 	if (**str == '\n')
 	{
-		// write(1, "Newline\n", 8);
+		write(1, "Newline\n", 8);
 		add_newline(list, str, line);
 	}
 	else if (f_strmatch(*str, NAME_CMD_STRING))
 	{
-		// write(1, "Name\n", 5);
+		write(1, "Name\n", 5);
 		add_name(list, str, *line);
 	}
 	else if (f_strmatch(*str, COMMENT_CMD_STRING))
 	{
-		// write(1, "Comment\n", 8);
+		write(1, "Comment\n", 8);
 		add_comment(list, str, *line);
 	}
 	else if (**str == '"')
 	{
-		// write(1, "Text\n", 5);
+		write(1, "Text\n", 5);
 		add_text(list, str, *line);
 	}
 	else if (f_isdigit(**str) || **str == '-' || **str == ':')				// Try and add specific direct or indirect numbers
 	{
-		// write(1, "Indirect\n", 7);
+		write(1, "Indirect\n", 7);
 		add_indirect(list, str, *line);
 	}
 	else if (**str == DIRECT_CHAR)
 	{
-		// write(1, "Direct\n", 7);
+		write(1, "Direct\n", 7);
 		add_direct(list, str, *line);
 	}
 	else if (**str == ':')
@@ -304,28 +303,27 @@ static void		add_token(char **str, size_t *line, t_list *list)
 	}
 	else if (is_label(*str))
 	{
-		// write(1, "label\n", 6);
+		write(1, "label\n", 6);
 		add_label_def(list, str, *line);
 	}
 	else if (**str == SEPARATOR_CHAR)
 	{
-		// write(1, "Separator\n", 11);
+		write(1, "Separator\n", 11);
 		add_separator(list, str, *line);
 	}
 	else if (is_op(*str))
 	{
-		// write(1, "Op\n", 3);
+		write(1, "Op\n", 3);
 		add_op(list, str, *line);
-		// exit(1);
 	}
 	else if (is_reg(*str))
 	{
-		// write(1, "Register\n", 9);
+		write(1, "Register\n", 9);
 		add_reg(list, str, *line);
 	}
 	else
 	{
-		printf("Lexical error on line: %zu\n", *line);
+		f_fprintf(STDERR, "Lexical error on line: %zu\n", *line);
 		exit(1);
 	}
 }
