@@ -6,7 +6,7 @@
 #    By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/09/05 04:54:46 by gsteyn           ###   ########.fr        #
+#    Updated: 2018/09/05 05:21:34 by gsteyn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ LIB := -L. ../libcore/libcore.a ../liblist/liblist.a
 
 CORE_SRC = get_line.c main.c strip_line.c lex.c \
 			parse_header.c token_util.c token_validate.c \
-			parse_instructions.c parse_set_labels.c
+			parse_instructions.c parse_set_labels.c parse_label_util.c \
+			instruction_util.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))
