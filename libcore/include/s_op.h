@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/04 23:37:44 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/05 02:00:58 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ struct	s_op
 	char	bytecode;
 	int		cost;
 	char	description[64];
-	bool	has_encoding_byte;
+	int		has_encoding_byte;
 	int		unknown2;
 };
 
