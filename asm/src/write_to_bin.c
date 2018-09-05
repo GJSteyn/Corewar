@@ -6,11 +6,14 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:53:58 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/09/02 13:09:14 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/05 13:25:15 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+#include "s_instruction.h"
+#include "s_token.h"
+typedef struct s_instruction	t_instruction;
 #include <stdio.h> //
 
 
@@ -65,7 +68,7 @@ int		write_header_to_bin(char bin[MEM_SIZE], t_header *header)//, t_code *code)
 	i = 4;
 	write_data(bin, header->prog_name, &i, PROG_NAME_LENGTH + 1);
 	i++;
-	f_little_to_big_endian(header->prog_size, bin + i);
+	f_little_to_big_endian(header->prog_size  - 1, bin + i); // watch -1
 	i += 4;
 	write_data(bin, header->comment, &i, COMMENT_LENGTH + 1);
 	return (i + 1);
@@ -92,34 +95,61 @@ int		write_int_to_bytecode(char bin[MEM_SIZE], int *i, int type, int data)
 	return (tmpi);
 }
 
-void	write_cmd_to_bin(t_list_node *current ,char bin[MEM_SIZE], int *i)
-{
-	int		tmpi;
+// void	write_cmd_to_bin(t_list_node *current ,char bin[MEM_SIZE], int *i)
+// {
+// 	int		tmpi;
 
-	tmpi = write_int_to_bytecode(bin, i, 0, current->data->opcode);
-	*i = tmpi;
-	tmpi = write_int_to_bytecode(bin, i, 1, 2654);
-	*i = tmpi;
-}
+// 	tmpi = write_int_to_bytecode(bin, i, 0, current->data->opcode);
+// 	*i = tmpi;
+// 	tmpi = write_int_to_bytecode(bin, i, 1, 2654);
+// 	*i = tmpi;
+// }
 
-void	write_to_bin(char *path, t_header *header, t_list *code)
+void	write_to_bin(char *path, t_header *header, t_instr_list *code)
 {
 	char		bin[MEM_SIZE];
-	t_list_node *current;
+	t_list_node	*current;
+	t_instruction	*instr;
 	int		fd;
 	int		i;
+	int		t;
 
 	fd = open(path, O_RDWR);
 	f_bzero(bin, MEM_SIZE);
 	i = write_header_to_bin(bin, header);
 	current = code->head;
+	
+	// (void)code;
+	// current->data;
+	t = 0;
 	while (current != NULL)
 	{
-		write_cmd_to_bin(current ,bin, &i);
+		// list_rot(code,1);
+		instr = (t_instruction*)list_pop(code, 0);
+		// instr = (t_instruction*)current;
+		printf("op:		%s\n", g_op_tab[instr->op - 1].mnu);
+	// 	write_cmd_to_bin(current ,bin, &i);
+		write(1,"X\n",2); 
+		t++;
+		// printf("[%s]\n", current->data.arg_type[1]);
 		current = current->next;
 	}
 	write(fd, bin, i);
 }
+
+
+
+
+
+// look at t_op
+
+
+// t_op				operation;
+// operation.has_encoding_byte;
+
+// t_op.argc
+
+
 
 // int main()
 // {

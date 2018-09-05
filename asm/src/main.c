@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 10:53:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/05 10:25:26 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/05 13:20:51 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ int		main(int argc, char **argv)
 		token_list = lex(no_com);
 		header = parse_header(token_list);
 		instructions = parse_instructions(token_list, header);
-		write_instructions(instructions);
+		// write_instructions(instructions);
 		// printf("name: %s\n", header->prog_name);
 		// printf("comment: %s\n", header->comment);
 		free(no_com);
 		free(no_sp);
-		write_to_bin("/goinfre/pstubbs/Documents/Corewar/asm/src/test.cor", header);
+		write_to_bin("/goinfre/pstubbs/Documents/Corewar/asm/src/test.cor", header, instructions);
 	}
 	return (1);
 }
