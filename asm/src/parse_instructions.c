@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:57:41 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/05 04:15:21 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/05 04:53:33 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int			add_arg(t_instruction *instr, t_token_list *token_list, t_op operat
 		f_putstr_err("Arg parse error");						// Better error output please. Include line number as well.
 		exit(1);
 	}
-	if (!operation.arg_type[i] & token->value.arg)
+	if (!(operation.arg_type[i] & token->value.arg))
 	{
 		f_putstr_err("Arg not compatible with op");				// Better error output please. Include line number as well.
 		exit(1);
@@ -62,6 +62,7 @@ static int			add_arg(t_instruction *instr, t_token_list *token_list, t_op operat
 		return (2);
 	else if (token->value.arg == reg)
 		return (1);
+	return (0);
 }
 
 static int			add_instruction(t_instr_list *instr_list, t_token *token, t_token_list *token_list, size_t *offset)
@@ -101,15 +102,15 @@ t_instr_list		*parse_instructions(t_token_list *token_list)
 	size_t				offset;
 	t_token				*token;
 	t_instr_list		*instr_list;
-	t_label_list		labels;
-	t_label_list		dref_labels;
+	// t_label_list		labels;
+	// t_label_list		dref_labels;
 
 	offset = 0;
 	instr_list = list_create(instruction_destroy);
 	glabel_list(LABEL_LIST_INIT);
 	gdref_list(LABEL_LIST_INIT);
 	parse_eol(token_list);
-	while (token = DEQUE_TOKEN(token_list))
+	while ((token = DEQUE_TOKEN(token_list)))
 	{
 		if (token->type == label_def)
 			add_glabel(token->value.text, offset);
