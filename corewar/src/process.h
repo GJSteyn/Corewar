@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   core.h                                             :+:      :+:    :+:   */
+/*   process.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 14:29:36 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/04 23:32:52 by wseegers         ###   ########.fr       */
+/*   Created: 2018/09/04 22:46:08 by wseegers          #+#    #+#             */
+/*   Updated: 2018/09/05 02:06:19 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CORE_H
-# define CORE_H
+#ifndef PROCESS_H
+# define PROCESS_H
 
-# include <string.h>
-# include <unistd.h>
 # include <stdlib.h>
+# include <stdbool.h>
 
-# include "f_string.h"
-# include "f_memory.h"
-# include "f_math.h"
-# include "f_io.h"
-# include "s_vector.h"
-# include "f_print.h"
+# include "op.h"
+# include "list.h"
 
-int						f_isspace_notnewl(char c);
-int						f_big_to_little_endian(char big[4]);
-void					f_little_to_big_endian(int little, char big[4]);
-long					f_atol(char *nbr, int *error);
-char					*f_dynamicstring(char **ori, char *add);
+struct	s_process
+{
+	int				process_code;
+	unsigned int	pc;
+	bool			carry;
+	int				reg[REG_NUMBER];
+	unsigned int	delay;
+	unsigned int	(*op)(t_process*);
+	int				args[MAX_ARGS_NUMBER];
+};
+
+struct s_process	*process_create(int pcode, unsigned int pc, bool carry);
+void				process_init(struct s_process *process);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 02:01:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/28 14:27:22 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/05 01:58:22 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void				list_mergesort(t_list *list,
 									int (*f_data_cmp)(void*, void*));
 void				*list_func_find(t_list *list,
 									bool (*chk)(void*, void*), void *chk_data);
+void				list_iterate(t_list *list, void (*data_mod)(void**))
 
 #endif

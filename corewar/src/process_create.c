@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.h                                          :+:      :+:    :+:   */
+/*   process_create.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 00:13:09 by wseegers         ###   ########.fr       */
+/*   Created: 2018/09/04 22:48:45 by wseegers          #+#    #+#             */
+/*   Updated: 2018/09/04 23:40:22 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COREWAR_H
-# define COREWAR_H
+#include "process.h"
 
-# include <stdbool.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-
-# include "op.h"
-# include "core.h"
-# include "process.h"
-
-struct	s_env
+struct s_process	*process_create(int pcode, unsigned int pc, bool carry)
 {
-	char			memory[MEM_SIZE];
-	unsigned int	player_total;
-};
+	struct s_process	*bot;
+	int					i;
 
-struct s_env	g_env;
-
-# define PLAYER_POS(nbr, total)	(((MEM_SIZE / total) * (nbr - 1)))
-
-#endif
+	bot = (struct s_process*)malloc(sizeof(struct s_process));
+	bot->process_code = -pcode;
+	bot->pc = pc;
+	bot->carry = carry;
+	bot->delay = -1;
+	bot->reg[0] = -pcode;
+	i = 0;
+	while (++i < REG_NUMBER)
+		bot->reg[i] = 0;
+	return (bot);
+}
