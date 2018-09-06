@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:53:58 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/09/06 16:47:22 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/06 16:49:47 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,11 +179,13 @@ void	write_cmd_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 	{
 		// if (current->arg_type[x] == 0 && x < 3)
 		// 	tmpi = write_int_to_bytecode(bin, i, 0, 0);
+		if (current->arg_type[x] == 2)
+			*i += mod;
 		if (current->arg_type[x] == 1)
 			tmpi = write_int_to_bytecode(bin, i, 1, current->arg_value[x]);
-		if (current->arg_type[x] == 2)
+		else if (current->arg_type[x] == 2)
 			tmpi = write_int_to_bytecode(bin, i, 2, current->arg_value[x]);
-		if (current->arg_type[x] == 3)
+		else if (current->arg_type[x] == 3)
 			tmpi = write_int_to_bytecode(bin, i, 3, current->arg_value[x]);
 		printf("%s,", arg_code[current->arg_type[x]]);
 		printf(" %d	", current->arg_value[x]);
