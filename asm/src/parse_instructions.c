@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:57:41 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/05 10:53:03 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/06 16:48:49 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static int			add_instruction(t_instr_list *instr_list, t_token *token, t_token_l
 		}
 	}
 	list_append(instr_list, instr);
-	offset_increment += operation.has_encoding_byte;			// Adding this encoding byte seems to cause issues, resolve please.
+	offset_increment += operation.has_encoding_byte;
 	return (offset_increment);
 }
 

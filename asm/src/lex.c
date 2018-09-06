@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/05 10:52:58 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/06 15:21:25 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "f_print.h"
 #include "s_token.h"
 #include <stdbool.h>
+#include <limits.h>
 
 typedef struct s_token		t_token;
 
@@ -41,13 +42,18 @@ static bool		f_strmatch(const char *str, char *match)
 	return (true);
 }
 
-static int		f_intlen(int n)
+static int		f_intlen(long n)
 {
 	int		ret;
 
 	ret = 0;
 	if (n == 0)
 		return (1);
+	if (n < 0)
+	{
+		ret++;
+		n = -n;
+	}
 	while (n)
 	{
 		n /= 10;
@@ -78,6 +84,8 @@ static bool		is_reg(char *str)
 
 static bool		is_label(char *str)
 {
+	if (*str == ':')
+		return (false);
 	while (f_strchr(LABEL_CHARS, *str))
 		str++;
 	if (*str == ':')
@@ -142,12 +150,17 @@ static void		add_number(t_list *list, char **str, size_t line)
 {
 	t_token		*token;
 	int			error;							// because it's required by f_atol
+	long		in;
 
 	token = (t_token*)f_memalloc(sizeof(t_token));
 	token->type = number;
-	token->value.number = (int)f_atol(*str, &error);
+	in = f_atol(*str, &error);
+	if (in > INT_MAX)
+		token->value.number = INT_MAX;
+	else
+		token->value.number = (int)in;
 	token->line = line;
-	*str += f_intlen(token->value.number);
+	*str += f_intlen(in);
 	list_append(list, token);
 }
 
@@ -218,7 +231,7 @@ static void		add_indirect(t_list *list, char **str, size_t line)
 	token->line = line;
 	token->value.arg = indirect;
 	list_append(list, token);
-	if (*(*str + 1) == ':')
+	if (**str == ':')
 		add_label_arg(list, str, line);
 	else
 		add_number(list, str, line);
@@ -264,12 +277,53 @@ static void		add_reg(t_list *list, char **str, size_t line)
 	add_number(list, str, line);
 }
 
+static void		skip_line(char **str)
+{
+	while (**str != '\n')
+		(*str)++;
+}
+
 static void		add_token(char **str, size_t *line, t_list *list)
 {
 	if (**str == '\n')
 	{
 		// write(1, "Newline\n", 8);
 		add_newline(list, str, line);
+	}
+	else if (**str == DIRECT_CHAR)
+	{
+		// write(1, "Direct\n", 7);
+		add_direct(list, str, *line);
+	}
+	else if (is_label(*str))
+	{
+		// write(1, "label\n", 6);
+		add_label_def(list, str, *line);
+	}
+	else if (f_isdigit(**str) || **str == '-' || **str == LABEL_CHAR)
+	{
+		// write(1, "Indirect\n", 9);
+		add_indirect(list, str, *line);
+	}
+	else if (**str == SEPARATOR_CHAR)
+	{
+		// write(1, "Separator\n", 11);
+		add_separator(list, str, *line);
+	}
+	else if (is_reg(*str))
+	{
+		// write(1, "Register\n", 9);
+		add_reg(list, str, *line);
+	}
+	else if (is_op(*str))
+	{
+		// write(1, "Op\n", 3);
+		add_op(list, str, *line);
+	}
+	else if (**str == '"')
+	{
+		// write(1, "Text\n", 5);
+		add_text(list, str, *line);
 	}
 	else if (f_strmatch(*str, NAME_CMD_STRING))
 	{
@@ -281,46 +335,8 @@ static void		add_token(char **str, size_t *line, t_list *list)
 		// write(1, "Comment\n", 8);
 		add_comment(list, str, *line);
 	}
-	else if (**str == '"')
-	{
-		// write(1, "Text\n", 5);
-		add_text(list, str, *line);
-	}
-	else if (f_isdigit(**str) || **str == '-' || **str == ':')				// Try and add specific direct or indirect numbers
-	{
-		// write(1, "Indirect\n", 7);
-		add_indirect(list, str, *line);
-	}
-	else if (**str == DIRECT_CHAR)
-	{
-		// write(1, "Direct\n", 7);
-		add_direct(list, str, *line);
-	}
-	else if (**str == ':')
-	{
-		// write(1, "Label_arg\n", 10);
-		add_label_arg(list, str, *line);
-	}
-	else if (is_label(*str))
-	{
-		// write(1, "label\n", 6);
-		add_label_def(list, str, *line);
-	}
-	else if (**str == SEPARATOR_CHAR)
-	{
-		// write(1, "Separator\n", 11);
-		add_separator(list, str, *line);
-	}
-	else if (is_op(*str))
-	{
-		// write(1, "Op\n", 3);
-		add_op(list, str, *line);
-	}
-	else if (is_reg(*str))
-	{
-		// write(1, "Register\n", 9);
-		add_reg(list, str, *line);
-	}
+	else if (**str == '#')
+		skip_line(str);
 	else
 	{
 		f_fprintf(STDERR, "Lexical error on line: %zu\n", *line);
@@ -334,7 +350,7 @@ t_list			*lex(char *clean_line)
 	size_t			line;
 
 	ret = list_create(destroy_token);
-	line = 0;
+	line = 1;
 	while (*clean_line)
 	{
 		if (f_isspace_notnewl(*clean_line))
