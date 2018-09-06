@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/06 17:37:02 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/06 17:43:02 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ struct s_process	*load_bot(char *path, int player_no)
 	return (process_create(player_no, i, false));
 }
 
-void 	get_next_op(t_process *bot)
+void				get_next_op(t_process *bot)
 {
 	int		current;
-	int		arg_size[3];	
+	int		arg_size[3];
+
 	(void)arg_size;
 	current = g_env.memory[bot->pc];
 	
@@ -45,7 +46,7 @@ void 	get_next_op(t_process *bot)
 
 }
 
-void	cycle(void **process)
+void				cycle(void **process)
 {
 	t_process *bot;
 
@@ -59,7 +60,7 @@ void	cycle(void **process)
 	bot->delay--;
 }
 
-static int		count_bots(int argc, char **argv)
+static int			count_bots(int argc, char **argv)
 {
 	int i;
 	int count;
@@ -72,19 +73,19 @@ static int		count_bots(int argc, char **argv)
 			count++;
 	}
 	if (count > 4)
+	{
 		f_fprintf(STDERR, "Invalid number of Champions\n");
+		exit(0);
+	}
 	return (count);
 }
 
-int		main(int argc, char *argv[])
+int					main(int argc, char *argv[])
 {
 	t_list	*process_list;
 	int		player_no;
 
 	player_no = 0;
-	// if (!(argc == 2))
-	// 	return (0);
-	// g_env.player_total = 1;
 	if (argc < 2)
 		return (0);
 	g_env.player_total = count_bots(argc, argv);
