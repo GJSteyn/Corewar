@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:53:58 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/09/06 15:28:59 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/06 16:47:22 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,24 @@ int		write_header_to_bin(char bin[MEM_SIZE], t_header *header)//, t_code *code)
 	return (i + 1);
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int		write_int_to_bytecode(char bin[MEM_SIZE], int *i, int type, int data)
 {
 	char	c[4];
@@ -91,7 +109,13 @@ int		write_int_to_bytecode(char bin[MEM_SIZE], int *i, int type, int data)
 		bin[tmpi] = c[3];
 		tmpi++;
 	}
-	else if (type == 2)
+	else if (type == 2) //direc
+	{
+		bin[tmpi] = c[2];
+		bin[tmpi + 1] = c[3];
+		tmpi += 2;
+	}
+		else if (type == 3) //indire
 	{
 		bin[tmpi] = c[2];
 		bin[tmpi + 1] = c[3];
@@ -107,18 +131,10 @@ void	encoding_byte_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 
 	x = 0;
 	ret = 0;
-
-	// 01 11 10 00
-
-	// 01 Register, followed by a byte (the register number)
-	// 10 Direct, followed by DIR_SIZE bytes (the direct value)
-	// 11 Indirect, followed by IND_SIZE bytes (the value of the indirection)
-
 	while (x < 3)
 	{
 		if (current->arg_type[x] == 1)
 		{
-			// ((unsigned char*)&ret)[x] = 1;
 			ret = (ret | 1);
 			ret = ret << 2;
 			// printf("ret %d [%s]\n", ret ,"reg" );
@@ -126,7 +142,6 @@ void	encoding_byte_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 		}
 		else if (current->arg_type[x] == 2)
 		{
-			// ((unsigned char*)&ret)[x] = 2;
 			ret = (ret | 2 );
 			ret = ret << 2;
 			// printf("ret %d [%s]\n", ret ,"direct" );
@@ -134,22 +149,15 @@ void	encoding_byte_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 		}
 		else if (current->arg_type[x] == 3)
 		{
-			// ((unsigned char*)&ret)[x] = 3;
 			ret = (ret | 3);
+			ret = ret << 2;
 			// printf("ret %d [%s]\n", ret ,"indirect" );
 			x++;
 		}
 	}
 	bin[*i] = ret;
 	*i += 1;
-
-	// printf("%d HAS ENCODINGBYE \n", *i); //
 }
-
-
-// # define REG_CODE				1
-// # define DIR_CODE				2
-// # define IND_CODE				3
 
 static char	*arg_code[5] = { "arg_blank", "reg", "direct", "label", "indirect" };
 
@@ -157,21 +165,32 @@ void	write_cmd_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 {
 	int		tmpi;
 	int		x;
+	int		mod;
 
 	x = -1;
+	mod = 0;
 	tmpi = write_int_to_bytecode(bin, i, 0, current->op);
 	*i = tmpi;
 	if (g_op_tab[current->op - 1].has_encoding_byte == 1)
 		encoding_byte_to_bin(current, bin, i);
-	// *i = tmpi;
-	while (++x < 3)
+	if (g_op_tab[current->op - 1].unknown2 == 0)
+		mod = 2;
+	while (++x < g_op_tab[current->op - 1].argc)
 	{
-	// 	if (current->arg_type[x] == 1)
-	// 		tmpi = write_int_to_bytecode(bin, i, 1, current->arg_value[x]);
+		// if (current->arg_type[x] == 0 && x < 3)
+		// 	tmpi = write_int_to_bytecode(bin, i, 0, 0);
+		if (current->arg_type[x] == 1)
+			tmpi = write_int_to_bytecode(bin, i, 1, current->arg_value[x]);
+		if (current->arg_type[x] == 2)
+			tmpi = write_int_to_bytecode(bin, i, 2, current->arg_value[x]);
+		if (current->arg_type[x] == 3)
+			tmpi = write_int_to_bytecode(bin, i, 3, current->arg_value[x]);
 		printf("%s,", arg_code[current->arg_type[x]]);
-	// 	printf("	%d", current->arg_value[x]);
-	// 	*i = tmpi;
+		printf(" %d	", current->arg_value[x]);
+		*i = tmpi;
 	}
+	if (g_op_tab[current->op - 1].unknown2 == 1)
+			printf("HAS UNKNONWN	\n");
 	printf("\n");
 	
 	// *i = tmpi;
@@ -179,7 +198,12 @@ void	write_cmd_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 	// *i = tmpi;
 }
 
-	
+	// 	if (token->value.arg == direct)
+	// 	ret = 3;
+	// else if (token->value.arg == indirect)
+	// 	ret = 3;
+	// else if (token->value.arg == reg)
+	// 	ret = 1;
 
 
 void	write_to_bin(char *path, t_header *header, t_instr_list *code)
@@ -195,16 +219,17 @@ void	write_to_bin(char *path, t_header *header, t_instr_list *code)
 	i = write_header_to_bin(bin, header);
 	current = code->head;
 
-	// while (current != NULL)
-	// {
+	while (current != NULL)
+	{
 		instr = (t_instruction*)list_pop(code, 0);
-		// if (instr == NULL)
-			// break;
+		if (instr == NULL)
+			break;
+		printf("%s\n", g_op_tab[instr->op - 1].mnu); 
 		write_cmd_to_bin(instr, bin, &i);
-		// printf("op:		%s\n", g_op_tab[instr->op - 1].mnu); //
+		printf("\n");
 		// printf("op:		%u\n", instr->op); //
 		free(instr);
-	// }
+	}
 	write(fd, bin, i);
 }
 
