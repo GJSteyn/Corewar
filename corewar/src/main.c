@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 02:17:19 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/06 17:37:02 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ struct s_process	*load_bot(char *path, int player_no)
 	i = PLAYER_POS(player_no, g_env.player_total);
 	if ((fd = open(path, O_RDONLY)) < 0)
 	{
-		exit(0);
 		f_printf("%s not found\n", path);
+		exit(0);
 	}
 	lseek(fd, AT_CODE, SEEK_SET); // needs to be replaced with name parsing code
 	read(fd, g_env.memory + i, CHAMP_MAX_SIZE);
@@ -37,10 +37,12 @@ void 	get_next_op(t_process *bot)
 {
 	int		current;
 	int		arg_size[3];	
-
+	(void)arg_size;
 	current = g_env.memory[bot->pc];
-	get_arg_size(current, arg_size);
-	//to be completed
+	
+	// get_arg_size(current, arg_size);
+	//  to be completed
+
 }
 
 void	cycle(void **process)
@@ -57,16 +59,41 @@ void	cycle(void **process)
 	bot->delay--;
 }
 
+static int		count_bots(int argc, char **argv)
+{
+	int i;
+	int count;
+
+	i = 0;
+	count = 0;
+	while (++i < argc)
+	{
+		if (f_strstr(argv[i], ".cor"))
+			count++;
+	}
+	if (count > 4)
+		f_fprintf(STDERR, "Invalid number of Champions\n");
+	return (count);
+}
+
 int		main(int argc, char *argv[])
 {
 	t_list	*process_list;
+	int		player_no;
 
-	if (!(argc == 2))
+	player_no = 0;
+	// if (!(argc == 2))
+	// 	return (0);
+	// g_env.player_total = 1;
+	if (argc < 2)
 		return (0);
-	g_env.player_total = 1;
+	g_env.player_total = count_bots(argc, argv);
 	process_list = list_create(free);
-	list_append(process_list, load_bot(argv[1], 1));
-	list_iterate(process_list, cycle);
+	while (++player_no <= (int)g_env.player_total)
+	{
+		list_append(process_list, load_bot(argv[1], player_no));
+		list_iterate(process_list, cycle);
+	}
 	// for (int i = 0; i < MEM_SIZE; i++)
 	// {
 	// 	if (i % 64 == 0)

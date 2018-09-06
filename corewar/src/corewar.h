@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 00:13:09 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/06 16:16:56 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 
 # include "op.h"
+# include "f_string.h"
 # include "core.h"
 # include "process.h"
 
