@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 02:17:19 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/06 14:23:49 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,25 @@ struct s_process	*load_bot(char *path, int player_no)
 	return (process_create(player_no, i, false));
 }
 
-void 	get_next_op(t_process *bot)
+int		get_op_size(char *current, int args[])
 {
-	int		current;
-	int		arg_size[3];	
 
-	current = g_env.memory[bot->pc];
-	get_arg_size(current, arg_size);
-	//to be completed
 }
 
-void	cycle(void **process)
+void 	get_next_op(t_process *bot)
+{
+	char 	*current;
+	char 	*new;
+	int		args[3];
+
+	current = g_env.memory + bot->pc;
+	if (*current < 1 || *current > 16)
+		bot->pc = (bot->pc++) % MEM_SIZE;
+	else
+
+}
+
+void	run_cycle(void **process)
 {
 	t_process *bot;
 

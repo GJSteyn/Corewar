@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 22:46:08 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 02:06:19 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/06 14:16:03 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ struct	s_process
 	bool			carry;
 	int				reg[REG_NUMBER];
 	unsigned int	delay;
-	unsigned int	(*op)(t_process*);
+	unsigned int	(*op)(struct s_process*);
 	int				args[MAX_ARGS_NUMBER];
 };
 
