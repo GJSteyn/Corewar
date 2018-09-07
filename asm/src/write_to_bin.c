@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:53:58 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/09/07 07:56:34 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/07 10:26:50 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,49 +81,6 @@ int		write_header_to_bin(char bin[MEM_SIZE], t_header *header)//, t_code *code)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-int		write_int_to_bytecode(char bin[MEM_SIZE], int *i, int type, int data)
-{
-	char	c[4];
-	int		tmpi;
-
-	tmpi = *i;
-	f_little_to_big_endian(data, c);
-	if (type == 0)	//opcode
-	{
-		bin[tmpi] = c[3];
-		tmpi++;
-	}
-	else if (type == 1)	//reg
-	{
-		bin[tmpi] = c[3];
-		tmpi++;
-	}
-	else if (type == 2) //direc
-	{
-		bin[tmpi] = c[2];
-		bin[tmpi + 1] = c[3];
-		tmpi += 2;
-	}
-		else if (type == 3) //indire
-	{
-		bin[tmpi] = c[2];
-		bin[tmpi + 1] = c[3];
-		tmpi += 2;
-	}
-	return (tmpi);
-}
-
 void	encoding_byte_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 {
 	int	x;
@@ -170,6 +127,67 @@ void	encoding_byte_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 	*i += 1;
 }
 
+
+
+
+
+
+
+
+
+
+
+int		write_int_to_bytecode(char bin[MEM_SIZE], int *i, int type, int data)
+{
+	char	c[4];
+	int		tmpi;
+
+	tmpi = *i;
+	f_little_to_big_endian(data, c);
+	if (type == 0)	//opcode
+	{
+		bin[tmpi] = c[3];
+		tmpi++;
+	}
+	else if (type == 1)	//reg
+	{
+		bin[tmpi] = c[3];
+		tmpi++;
+	}
+	else if (type == 2) //direc
+	{
+		bin[tmpi] = c[2];
+		bin[tmpi + 1] = c[3];
+		tmpi += 2;
+	}
+		else if (type == 3) //indire
+	{
+		bin[tmpi] = c[2];
+		bin[tmpi + 1] = c[3];
+		tmpi += 2;
+	}
+	return (tmpi);
+}
+
+int	write_direct_with_mod(char bin[MEM_SIZE], int *i, int type, int data)
+{
+	char	c[4];
+	int		tmpi;
+
+	tmpi = *i;
+	f_little_to_big_endian(data, c);
+	if (type == 2) //direc
+	{
+		bin[tmpi] = c[0];
+		bin[tmpi + 1] = c[1];
+		bin[tmpi + 2] = c[2];
+		bin[tmpi + 3] = c[3];
+		tmpi += 4;
+	}
+	return (tmpi);
+}
+
+
 // static char	*arg_code[5] = { "arg_blank", "reg", "direct", "label", "indirect" };
 
 void	write_cmd_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
@@ -188,12 +206,16 @@ void	write_cmd_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 		mod = 2;
 	while (++x < g_op_tab[current->op - 1].argc)
 	{
-		if (current->arg_type[x] == 2)
-			*i += mod;
+	// 	if (current->arg_type[x] == 2)
+	// 		*i += mod;
 		if (current->arg_type[x] == 1)
 			tmpi = write_int_to_bytecode(bin, i, 1, current->arg_value[x]);
-		else if (current->arg_type[x] == 2)
+		// else if (current->arg_type[x] == 2)
+		// 	tmpi = write_int_to_bytecode(bin, i, 2, current->arg_value[x]);
+		else if (current->arg_type[x] == 2 && g_op_tab[current->op - 1].unknown2 == 1)
 			tmpi = write_int_to_bytecode(bin, i, 2, current->arg_value[x]);
+		else if (current->arg_type[x] == 2 && g_op_tab[current->op - 1].unknown2 == 0)
+			tmpi = write_direct_with_mod(bin, i, 2, current->arg_value[x]);
 		else if (current->arg_type[x] == 4)
 			tmpi = write_int_to_bytecode(bin, i, 3, current->arg_value[x]);
 		*i = tmpi;
