@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_instructions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.wethinkcode.co.z    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:57:41 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/06 16:48:49 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/07 11:01:18 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ static size_t	parse_eol(t_token_list *token_list)
 	return (nr);
 }
 
+static void			parse_error(char *err_str, size_t line)
+{
+	f_fprintf(STDERR, "%s: Line %zu\n", err_str, line);
+	exit(1);
+}
+
 static int			add_arg(t_instruction *instr, t_token_list *token_list, t_op operation, int i, size_t *offset)
 {
 	int				ret;
@@ -43,20 +49,14 @@ static int			add_arg(t_instruction *instr, t_token_list *token_list, t_op operat
 	ret = 0;
 	token = DEQUE_TOKEN(token_list);
 	if (token->type != arg)
-	{
-		f_fprintf(STDERR, "Arg parse error: Line %zu\n", token->line);						// Better error output please. Include line number as well.
-		exit(1);
-	}
+		parse_error("Arg parse error", token->line);
 	if (!(operation.arg_type[i] & token->value.arg))
-	{
-		f_fprintf(STDERR, "Arg not compatible with op: Line %zu\n", token->line);				// Better error output please. Include line number as well.
-		exit(1);
-	}
+		parse_error("Arg not compatible with op", token->line);
 	instr->arg_type[i] = token->value.arg;
 	if (token->value.arg == direct)
-		ret = 3;
+		ret = DIR_SIZE - (operation.unknown2 << 1);
 	else if (token->value.arg == indirect)
-		ret = 3;
+		ret = IND_SIZE;
 	else if (token->value.arg == reg)
 		ret = 1;
 	token_destroy(&token);
@@ -86,16 +86,10 @@ static int			add_instruction(t_instr_list *instr_list, t_token *token, t_token_l
 		offset_increment += add_arg(instr, token_list, operation, i, offset);
 		token = DEQUE_TOKEN(token_list);
 		if (token->type == eol && i != operation.argc - 1)
-		{
-			f_fprintf(STDERR, "Incorrect number of args: Line %zu\n", token->line);			// Better error output please. Include line number as well.
-			exit(1);
-		}
+			parse_error("Incorrect number of args", token->line);
 		else if (token->type != separator && token->type != eol)
-		{
-			f_printf("type: %d\n", token->type);
-			f_fprintf(STDERR, "Separator error: Line %zu\n", token->line);					// Better error output please. Include line number as well.
-			exit(1);
-		}
+			parse_error("Separator error", token->line);
+		token_destroy(&token);
 	}
 	list_append(instr_list, instr);
 	offset_increment += operation.has_encoding_byte;
@@ -123,5 +117,5 @@ t_instr_list		*parse_instructions(t_token_list *token_list, t_header *header)
 	}
 	parse_set_labels();
 	header->prog_size = (unsigned int)offset;
-	return (instr_list);										// The offset is essentially the program size at this point. Find a way to pass this to Phil.
+	return (instr_list);
 }
