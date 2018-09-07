@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+         #
+#    By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/09/04 23:28:05 by wseegers         ###   ########.fr        #
+#    Updated: 2018/09/07 08:20:59 by kmarchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CFLAGS = -Wall -Wextra -Werror
 INC1 := -I ../libcore/include/
 INC2 := -I ../liblist/include/
 
-LIB := -L. ../libcore/libcore.a ../liblist/liblist.a
+LIB := -L. ../libcore/libcore.a ../liblist/liblist.a -lcurses
 
-CORE_SRC = main.c process_create.c
+CORE_SRC = main.c process_create.c visual.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))

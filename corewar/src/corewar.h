@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/06 16:16:56 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/07 10:25:02 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "core.h"
 # include "process.h"
 
-struct	s_env
+struct			s_env
 {
 	char			memory[MEM_SIZE];
 	unsigned int	player_total;
@@ -31,6 +31,14 @@ struct	s_env
 
 struct s_env	g_env;
 
+typedef struct	s_vis
+{
+	char	**champs;
+	char	**desc;
+}				t_vis;
+
 # define PLAYER_POS(nbr, total)	(((MEM_SIZE / total) * (nbr - 1)))
+
+int		visual();//t_vis *vis);
 
 #endif
