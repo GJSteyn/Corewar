@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+         #
+#    By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/09/04 23:28:05 by wseegers         ###   ########.fr        #
+#    Updated: 2018/09/09 20:55:52 by wseegers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CFLAGS = -Wall -Wextra -Werror
 INC1 := -I ../libcore/include/
 INC2 := -I ../liblist/include/
 
-LIB := -L. ../libcore/libcore.a ../liblist/liblist.a
+LIB := -L ../libcore/ -l core -L ../liblist/ -l list 
 
-CORE_SRC = main.c process_create.c
+CORE_SRC = main.c process_create.c load_bot.c debug_util.c op_function.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))

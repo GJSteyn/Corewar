@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_op.h                                             :+:      :+:    :+:   */
+/*   op_function.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/07 11:39:39 by wseegers         ###   ########.fr       */
+/*   Created: 2018/09/07 11:11:51 by wseegers          #+#    #+#             */
+/*   Updated: 2018/09/09 10:23:50 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_OP_H
-# define S_OP_H
+#include "op_function.h"
 
-#include <stdbool.h>
-
-struct	s_op
+void (*op_function(int op_code))(struct s_process*)
 {
-	char	mnu[5];
-	int		argc;
-	int		arg_type[3];
-	char	bytecode;
-	int		cost;
-	char	description[64];
-	bool	has_encoding;
-	bool	direct_index;
-};
+	static void (*op[MAX_OP + 1])(struct s_process*);
 
-#endif
+	if (!op[1])
+	{
+		op[1] = op_live;
+	}
+	if (!op_code || op_code > MAX_OP)
+	{
+		f_fprintf(STDERR, "op_funtion : value passed is out of range\n");
+		exit(0);
+	}
+	return (op[op_code]);
+}
