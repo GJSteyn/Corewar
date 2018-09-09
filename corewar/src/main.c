@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "corewar.h"
-
+#include "list.h"
 #include <stdio.h>
 
 typedef struct s_process	t_process;
@@ -83,13 +83,18 @@ static int			count_bots(int argc, char **argv)
 int					main(int argc, char *argv[])
 {
 	t_list	*process_list;
-	// t_vis	*vis;
+	t_vis	*vis;
 	int		player_no;
 
+	vis = init_vis();
+	// t_vis = (t_vis *)f_memalloc(sizeof(t_vis));
+	// t_vis->img = NULL;
+	// t_vis->name = (char **)f_memalloc(sizeof(char *) * MAX_PLAYERS + 1);
+	// t_vis->desc = (char **)f_memalloc(sizeof(char *) * MAX_PLAYERS + 1);
 	player_no = 0;
 	if (argc < 2)
 		return (0);
-	visual(); //vis);
+	visual(vis);
 	g_env.player_total = count_bots(argc, argv);
 	process_list = list_create(free);
 	while (++player_no <= (int)g_env.player_total)
@@ -99,7 +104,7 @@ int					main(int argc, char *argv[])
 	}
 	while (1)
 	{
-		visual(); //vis);
+		visual(vis); //vis);
 	}
 	// for (int i = 0; i < MEM_SIZE; i++)
 	// {

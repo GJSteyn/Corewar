@@ -10,32 +10,76 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "corewar.h"
 #include <curses.h>
 #include <time.h>
-#include 
+#include "f_io.h"
+#include "f_print.h"
+#include "corewar.h"
 
-void	print_logo()
+static void	get_logo(t_vis *vis)
 {
-	int i;
-	int fd;
-	char *buff;
+	char	*file_name;
+	char	mode;
+	int		i;
+	char	*line;
+	t_file	*file;
 
-	i = 3;
-	if ((buff = f_get_line ("corewar_ascii.txt", O_RDONLY)) < 0)
-	{
-		mvprintw(i ,65 * 3, "WRONG FILE");
-		exit(0);
-	}
-	lseek(fd, AT_CODE, SEEK_SET);
-	{
-		mvprintw(i ,65 * 3, "%s\n", buff);
-		i++;
-	}
+	i = 0;
 
+	mode = 'r';
+	file_name = "corewar_ascii.txt";
+	file = f_openf(file_name, mode);
+	vis->img = (char **)f_memalloc(sizeof(char *) * 22);
+
+	while (f_next_line(&line, file))
+	{
+		vis->img[i++] = f_strdup(line);
+		free(line);
+	}
+	vis->img[i] = NULL;
+	f_closef(file);
 }
 
-int		visual(void)//t_vis *vis)
+// void	print_logo()
+// {
+// 	int i;
+// 	int fd;
+// 	char *buff;
+
+// 	i = 3;
+// 	if ((buff = f_get_line ("corewar_ascii.txt", O_RDONLY)) < 0)
+// 	{
+// 		mvprintw(i ,65 * 3, "WRONG FILE");
+// 		exit(0);
+// 	}
+// 	lseek(fd, AT_CODE, SEEK_SET);
+// 	{
+// 		mvprintw(i ,65 * 3, "%s\n", buff);
+// 		i++;
+// 	}
+// }
+
+void	print_logo(t_vis *vis)
+{
+	int i;
+	i = -1;
+	while (vis->img[++i])
+	{
+		mvprintw((i + 2), (65 * 3), "%.2hhx", vis->img[i]);
+	}
+}
+
+t_vis	*init_vis()
+{
+	t_vis *new;
+	new = (t_vis *)f_memalloc(sizeof(t_vis));
+	new->img = NULL;
+	new->champs = (char **)f_memalloc(sizeof(char *) * MAX_PLAYERS + 1);
+	new->desc = (char **)f_memalloc(sizeof(char *) * MAX_PLAYERS + 1);
+	return (new);
+}
+
+int		visual(t_vis *vis)
 {
 	int l;
 	int c;
@@ -44,6 +88,11 @@ int		visual(void)//t_vis *vis)
 	c = 2;
 	l = 2;
 
+
+	if (vis->img == NULL)
+	{
+		get_logo(vis);
+	}
 	initscr();
 	// getmaxx(stdscr);
 	while (++i < MEM_SIZE)
@@ -65,7 +114,7 @@ int		visual(void)//t_vis *vis)
 			c += 3;
 		}
 	}
-	print_logo();
+	print_logo(vis);
 	// mvprintw(2,65 * 3, "      __________________");
 	// mvprintw(3,65 * 3, "     /\\  ______________ \\");
 	// mvprintw(4,65 * 3, "    /::\\ \\ZZZZZZZZZZZZ/\\ \\");

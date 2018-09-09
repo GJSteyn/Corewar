@@ -22,6 +22,8 @@
 # include "f_string.h"
 # include "core.h"
 # include "process.h"
+#include "f_io.h"
+#include "f_print.h"
 
 struct			s_env
 {
@@ -33,12 +35,14 @@ struct s_env	g_env;
 
 typedef struct	s_vis
 {
+	char	**img;
 	char	**champs;
 	char	**desc;
 }				t_vis;
 
 # define PLAYER_POS(nbr, total)	(((MEM_SIZE / total) * (nbr - 1)))
 
-int		visual();//t_vis *vis);
+int		visual(t_vis *vis);
+t_vis	*init_vis();
 
 #endif
