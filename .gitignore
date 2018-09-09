@@ -5,10 +5,11 @@
 *.cor
 .DS_Store
 *.plist
-*.json
-obj
 
 #executable
 a.out
+obj
 asm
 corewar
+
+.nfs.*
