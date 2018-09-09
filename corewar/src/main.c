@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/07 11:31:39 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/09 15:18:43 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,10 @@ int					main(int argc, char *argv[])
 	int		player_no;
 
 	vis = init_vis();
-	// t_vis = (t_vis *)f_memalloc(sizeof(t_vis));
-	// t_vis->img = NULL;
-	// t_vis->name = (char **)f_memalloc(sizeof(char *) * MAX_PLAYERS + 1);
-	// t_vis->desc = (char **)f_memalloc(sizeof(char *) * MAX_PLAYERS + 1);
 	player_no = 0;
 	if (argc < 2)
 		return (0);
-	visual(vis);
+	// visualizer(vis);
 	g_env.player_total = count_bots(argc, argv);
 	process_list = list_create(free);
 	while (++player_no <= (int)g_env.player_total)
@@ -104,7 +100,7 @@ int					main(int argc, char *argv[])
 	}
 	while (1)
 	{
-		visual(vis); //vis);
+		visualizer(vis); //vis);
 	}
 	// for (int i = 0; i < MEM_SIZE; i++)
 	// {

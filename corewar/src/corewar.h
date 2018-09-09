@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/07 12:13:46 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/09 15:18:43 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct	s_vis
 
 # define PLAYER_POS(nbr, total)	(((MEM_SIZE / total) * (nbr - 1)))
 
-int		visual(t_vis *vis);
+int		visualizer(t_vis *vis);
 t_vis	*init_vis();
 
 #endif
