@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 22:46:08 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/09 20:38:14 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/10 09:02:23 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@
 struct	s_process
 {
 	int				process_code;
-	unsigned int	pc;
+	int				live;
+	unsigned int	next_pc;
 	bool			carry;
 	int				reg[REG_NUMBER];
-	unsigned int	delay;
+	int				delay;
 	void			(*op)(struct s_process*);
+	int				current_pc;
 	int				args[MAX_ARGS_NUMBER];
+	int				is_reg[MAX_ARGS_NUMBER];
 };
 
 struct s_process	*process_create(int pcode, unsigned int pc, bool carry);

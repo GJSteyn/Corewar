@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+         #
+#    By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/09/09 20:55:52 by wseegers         ###   ########.fr        #
+#    Updated: 2018/09/10 11:07:53 by wseegers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ INC2 := -I ../liblist/include/
 
 LIB := -L ../libcore/ -l core -L ../liblist/ -l list 
 
-CORE_SRC = main.c process_create.c load_bot.c debug_util.c op_function.c
+CORE_SRC = main.c process_create.c load_bot.c debug_util.c op_function.c \
+		   op_live.c op_sti.c op_and.c op_zjmp.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))

@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_op.h                                             :+:      :+:    :+:   */
+/*   op_live.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/10 09:01:28 by wseegers         ###   ########.fr       */
+/*   Created: 2018/09/10 06:25:52 by wseegers          #+#    #+#             */
+/*   Updated: 2018/09/10 09:54:23 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_OP_H
-# define S_OP_H
+#include "op_function.h"
 
-#include <stdbool.h>
-
-struct	s_op
+void	op_live(struct s_process *bot)
 {
-	char	mnu[5];
-	int		argc;
-	int		arg_type[3];
-	char	bytecode;
-	int		cost;
-	char	description[64];
-	bool	has_encoding;
-	bool	direct_index;
-};
-
-#endif
+	if (bot->args[0] == bot->process_code)
+		bot->live++;
+	f_printf("op: live\n");
+}

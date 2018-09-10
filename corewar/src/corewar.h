@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/09 20:27:11 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/10 08:22:53 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,7 @@
 # include "core.h"
 # include "process.h"
 # include "op_function.h"
-
-struct	s_env
-{
-	char			memory[MEM_SIZE];
-	unsigned int	player_total;
-};
+# include "s_env.h"
 
 struct s_env	g_env;
 
@@ -39,5 +34,6 @@ struct s_process	*load_bot(char *path, int player_no);
 
 //debug ulti to be removed
 void	print_memory(void);
+void	print_bot(struct s_process *bot);
 
 #endif

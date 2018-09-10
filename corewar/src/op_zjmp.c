@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_op.h                                             :+:      :+:    :+:   */
+/*   op_zjmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/10 09:01:28 by wseegers         ###   ########.fr       */
+/*   Created: 2018/09/10 10:55:41 by wseegers          #+#    #+#             */
+/*   Updated: 2018/09/10 11:09:04 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_OP_H
-# define S_OP_H
+#include "op_function.h"
 
-#include <stdbool.h>
-
-struct	s_op
+void	op_zjmp(struct s_process *bot)
 {
-	char	mnu[5];
-	int		argc;
-	int		arg_type[3];
-	char	bytecode;
-	int		cost;
-	char	description[64];
-	bool	has_encoding;
-	bool	direct_index;
-};
-
-#endif
+	if (bot->carry)
+		bot->next_pc = bot->current_pc + (bot->args[0] % IDX_MOD);
+}

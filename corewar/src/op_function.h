@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_function.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:17:31 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/09 19:43:45 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/10 11:05:38 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 
 # include <stdlib.h>
 
+# include "core.h"
 # include "op.h"
 # include "process.h"
 # include "f_print.h"
+# include "s_env.h"
+
+extern struct s_env	g_env;
 
 # define HAS_ENCODE(op) 	(g_op_tab[op].has_encoding)
 # define IS_INDEX(op)		(g_op_tab[op].direct_index)
@@ -30,5 +34,8 @@
 void 	(*op_function(int i))(struct s_process*);
 
 void	op_live(struct s_process *bot);
+void	op_and(struct s_process *bot);
+void	op_zjmp(struct s_process *bot);
+void	op_sti(struct s_process *bot);
 
 #endif

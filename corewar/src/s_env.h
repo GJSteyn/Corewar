@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_bzero.c                                          :+:      :+:    :+:   */
+/*   s_env.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/05/15 08:23:35 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/08/29 18:28:54 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/09/10 08:22:01 by wseegers          #+#    #+#             */
+/*   Updated: 2018/09/10 08:22:41 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "core.h"
+#ifndef S_ENV_H
+# define S_ENV_H
 
-void	f_bzero(void *s, size_t n)
+# include "op.h"
+
+struct	s_env
 {
-	char *p;
+	char			memory[MEM_SIZE];
+	unsigned int	player_total;
+};
 
-	p = (char *)s;
-	while (n--)
-	{
-		p[n] = '\0';
-	}
-}
+#endif
