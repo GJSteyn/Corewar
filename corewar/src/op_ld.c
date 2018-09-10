@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_big_to_little_endian.c                           :+:      :+:    :+:   */
+/*   op_ld.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 18:01:36 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/09/10 20:28:31 by wseegers         ###   ########.fr       */
+/*   Created: 2018/09/10 18:03:37 by wseegers          #+#    #+#             */
+/*   Updated: 2018/09/10 20:13:02 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+# include "op_function.h"
 
-int		f_big_to_little_endian(char big[4])
+void	op_ld(struct s_process *bot)
 {
-	unsigned int	ret;
+	int		*args;
 
-	((unsigned char*)&ret)[3] = big[0];
-	((unsigned char*)&ret)[2] = big[1];
-	((unsigned char*)&ret)[1] = big[2];
-	((unsigned char*)&ret)[0] = big[3];
-	return (ret);
+	args = bot->args;
+	bot->reg[args[1]] = args[0];
+	bot->carry = !(args[0]);
+	f_printf("op: ld [%d]\n", args[0]);
 }

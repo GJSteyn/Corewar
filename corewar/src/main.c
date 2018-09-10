@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/10 11:54:17 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/10 20:39:26 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		set_arg_value(t_process *bot, int arg_types[MAX_ARGS_NUMBER])
 	op = g_op_tab[(int)g_env.memory[bot->current_pc] - 1];
 	offset = WRAP_MEM(bot->current_pc + 1 + op.has_encoding);
 	i = -1;
-	f_printf("setting_op: %s\n", op.mnu);
+	// f_printf("setting_op: %s\n", op.mnu);
 	while (++i < op.argc)
 	{
 		f_bzero(big_endian, 4);
@@ -75,18 +75,24 @@ int		set_arg_value(t_process *bot, int arg_types[MAX_ARGS_NUMBER])
 		{
 			big_endian[2] = g_env.memory[WRAP_MEM(offset++)];
 			big_endian[3] = g_env.memory[WRAP_MEM(offset++)];
-			ind_offset = f_big_to_little_endian(big_endian);
-			big_endian[0] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
-			big_endian[1] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
-			big_endian[2] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
-			big_endian[3] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
-			bot->args[i] = f_big_to_little_endian(big_endian);
-			bot->is_reg[i] = false;
+			ind_offset = (short)f_big_to_little_endian(big_endian);
+			if (op.bytecode == 3)
+				bot->args[i] = ind_offset;
+			else
+			{
+				ind_offset = (op.bytecode < 13) ? ind_offset % IDX_MOD : ind_offset;
+				big_endian[0] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
+				big_endian[1] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
+				big_endian[2] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
+				big_endian[3] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
+				bot->args[i] = f_big_to_little_endian(big_endian);
+				bot->is_reg[i] = false;
+			}
 		}
 		else
 			return (-1);
 	}
-	f_printf("offset: %d\n", offset);
+	// f_printf("offset: %d\n", offset);
 	bot->next_pc = WRAP_MEM(offset);
 	return (0);
 }
@@ -140,17 +146,22 @@ int		main(int argc, char *argv[])
 	if (!(argc == 2))
 		return (0);
 	g_env.player_total = 1;
-	process_list = list_create(free);
+	g_env.process_list = list_create(free);
+	process_list = g_env.process_list;
 	list_append(process_list, load_bot(argv[1], 1));
 	// print_memory();
 	// f_printf("\n");
 	// print_bot(list_get(process_list, 0));
 	// f_printf("\n");
 	int i = -1;
-	while (++i < 1000)
+	while (++i < 2500)
+	{
+	//	f_printf("[%d]\n", i);
 		list_iterate(process_list, run_cycle);
+	}
 	f_printf("\n");
 	print_memory();
 	f_printf("\n");
 	print_bot(list_get(process_list, 0));
+	f_printf("bot_no: %lu", process_list->size);
 }
