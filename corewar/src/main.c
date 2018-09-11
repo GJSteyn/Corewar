@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/09 15:18:43 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/11 07:47:29 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,29 +86,21 @@ int					main(int argc, char *argv[])
 	t_vis	*vis;
 	int		player_no;
 
-	vis = init_vis();
+	vis = start_vis();
 	player_no = 0;
 	if (argc < 2)
 		return (0);
-	// visualizer(vis);
 	g_env.player_total = count_bots(argc, argv);
 	process_list = list_create(free);
+	visualizer(vis);
 	while (++player_no <= (int)g_env.player_total)
 	{
 		list_append(process_list, load_bot(argv[1], player_no));
 		list_iterate(process_list, cycle);
 	}
-	while (1)
+	// while (corewar)
 	{
-		visualizer(vis); //vis);
+		visualizer(vis);
 	}
-	// for (int i = 0; i < MEM_SIZE; i++)
-	// {
-	// 	if (i % 64 == 0)
-	// 		f_printf("\n");
-	// 	if (g_env.memory[i] > 0)
-	// 		f_printf("%.2hhx ", g_env.memory[i]);
-	// 	else
-	// 		f_printf("__ ");
-	// }
+	endwin();
 }

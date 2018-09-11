@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/09 15:18:43 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/11 07:37:46 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <curses.h>
 
 # include "op.h"
 # include "f_string.h"
@@ -42,7 +43,9 @@ typedef struct	s_vis
 
 # define PLAYER_POS(nbr, total)	(((MEM_SIZE / total) * (nbr - 1)))
 
-int		visualizer(t_vis *vis);
-t_vis	*init_vis();
+int			visualizer(t_vis *vis);
+t_vis		*init_vis();
+t_vis		*start_vis(void);
+
 
 #endif
