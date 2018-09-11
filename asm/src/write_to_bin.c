@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:53:58 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/09/11 09:48:18 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/11 09:57:21 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	encoding_byte_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 	*i += 1;
 }
 
-int	write_direct_with_mod(char bin[MEM_SIZE], int *i, int type, int data)
+int		write_direct_with_mod(char bin[MEM_SIZE], int *i, int type, int data)
 {
 	char	c[4];
 	int		tmpi;
