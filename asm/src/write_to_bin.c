@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:53:58 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/09/11 08:38:27 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/11 09:48:18 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 typedef struct s_instruction	t_instruction;
 
-void		encoding_byte_body(t_instruction *current, int *ret, int *x, int *count)
+void	encoding_byte_body(t_instruction *current, int *ret, int *x, int *count)
 {
 	if (current->arg_type[*x] == 1)
 	{
@@ -59,33 +59,6 @@ void	encoding_byte_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 	*i += 1;
 }
 
-int		write_int_to_bytecode(char bin[MEM_SIZE], int *i, int type, int data)
-{
-	char	c[4];
-	int		tmpi;
-
-	tmpi = *i;
-	f_little_to_big_endian(data, c);
-	if (type == 0 || type == 1)
-	{
-		bin[tmpi] = c[3];
-		tmpi++;
-	}
-	else if (type == 2)
-	{
-		bin[tmpi] = c[2];
-		bin[tmpi + 1] = c[3];
-		tmpi += 2;
-	}
-	else if (type == 4)
-	{
-		bin[tmpi] = c[2];
-		bin[tmpi + 1] = c[3];
-		tmpi += 2;
-	}
-	return (tmpi);
-}
-
 int	write_direct_with_mod(char bin[MEM_SIZE], int *i, int type, int data)
 {
 	char	c[4];
@@ -122,7 +95,8 @@ void	write_cmd_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 	while (++x < g_op_tab[current->op - 1].argc)
 	{
 		op = current->arg_type[x];
-		if (op == 1 || (op == 2 && g_op_tab[current->op - 1].unknown2 == 1) || op  == 4)
+		if (op == 1 || (op == 2 && g_op_tab[current->op - 1].unknown2 == 1)
+		|| op == 4)
 			tmpi = write_int_to_bytecode(bin, i, op, current->arg_value[x]);
 		else if (op == 2 && g_op_tab[current->op - 1].unknown2 == 0)
 			tmpi = write_direct_with_mod(bin, i, 2, current->arg_value[x]);
@@ -130,12 +104,6 @@ void	write_cmd_to_bin(t_instruction *current, char bin[MEM_SIZE], int *i)
 	}
 	*i = tmpi;
 }
-
-		// op = current->arg_type[x];
-		// if (op == 1 || (op == 2 && g_op_tab[current->op - 1].unknown2 == 1) || op  == 4)
-		// 	tmpi = write_int_to_bytecode(bin, i, op, current->arg_value[x]);
-		// else if (op == 2 && g_op_tab[current->op - 1].unknown2 == 0)
-		// 	tmpi = write_direct_with_mod(bin, i, 2, current->arg_value[x]);
 
 void	write_to_bin(char *path, t_header *header, t_instr_list *code)
 {
