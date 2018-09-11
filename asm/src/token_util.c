@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:50:19 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/01 12:56:00 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/10 18:14:21 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 void	token_destroy(struct s_token **token)
 {
-	if ((*token)->type == text)
+	if ((*token)->type == text || (*token)->type == label_arg ||
+												(*token)->type == label_def)
 		free((*token)->value.text);
 	free(*token);
 	*token = NULL;
