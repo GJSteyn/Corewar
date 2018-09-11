@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 10:53:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/06 17:36:21 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/11 08:00:55 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,20 @@ void	write_instructions(t_instr_list *instr_list)
 	}
 }
 
+char	*path_output(char	*path)
+{
+	char	*ret;
+
+	ret = f_strsub(path, 0, f_strlen(path) - 1);
+	ret = f_dynamicstring(&ret, "cor");
+	return (ret);
+}
+
 int		main(int argc, char **argv)
 {
 	char		*no_sp;
 	// char		*no_com;
+	char		*path;
 	t_list		*token_list;
 	t_header	*header;
 	t_list		*instructions;
@@ -93,7 +103,11 @@ int		main(int argc, char **argv)
 		// printf("comment: %s\n", header->comment);
 		// free(no_com);
 		free(no_sp);
-		write_to_bin("/goinfre/pstubbs/Documents/Corewar/asm/src/test.cor", header, instructions);
+		path = path_output(argv[1]);
+		// write_to_bin("/goinfre/pstubbs/Documents/Corewar/asm/src/test.cor", header, instructions);
+		write_to_bin(path, header, instructions);
 	}
 	return (1);
 }
+
+
