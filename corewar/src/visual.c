@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 08:00:07 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/11 13:45:03 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/11 14:06:50 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void					intro(t_vis *vis)
 	mvprintw(21, 64, "                       PLAYER \"NAME\"                           ");
 	mvprintw(22, 64, "                                                               ");
 	refresh();
-	while(1);
 	usleep(1000000);
 }
 
