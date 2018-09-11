@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 10:49:35 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/11 14:17:56 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ typedef struct	s_vis
 	int		process_code;
 	int		fl;
 	char	**img;
-	char	**champs;
-	char	**desc;
+	// char	**champs;
+	char	champs[4][PROG_NAME_LENGTH];
+	// char	**desc;
+	char	desc[4][COMMENT_LENGTH];
 }				t_vis;
 
 # define PLAYER_POS(nbr, total)	(((MEM_SIZE / total) * (nbr - 1)))

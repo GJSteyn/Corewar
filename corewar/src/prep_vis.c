@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_vis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/11 13:39:36 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/11 14:21:50 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_vis				*init_vis(void)
 
 	new = (t_vis *)f_memalloc(sizeof(t_vis));
 	new->img = NULL;
-	new->champs = (char **)f_memalloc(sizeof(char *) * MAX_PLAYERS + 1);
-	new->desc = (char **)f_memalloc(sizeof(char *) * MAX_PLAYERS + 1);
+	// new->champs = (char **)f_memalloc(sizeof(char *) * MAX_PLAYERS + 1);
+	// new->desc = (char **)f_memalloc(sizeof(char *) * MAX_PLAYERS + 1);
 	return (new);
 }
 
@@ -66,8 +66,8 @@ t_vis				*start_vis(void)
 
 	new = init_vis();
 	get_logo(new);
-	initscr();
-	curs_set(0);
+	// initscr();
+	// curs_set(0);
 	wresize(stdscr, 65, 65 * 5);
 	return (new);
 }
@@ -75,8 +75,8 @@ t_vis				*start_vis(void)
 void				end_vis(t_vis **vis)
 {
 	(void)vis;
-	free_ar((*vis)->champs, MAX_PLAYERS + 1);
-	free_ar((*vis)->desc, MAX_PLAYERS + 1);
+	// free_ar((*vis)->champs, MAX_PLAYERS + 1);
+	// free_ar((*vis)->desc, MAX_PLAYERS + 1);
 	free_ar((*vis)->img, (*vis)->fl);
 	endwin();
 }

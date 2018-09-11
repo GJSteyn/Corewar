@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 11:43:02 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/11 14:24:18 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,29 @@
 
 typedef struct s_process	t_process;
 
-struct s_process	*load_bot(char *path, int player_no)
+void				find_bot_info(t_vis *vis, int fd, int player_no)
+{
+	char	hold[PROG_NAME_LENGTH + COMMENT_LENGTH + 9];
+
+	lseek(fd, AT_NAME, SEEK_SET);
+	// printf("[%s]\n", name);
+	read(fd, hold, PROG_NAME_LENGTH);
+	f_memcpy(vis->champs[player_no], hold, f_strlen(hold));
+	f_bzero(hold, PROG_NAME_LENGTH + COMMENT_LENGTH + 9);
+
+	lseek(fd, AT_COMMENT, SEEK_SET);
+	read(fd, hold, COMMENT_LENGTH);
+	f_memcpy(vis->desc[player_no], hold, f_strlen(hold));
+
+	// name = f_strsub(hold, 4, PROG_NAME_LENGTH);
+	// dis = f_strsub(hold,140, COMMENT_LENGTH);
+	// vis->champs
+	// printf("[%s]\n", name);
+	printf("[%s]\n", vis->champs[player_no]);
+	printf("[%s]\n", vis->desc[player_no]);
+}
+
+struct s_process	*load_bot(t_vis	*vis ,char *path, int player_no)
 {
 	unsigned int		i;
 	int					fd;
@@ -27,9 +49,12 @@ struct s_process	*load_bot(char *path, int player_no)
 		f_printf("%s not found\n", path);
 		exit(0);
 	}
+	
 	lseek(fd, AT_CODE, SEEK_SET); // needs to be replaced with name parsing code
 	read(fd, g_env.memory + i, CHAMP_MAX_SIZE);
+	find_bot_info(vis, fd, player_no);
 	close(fd);
+	
 	return (process_create(player_no, i, false));
 }
 
@@ -92,15 +117,15 @@ int					main(int argc, char *argv[])
 		return (0);
 	g_env.player_total = count_bots(argc, argv);
 	process_list = list_create(free);
-	visualizer(vis);
+	// visualizer(vis);
 	while (++player_no <= (int)g_env.player_total)
 	{
-		list_append(process_list, load_bot(argv[1], player_no));
+		list_append(process_list, load_bot(vis, argv[1], player_no));
 		list_iterate(process_list, cycle);
 	}
 	// while (corewar)
 	{
-		visualizer(vis);
+		// visualizer(vis);
 	}
 	end_vis(&vis);
 }
