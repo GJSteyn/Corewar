@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_token.h                                          :+:      :+:    :+:   */
+/*   f_strncpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/28 14:10:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/01 13:00:33 by wseegers         ###   ########.fr       */
+/*   Created: 2018/08/31 09:02:59 by wseegers          #+#    #+#             */
+/*   Updated: 2018/08/31 09:04:09 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_TOKEN_H
-# define S_TOKEN_H
+#include <stddef.h>
 
-# include <stdlib.h>
-# include <stddef.h>
-
-# include "e_type.h"
-# include "core.h"
-
-struct	s_token
+char	*f_strncpy(char *dest, const char *src, size_t n)
 {
-	enum e_type		type;
-	union u_value	value;
-	size_t			line;
-};
+	size_t i;
 
-void	token_destroy(struct s_token **token);
-int		token_validate(struct s_token *token, enum e_type type,
-			union u_value value);
-
-#endif
+	i = 0;
+	while (src[i] && i < n)
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	while (i < n)
+		dest[i++] = '\0';
+	return (dest);
+}

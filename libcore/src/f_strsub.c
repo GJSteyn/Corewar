@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_op.h                                             :+:      :+:    :+:   */
+/*   f_strsub.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 02:00:58 by gsteyn           ###   ########.fr       */
+/*   Created: 2018/08/30 16:46:34 by gsteyn            #+#    #+#             */
+/*   Updated: 2018/08/30 16:48:45 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_OP_H
-# define S_OP_H
+#include "core.h"
 
-# include <stdbool.h>
-
-struct	s_op
+char	*f_strsub(char const *s, unsigned int start, size_t len)
 {
-	char	mnu[5];
-	int		argc;
-	int		arg_type[3];
-	char	bytecode;
-	int		cost;
-	char	description[64];
-	int		has_encoding_byte;
-	int		unknown2;
-};
+	size_t	i;
+	char	*ret;
 
-#endif
+	i = 0;
+	if (s)
+	{
+		ret = f_strnew(len);
+		if (!ret)
+			return (NULL);
+		while (i < len)
+		{
+			ret[i] = s[i + start];
+			i++;
+		}
+		return (ret);
+	}
+	return (NULL);
+}

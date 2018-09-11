@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_op.h                                             :+:      :+:    :+:   */
+/*   f_strnew.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 02:00:58 by gsteyn           ###   ########.fr       */
+/*   Created: 2018/08/30 16:49:09 by gsteyn            #+#    #+#             */
+/*   Updated: 2018/08/30 16:49:22 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_OP_H
-# define S_OP_H
+#include "core.h"
 
-# include <stdbool.h>
-
-struct	s_op
+char	*f_strnew(size_t size)
 {
-	char	mnu[5];
-	int		argc;
-	int		arg_type[3];
-	char	bytecode;
-	int		cost;
-	char	description[64];
-	int		has_encoding_byte;
-	int		unknown2;
-};
+	size_t	i;
+	char	*ret;
 
-#endif
+	i = 0;
+	ret = f_memalloc(size + 1);
+	if (!ret)
+		return (NULL);
+	while (i < size)
+	{
+		ret[i++] = '\0';
+	}
+	return (ret);
+}

@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_op.h                                             :+:      :+:    :+:   */
+/*   lex_util2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 02:00:58 by gsteyn           ###   ########.fr       */
+/*   Created: 2018/09/11 13:23:11 by gsteyn            #+#    #+#             */
+/*   Updated: 2018/09/11 13:38:58 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_OP_H
-# define S_OP_H
+#include "lex.h"
+#include "op.h"
+#include "f_print.h"
+#include <stdbool.h>
 
-# include <stdbool.h>
-
-struct	s_op
+bool		is_label(char *str)
 {
-	char	mnu[5];
-	int		argc;
-	int		arg_type[3];
-	char	bytecode;
-	int		cost;
-	char	description[64];
-	int		has_encoding_byte;
-	int		unknown2;
-};
+	if (*str == ':')
+		return (false);
+	while (f_strchr(LABEL_CHARS, *str))
+		str++;
+	if (*str == ':')
+		return (true);
+	return (false);
+}
 
-#endif
+void		lex_error(char *err_str, size_t line)
+{
+	f_fprintf(STDERR, "%s: Line %zu\n", err_str, line);
+	exit(1);
+}

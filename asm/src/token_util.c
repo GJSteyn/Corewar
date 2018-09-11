@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_op.h                                             :+:      :+:    :+:   */
+/*   token_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 02:00:58 by gsteyn           ###   ########.fr       */
+/*   Created: 2018/08/29 18:50:19 by wseegers          #+#    #+#             */
+/*   Updated: 2018/09/11 12:55:46 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_OP_H
-# define S_OP_H
+#include "s_token.h"
+#include "f_print.h"
 
-# include <stdbool.h>
-
-struct	s_op
+void	token_destroy(struct s_token **token)
 {
-	char	mnu[5];
-	int		argc;
-	int		arg_type[3];
-	char	bytecode;
-	int		cost;
-	char	description[64];
-	int		has_encoding_byte;
-	int		unknown2;
-};
+	if ((*token)->type == text || (*token)->type == label_arg ||
+												(*token)->type == label_def)
+		free((*token)->value.text);
+	free(*token);
+	*token = NULL;
+}
 
-#endif
+void	invalid_token(struct s_token *token, char *message)
+{
+	(void)token;
+	f_printf("Invalid token: %s\n", message);
+}

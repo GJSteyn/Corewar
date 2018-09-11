@@ -5,9 +5,17 @@
 *.core
 .DS_Store
 *.plist
+.vscode/settings.json
+<<<<<<< HEAD
+<<<<<<< HEAD
+resources/*
+=======
+>>>>>>> lexer
+=======
+>>>>>>> lexer
 *.json
 obj
 
 #executable
 a.out
-asm
+#asm

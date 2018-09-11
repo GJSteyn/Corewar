@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+         #
+#    By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/05/30 06:27:18 by wseegers          #+#    #+#              #
-#    Updated: 2018/09/04 22:20:28 by wseegers         ###   ########.fr        #
+#    Created: 2018/05/30 06:27:18 by pstubbs           #+#    #+#              #
+#    Updated: 2018/09/05 08:05:48 by gsteyn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,11 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror
 INC := -I include
 
+# CORE_SRC = f_bzero.c f_isspace.c f_memalloc.c f_strlen.c f_atol.c f_isdigit.c \
+# 			f_strcmp.c f_strncpy.c f_strchr.c f_strsub.c f_strnew.c \
+# 			f_little_to_big_endian.c f_big_to_little_endian.c f_dynamicstring.c \
+# 			f_isspace_notnewl.c f_putstr_err.c op.c
+# CORE = $(addprefix src/, $(CORE_SRC))
 F_IO_SRC = f_feedf.c f_initf.c f_openf.c f_readf.c f_writef.c f_stdio.c\
 		   f_next_line.c f_skip_line.c f_closef.c
 F_IO = $(addprefix f_io/, $(F_IO_SRC))
@@ -48,7 +53,7 @@ F_CNTL_SRC = f_exit.c
 F_CNTL = $(addprefix f_cntl/, $(F_CNTL_SRC))
 
 CORE_SRC = f_atol.c f_isspace_notnewl.c f_little_to_big_endian.c \
-		   f_big_to_little_endian.c f_dynamicstring.c
+		   f_big_to_little_endian.c f_dynamicstring.c op.c
 CORE = $(addprefix core/, $(CORE_SRC))
 
 S_VECTOR_SRC = vector_add.c vector_create.c vector_free.c vector_get.c\

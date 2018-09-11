@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_op.h                                             :+:      :+:    :+:   */
+/*   s_instruction.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 02:00:58 by gsteyn           ###   ########.fr       */
+/*   Created: 2018/08/31 09:20:44 by wseegers          #+#    #+#             */
+/*   Updated: 2018/09/11 13:46:29 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_OP_H
-# define S_OP_H
+#ifndef S_INSTRUCTION_H
+# define S_INSTRUCTION_H
 
-# include <stdbool.h>
+# include "op.h"
+# include "e_type.h"
 
-struct	s_op
+struct	s_instruction
 {
-	char	mnu[5];
-	int		argc;
-	int		arg_type[3];
-	char	bytecode;
-	int		cost;
-	char	description[64];
-	int		has_encoding_byte;
-	int		unknown2;
+	enum e_op		op;
+	enum e_arg_code arg_type[MAX_ARGS_NUMBER];
+	int				arg_value[MAX_ARGS_NUMBER];
 };
 
 #endif

@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_op.h                                             :+:      :+:    :+:   */
+/*   instruction_util.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 02:00:58 by gsteyn           ###   ########.fr       */
+/*   Created: 2018/09/04 19:41:29 by gsteyn            #+#    #+#             */
+/*   Updated: 2018/09/11 16:55:09 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_OP_H
-# define S_OP_H
+#include "s_instruction.h"
+#include "f_print.h"
+#include <stddef.h>
+#include <stdlib.h>
 
-# include <stdbool.h>
-
-struct	s_op
+void		instruction_destroy(void *instruction)
 {
-	char	mnu[5];
-	int		argc;
-	int		arg_type[3];
-	char	bytecode;
-	int		cost;
-	char	description[64];
-	int		has_encoding_byte;
-	int		unknown2;
-};
+	free(instruction);
+}
 
-#endif
+void		parse_error(char *err_str, size_t line)
+{
+	f_fprintf(STDERR, "%s: Line %zu\n", err_str, line);
+	exit(1);
+}
+
+size_t		goffset(size_t add)
+{
+	static size_t		offset;
+
+	offset += add;
+	return (offset);
+}

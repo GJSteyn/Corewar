@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   s_op.h                                             :+:      :+:    :+:   */
+/*   f_strchr.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 02:00:58 by gsteyn           ###   ########.fr       */
+/*   Created: 2018/08/30 18:42:01 by gsteyn            #+#    #+#             */
+/*   Updated: 2018/08/30 18:42:34 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef S_OP_H
-# define S_OP_H
+#include "core.h"
 
-# include <stdbool.h>
-
-struct	s_op
+char	*f_strchr(const char *s, int c)
 {
-	char	mnu[5];
-	int		argc;
-	int		arg_type[3];
-	char	bytecode;
-	int		cost;
-	char	description[64];
-	int		has_encoding_byte;
-	int		unknown2;
-};
+	size_t	s_len;
+	size_t	i;
 
-#endif
+	s_len = f_strlen(s);
+	i = 0;
+	if (c == '\0')
+		return ((char*)(s + s_len));
+	while (i <= s_len)
+	{
+		if (s[i] == c)
+			return ((char*)(s + i));
+		i++;
+	}
+	return (NULL);
+}

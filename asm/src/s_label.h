@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_line.c                                         :+:      :+:    :+:   */
+/*   s_label.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/29 16:23:59 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/11 11:48:02 by pstubbs          ###   ########.fr       */
+/*   Created: 2018/08/29 15:57:19 by wseegers          #+#    #+#             */
+/*   Updated: 2018/09/11 11:52:25 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#ifndef S_LABEL_H
+# define S_LABEL_H
 
-char			*get_line(char *path)
+# include <stddef.h>
+# include "list.h"
+
+struct	s_label
 {
-	int			fd;
-	int			rcount;
-	char		buff[512 + 1];
-	char		*ret;
+	char	*name;
+	size_t	offset;
+};
 
-	fd = open(path, O_RDONLY);
-	if (fd < 0)
-	{
-		write(2, "Invalid file path\n", 18);
-		exit(1);
-	}
-	ret = f_strnew(1);
-	while ((rcount = read(fd, buff, 512)))
-	{
-		buff[rcount] = '\0';
-		ret = f_dynamicstring(&ret, buff);
-		if (rcount < 512)
-			break ;
-	}
-	close(fd);
-	return (ret);
-}
+struct	s_dref_label
+{
+	char	*name;
+	int		*value;
+	size_t	offset;
+};
+
+typedef	t_list	t_label_list;
+
+#endif

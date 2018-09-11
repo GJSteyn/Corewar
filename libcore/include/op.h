@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2018/08/29 15:02:36 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/01 11:22:39 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "s_op.h"
 
 typedef struct s_op		t_op;
+t_op					g_op_tab[16];
 
 # define IND_SIZE				2
 # define REG_SIZE				4
@@ -44,7 +45,7 @@ typedef struct s_op		t_op;
 # define REG_NUMBER				16
 
 # define CYCLE_TO_DIE			1536
-# define CYCLE_DELTA				50
+# define CYCLE_DELTA			50
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
 

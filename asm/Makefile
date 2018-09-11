@@ -6,7 +6,7 @@
 #    By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/08/30 13:06:20 by gsteyn           ###   ########.fr        #
+#    Updated: 2018/09/11 13:35:42 by gsteyn           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,12 @@ INC2 := -I../liblist/include/
 
 LIB := -L. ../libcore/libcore.a ../liblist/liblist.a
 
-CORE_SRC = get_line.c main.c strip_line.c
+CORE_SRC = get_line.c main.c strip_line.c lex.c \
+			parse_header.c token_util.c token_validate.c \
+			parse_instructions.c parse_set_labels.c parse_label_util.c \
+			instruction_util.c write_to_bin.c  write_header_to_bin.c \
+			lex_util.c lex_util2.c lex_add_tokens.c lex_add_tokens2.c \
+			lex_add_tokens3.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))
