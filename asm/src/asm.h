@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 10:58:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/05 13:20:43 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/11 08:04:38 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ char	*strip_line(char *line);
 char	*get_line(char *path);
 t_list	*lex(char *clean_line);
 void	write_to_bin(char *path, t_header *header, t_instr_list *code);
+int		write_header_to_bin(char bin[MEM_SIZE], t_header *header);
 
 #endif
