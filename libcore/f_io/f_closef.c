@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   f_closef.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/07/25 11:01:34 by wseegers          #+#    #+#             */
-/*   Updated: 2018/07/25 11:09:26 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/11 12:42:40 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdlib.h>
 #include "f_io.h"
 #include "f_string.h"
 
@@ -30,4 +31,5 @@ void	f_closef(t_file *file)
 	}
 	f_strdel(&file->buf);
 	f_strdel(&file->path);
+	free(file);
 }

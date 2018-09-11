@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 07:47:29 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/11 11:43:02 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,5 @@ int					main(int argc, char *argv[])
 	{
 		visualizer(vis);
 	}
-	endwin();
+	end_vis(&vis);
 }

@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 08:00:07 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/11 07:44:12 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/11 11:42:50 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void			print_core(void)
 		}
 		else
 		{
+			wattron(stdscr, COLOR_PAIR(1));
 			mvprintw(l, c, "__ ");
 			c += 3;
 		}
