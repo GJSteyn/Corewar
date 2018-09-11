@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 10:49:35 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/11 13:09:13 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int			visualizer(t_vis *vis);
 t_vis		*init_vis();
 t_vis		*start_vis(void);
 void		end_vis(t_vis **vis);
-
+void		intro(t_vis *vis);
 
 #endif

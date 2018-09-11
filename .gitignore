@@ -9,7 +9,6 @@
 #executable
 a.out
 obj
-asm
-corewar
 
 .nfs.*
+*.dSYM

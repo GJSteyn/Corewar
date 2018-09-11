@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 11:43:02 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/11 13:09:33 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ int					main(int argc, char *argv[])
 		return (0);
 	g_env.player_total = count_bots(argc, argv);
 	process_list = list_create(free);
-	visualizer(vis);
+	// visualizer(vis);
+	intro(vis);
 	while (++player_no <= (int)g_env.player_total)
 	{
 		list_append(process_list, load_bot(argv[1], player_no));
