@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:57:40 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/04 23:46:32 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/11 12:42:48 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 enum	e_op
 {
-	blank, 
+	blank,
 	live,
 	ld,
 	st,
@@ -27,7 +27,7 @@ enum	e_op
 	zjmp,
 	ldi,
 	sti,
-	op_fork, //conflicts with function fork
+	op_fork,
 	lld,
 	lldi,
 	lfork,
@@ -44,10 +44,10 @@ enum	e_type
 {
 	keyword,
 	text,
-	label_def, //conflicts with type label
+	label_def,
 	op,
 	arg,
-	label_arg, //changed for consistancy
+	label_arg,
 	number,
 	eol,
 	separator
@@ -55,11 +55,11 @@ enum	e_type
 
 enum	e_arg_code
 {
-	arg_blank, //conflicts with e_op blank
-	reg,		// remove this without messing up the positions of the other enums?
+	arg_blank,
+	reg,
 	direct,
-	label,		//this should never be necessary, since one of the types is label_arg
-	indirect //"index" is a "redefinition"
+	label,
+	indirect
 };
 
 union	u_value

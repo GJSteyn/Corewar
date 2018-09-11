@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   token_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:50:19 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 11:54:10 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/11 12:55:46 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "s_token.h"
+#include "f_print.h"
 
 void	token_destroy(struct s_token **token)
 {
@@ -23,9 +24,6 @@ void	token_destroy(struct s_token **token)
 
 void	invalid_token(struct s_token *token, char *message)
 {
-	//f_putnbr_err(token->line);
-	//f_putstr_err(message);
-
 	(void)token;
-	printf("Invalid token: %s\n", message);
+	f_printf("Invalid token: %s\n", message);
 }

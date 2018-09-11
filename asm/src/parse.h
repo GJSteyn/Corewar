@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:51:12 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/05 08:52:01 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/11 16:56:26 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <stdlib.h>
 # include <stddef.h>
-
-# include <stdio.h> // debugging
 
 # include "op.h"
 # include "e_type.h"
@@ -40,9 +38,9 @@ typedef struct s_dref_label	t_dref_label;
 # define PEEK_TOKEN(list)	((t_token*)list_get(list, 0))
 # define DEQUE_DREF(list)	((t_dref_label*)list_pop(list, 0))
 
-size_t (*g_op_func[17])(t_token_list*, t_bin, size_t);
+size_t			(*g_op_func[17])(t_token_list*, t_bin, size_t);
 
-size_t	parse_live(t_token_list *token_list, t_bin bin, size_t offset);
+size_t			parse_live(t_token_list *token_list, t_bin bin, size_t offset);
 
 # define LABEL_LIST_INIT	(1)
 # define LABEL_LIST_GET	(0)
@@ -58,6 +56,8 @@ t_header		*parse_header(t_token_list *token_list);
 void			parse_set_labels(void);
 
 void			instruction_destroy(void *instruction);
+void			parse_error(char *err_str, size_t line);
+size_t			goffset(size_t add);
 t_instr_list	*parse_instructions(t_token_list *token_list, t_header *head);
 
 #endif

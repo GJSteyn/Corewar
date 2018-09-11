@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_instruction.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 09:20:44 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 11:54:56 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/11 13:46:29 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,3 @@ struct	s_instruction
 };
 
 #endif
-
-
-/*
-
-1
-[0]op = 11
-type = {reg, indirect, dir } &(arg_value[2]) 0 live
-val = {1,  <15> , 1}
-
-[9]op = 6
-type = {reg, dir, reg}
-val = {1, 0, 1}
-
-live:
-[15]op = 1
-type = {dir, 0, 0}
-val = {1, 0, 0}
-
-[21]op = 20
-type = {dir}
-val = {<-5>}
-
-*/

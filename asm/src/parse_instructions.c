@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_instructions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:57:41 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/11 11:48:48 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/11 16:54:42 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,13 @@ static size_t		parse_eol(t_token_list *token_list)
 	return (nr);
 }
 
-static void			parse_error(char *err_str, size_t line)
+static int			add_arg(t_instruction *instr, t_token_list *token_list,
+							t_op operation, int i)
 {
-	f_fprintf(STDERR, "%s: Line %zu\n", err_str, line);
-	exit(1);
-}
-
-static int			add_arg(t_instruction *instr, t_token_list *token_list, t_op operation, int i, size_t *offset)
-{
-	int				ret;
+	int				increment;
 	t_token			*token;
 
-	ret = 0;
+	increment = 0;
 	token = DEQUE_TOKEN(token_list);
 	if (token->type != arg)
 		parse_error("Arg parse error", token->line);
@@ -54,37 +49,38 @@ static int			add_arg(t_instruction *instr, t_token_list *token_list, t_op operat
 		parse_error("Arg not compatible with op", token->line);
 	instr->arg_type[i] = token->value.arg;
 	if (token->value.arg == direct)
-		ret = DIR_SIZE - (operation.unknown2 << 1);
+		increment = DIR_SIZE - (operation.unknown2 << 1);
 	else if (token->value.arg == indirect)
-		ret = IND_SIZE;
+		increment = IND_SIZE;
 	else if (token->value.arg == reg)
-		ret = 1;
+		increment = 1;
 	token_destroy(&token);
 	token = DEQUE_TOKEN(token_list);
 	if (token->type == label_arg)
-		add_gdref(f_strdup(token->value.text), &(instr->arg_value[i]), *offset);
+		add_gdref(f_strdup(token->value.text), &(instr->arg_value[i]),
+		goffset(0));
 	else if (token->type == number)
 		instr->arg_value[i] = token->value.number;
 	token_destroy(&token);
-	return (ret);
+	return (increment);
 }
 
-static int			add_instruction(t_instr_list *instr_list, t_token *token,
-									t_token_list *token_list, size_t *offset)
+static void			add_instruction(t_instr_list *instr_list, t_token *token,
+									t_token_list *token_list)
 {
 	int					i;
-	size_t				offset_increment;
 	t_instruction		*instr;
 	t_op				operation;
+	int					increment;
 
 	i = -1;
-	offset_increment = 1;
+	increment = 1;
 	instr = (t_instruction*)f_memalloc(sizeof(t_instruction));
 	operation = g_op_tab[token->value.op - 1];
 	instr->op = token->value.op;
 	while (++i < operation.argc)
 	{
-		offset_increment += add_arg(instr, token_list, operation, i, offset);
+		increment += add_arg(instr, token_list, operation, i);
 		token = DEQUE_TOKEN(token_list);
 		if (token->type == eol && i != operation.argc - 1)
 			parse_error("Incorrect number of args", token->line);
@@ -93,18 +89,16 @@ static int			add_instruction(t_instr_list *instr_list, t_token *token,
 		token_destroy(&token);
 	}
 	list_append(instr_list, instr);
-	offset_increment += operation.has_encoding_byte;
-	return (offset_increment);
+	goffset(increment + operation.has_encoding_byte);
 }
 
 t_instr_list		*parse_instructions(t_token_list *token_list,
 												t_header *header)
 {
-	size_t				offset;
 	t_token				*token;
 	t_instr_list		*instr_list;
 
-	offset = 0;
+	goffset(0);
 	instr_list = list_create(instruction_destroy);
 	glabel_list(LABEL_LIST_INIT);
 	gdref_list(LABEL_LIST_INIT);
@@ -112,12 +106,12 @@ t_instr_list		*parse_instructions(t_token_list *token_list,
 	while ((token = DEQUE_TOKEN(token_list)))
 	{
 		if (token->type == label_def)
-			add_glabel(f_strdup(token->value.text), offset);
+			add_glabel(f_strdup(token->value.text), goffset(0));
 		else if (token->type == op)
-			offset += add_instruction(instr_list, token, token_list, &offset);
+			add_instruction(instr_list, token, token_list);
 		token_destroy(&token);
 	}
 	parse_set_labels();
-	header->prog_size = (unsigned int)offset;
+	header->prog_size = (unsigned int)goffset(0);
 	return (instr_list);
 }
