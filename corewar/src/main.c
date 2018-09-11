@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 10:58:48 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/11 11:37:55 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ void 	get_next_op(t_process *bot)
 void	run_cycle(void **process)
 {
 	t_process *bot;
+
 	bot = (t_process*)*process;
 	if (bot->delay > 0)
 		;

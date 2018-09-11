@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 02:01:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/09 20:28:32 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/11 11:50:53 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIST_H
 # define LIST_H
 
+# include <stdlib.h>
 # include <stddef.h>
 # include <stdbool.h>
 # include "../src/support/include/list_node.h"
