@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 19:44:25 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 11:27:27 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/11 14:58:48 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	op_fork(struct s_process *bot)
 	int					*new_reg;
 
 	new_bot = process_create(bot->process_code,
-		WRAP_MEM(bot->current_pc + (bot->args[0] % IDX_MOD)),
+		WRAP_MEM(bot->current_pc + WRAP_IDX(bot->args[0])),
 		bot->carry);
 	old_reg = bot->reg;
 	new_reg = new_bot->reg;

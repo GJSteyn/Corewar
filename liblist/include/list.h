@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/02 02:01:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 11:50:53 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/11 12:05:04 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void				list_mergesort(t_list *list,
 void				*list_func_find(t_list *list,
 									bool (*chk)(void*, void*), void *chk_data);
 void				list_iterate(t_list *list, void (*data_mod)(void**));
+void				list_remove_if(t_list *list, bool (*remove_check)(void*));
 
 #endif

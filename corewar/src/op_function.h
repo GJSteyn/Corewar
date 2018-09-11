@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:17:31 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 11:34:05 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/11 15:02:08 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ extern struct s_env	g_env;
 # define DECODE(enc, n)		(TYPE_MAP(enc >> ((3 - n) * 2) & 3))
 
 # define WRAP_MEM(n)		((MEM_SIZE + (n)) % MEM_SIZE)
+# define WRAP_IDX(n)		((n) % IDX_MOD)
 
 void 	(*op_function(int i))(struct s_process*);
 

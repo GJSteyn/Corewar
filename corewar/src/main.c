@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 11:37:55 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/11 15:12:28 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void 	get_next_op(t_process *bot)
 {
 	char 	*current;
 
-	current = g_env.memory + bot->next_pc;
+	current = g_env.memory + (bot->next_pc % MEM_SIZE);
 	if (*current < 1 || *current > 16 || assign_args(bot))
 		bot->next_pc = (bot->next_pc++) % MEM_SIZE;
 	else
@@ -124,7 +124,7 @@ void 	get_next_op(t_process *bot)
 
 void	run_cycle(void **process)
 {
-	t_process *bot;
+	t_process	*bot;
 
 	bot = (t_process*)*process;
 	if (bot->delay > 0)
@@ -136,8 +136,33 @@ void	run_cycle(void **process)
 		get_next_op(bot);
 	}
 	else
+	{
+		bot->next_pc = (bot->next_pc + 1) % MEM_SIZE;
 		get_next_op(bot);
+	}
 	bot->delay--;
+}
+
+bool	kill_check(void *process)
+{
+	t_process	*bot;
+
+	bot = (t_process*)process;
+	if (bot->live)
+	{
+		bot->live = 0;
+		return (false);
+	}
+	return (true);
+}
+
+void	print_proc(void **process)
+{
+	t_process	*bot;
+
+	bot = (t_process*)*process;
+	f_printf("\n");
+	print_bot(bot);
 }
 
 int		main(int argc, char *argv[])
@@ -146,23 +171,46 @@ int		main(int argc, char *argv[])
 
 	if (!(argc == 2))
 		return (0);
+
+	// INNIT ENV
 	g_env.player_total = 1;
 	g_env.process_list = list_create(free);
+	g_env.cycle_to_die = CYCLE_TO_DIE;
+	g_env.last_delta = 0;
+	g_env.delta_count = 0;
+	g_env.last_live = 0;
+
 	process_list = g_env.process_list;
 	list_append(process_list, load_bot(argv[1], 1));
-	// print_memory();
-	// f_printf("\n");
-	// print_bot(list_get(process_list, 0));
-	// f_printf("\n");
+
+	// GAME LOOP
 	int i = -1;
-	while (++i < 2022)
+	while (++i < 2350 && process_list->size)
 	{
-	//	f_printf("[%d]\n", i);
 		list_iterate(process_list, run_cycle);
+		if (g_env.cycle_to_die < 1)
+		{
+			list_iterate(g_env.process_list, print_proc); // remove	
+			list_remove_if(process_list, kill_check);
+			if (g_env.live_counter > NBR_LIVE || g_env.last_delta == MAX_CHECKS)
+			{
+				g_env.delta_count++;
+				g_env.last_delta = 0;
+			}
+			else
+				g_env.last_delta++;
+			g_env.cycle_to_die = CYCLE_TO_DIE - g_env.delta_count * CYCLE_DELTA;
+		}
+		else
+			g_env.cycle_to_die--;
+		g_env.cycles++;
 	}
-	f_printf("\n");
+
+	// f_printf("\n");
 	print_memory();
 	f_printf("\n");
-	print_bot(list_get(process_list, 0));
-	f_printf("bot_no: %lu", process_list->size);
+	// f_print_bot(list_get(process_list, 0));
+	f_printf("bots-> %d\n", g_env.process_list->size);
+	f_printf("last_live-> %d\n", g_env.last_live);
+	f_printf("cycles: %d\n", g_env.cycles);
 }

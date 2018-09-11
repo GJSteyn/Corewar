@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:39:49 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 11:49:58 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/11 13:36:19 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	list_remove_if(t_list *list, bool (*remove_check)(void*))
 	int			i;
 
 	current = list->head;
-	i = -1;
-	while (++i && current != NULL)
+	i = 0;
+	while (current != NULL)
 	{
 		if (remove_check(current->data))
 		{
@@ -53,8 +53,10 @@ void	list_remove_if(t_list *list, bool (*remove_check)(void*))
 			list->f_del_data(temp->data);
 			remove_node(list, temp);
 			free(temp);
+			list->size--;
 		}
 		else
 			current = current->next;
+		i++;
 	}
 }

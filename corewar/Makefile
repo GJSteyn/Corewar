@@ -6,7 +6,7 @@
 #    By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/09/11 11:34:43 by wseegers         ###   ########.fr        #
+#    Updated: 2018/09/11 13:30:26 by wseegers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ DEP := $(BIN:%.o=%.d)
 all : $(NAME)
 
 lib: 
-	make re -C ../libcore/
-	make re -C ../liblist/
+	make -C ../libcore/
+	make -C ../liblist/
 
 $(NAME) : $(BIN)
 	$(CC) $(CFLAGS) $(INC1) $(INC2) $(LIB) -o $@ $^ 
