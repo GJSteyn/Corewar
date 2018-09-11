@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:17:31 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/10 20:32:06 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/11 11:34:05 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,17 @@ void 	(*op_function(int i))(struct s_process*);
 void	op_live(struct s_process *bot);
 void	op_ld(struct s_process *bot);
 void	op_st(struct s_process *bot);
+void	op_add(struct s_process *bot);
+void	op_sub(struct s_process *bot);
 void	op_and(struct s_process *bot);
+void	op_or(struct s_process *bot);
+void	op_xor(struct s_process *bot);
 void	op_zjmp(struct s_process *bot);
+void	op_ldi(struct s_process *bot);
 void	op_sti(struct s_process *bot);
 void	op_fork(struct s_process *bot);
+void	op_lldi(struct s_process *bot);
+void	op_lfork(struct s_process *bot);
+void	op_aff(struct s_process *bot);
 
 #endif

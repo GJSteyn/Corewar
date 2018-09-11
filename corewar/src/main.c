@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/10 20:39:26 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/11 10:58:48 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ int		main(int argc, char *argv[])
 	// print_bot(list_get(process_list, 0));
 	// f_printf("\n");
 	int i = -1;
-	while (++i < 2500)
+	while (++i < 2022)
 	{
 	//	f_printf("[%d]\n", i);
 		list_iterate(process_list, run_cycle);

@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_fork.c                                          :+:      :+:    :+:   */
+/*   op_or.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/10 19:44:25 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 11:27:27 by wseegers         ###   ########.fr       */
+/*   Created: 2018/09/11 11:04:34 by wseegers          #+#    #+#             */
+/*   Updated: 2018/09/11 11:06:41 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "op_function.h"
 
-void	op_fork(struct s_process *bot)
+void	op_or(struct s_process *bot)
 {
-	struct s_process	*new_bot;
-	int					i;
-	int					*old_reg;
-	int					*new_reg;
+	int		*args;
 
-	new_bot = process_create(bot->process_code,
-		WRAP_MEM(bot->current_pc + (bot->args[0] % IDX_MOD)),
-		bot->carry);
-	old_reg = bot->reg;
-	new_reg = new_bot->reg;
-	i = -1;
-	while (++i < REG_NUMBER)
-		new_reg[i] = old_reg[i];
-	list_insert(g_env.process_list, new_bot, 0);
-	f_printf("op: fork\n");
+	args = bot->args;
+	args[0] = (bot->is_reg[0]) ? bot->reg[args[0]] : args[0];
+	args[1] = (bot->is_reg[1]) ? bot->reg[args[1]] : args[1];
+	bot->reg[args[2]] = args[0] | args[1];
+	bot->carry = !(bot->reg[args[2]]);
+	f_printf("op: or\n");
 }

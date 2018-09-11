@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:05:57 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/10 09:55:24 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/11 10:58:39 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ struct s_process	*load_bot(char *path, int player_no)
 	lseek(fd, AT_CODE, SEEK_SET);
 	read(fd, g_env.memory + i, CHAMP_MAX_SIZE);
 	close(fd);
-	return (process_create(player_no, i, false));
+	return (process_create(-player_no, i, false));
 }
