@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/31 08:06:00 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/04 18:30:05 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/11 11:51:47 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ static void		parse_name(t_token_list *token_list, t_header *header)
 		exit(0);	//improve error handling
 	}
 }
-
 
 t_header		*parse_header(t_token_list *token_list)
 {

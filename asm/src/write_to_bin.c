@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 12:53:58 by pstubbs           #+#    #+#             */
-/*   Updated: 2018/09/11 09:57:21 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/11 11:32:38 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	write_to_bin(char *path, t_header *header, t_instr_list *code)
 	int				fd;
 	int				i;
 
-	fd = open(path, O_CREAT | O_RDWR);
+	fd = open(path, O_CREAT | O_RDWR, 0666);
 	f_bzero(bin, MEM_SIZE);
 	i = write_header_to_bin(bin, header);
 	current = code->head;
@@ -123,7 +123,7 @@ void	write_to_bin(char *path, t_header *header, t_instr_list *code)
 		if (instr == NULL)
 			break ;
 		write_cmd_to_bin(instr, bin, &i);
-		free(instr);
+		instruction_destroy(instr);
 	}
 	write(fd, bin, i);
 }

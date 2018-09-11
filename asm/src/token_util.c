@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   token_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:50:19 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/10 18:14:21 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/11 11:54:10 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "s_token.h"
-#include <stdio.h> //debugging
 
 void	token_destroy(struct s_token **token)
 {

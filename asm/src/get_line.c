@@ -1,30 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_line.c                                       :+:      :+:    :+:   */
+/*   get_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 16:23:59 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/08/31 15:43:02 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/11 11:48:02 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-// static char		*f_strnew(size_t size)
-// {
-// 	size_t	i;
-// 	char	*ret;
-
-// 	i = 0;
-// 	ret = (char*)f_memalloc(size + 1);
-// 	if (!ret)
-// 		return (NULL);
-// 	while (i < size)
-// 		ret[i++] = '\0';
-// 	return (ret);
-// }
 
 char			*get_line(char *path)
 {

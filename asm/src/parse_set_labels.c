@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_set_labels.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 17:00:18 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/10 18:22:23 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/11 11:51:14 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,24 @@ static void		destroy_label(void *plabel)
 	free(label);
 }
 
-static bool	chk_name(void *plabel, void *name)
+static bool		chk_name(void *plabel, void *name)
 {
 	char *s1;
 	char *s2;
 
 	s1 = ((t_dref_label*)plabel)->name;
 	s2 = (char*)name;
-
 	while (*s1 && *s2)
 	{
-		// if (!*s1++)
-		// 	return (0);
-		// s2++;
 		if (*s1++ != *s2++)
 			return (0);
 		if ((*s1 && !*s2) || (*s2 && !*s1))
 			return (0);
 	}
-	// return (((*s1) - (*s2)));
 	return (true);
 }
 
-void		parse_set_labels(void)
+void			parse_set_labels(void)
 {
 	t_label_list	*dref_list;
 	t_label_list	*label_list;
@@ -61,7 +56,7 @@ void		parse_set_labels(void)
 			f_fprintf(STDERR, "Label: %s does not exist", dref->name);
 			exit(1);
 		}
-		*(dref->value) = label->offset - dref->offset - 1;
+		*(dref->value) = label->offset - dref->offset;
 		destroy_label(dref);
 	}
 	gdref_list(LABEL_LIST_CLEAR);

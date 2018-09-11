@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strip_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:50:44 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/01 13:14:52 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/11 11:53:51 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ char			*strip_line(char *line)
 
 	n_sp = strip_space(line);
 	n_com = strip_comment(n_sp);
-
 	free(n_sp);
 	line = n_com;
 	return (n_com);

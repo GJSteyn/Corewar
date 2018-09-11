@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_instructions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:57:41 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/10 18:22:35 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/11 11:48:48 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef	enum e_type				t_type;
 typedef union u_value			t_value;
 typedef enum e_arg_code			t_arg_code;
 
-static size_t	parse_eol(t_token_list *token_list)
+static size_t		parse_eol(t_token_list *token_list)
 {
 	t_token *token;
 	size_t	nr;
@@ -69,7 +69,8 @@ static int			add_arg(t_instruction *instr, t_token_list *token_list, t_op operat
 	return (ret);
 }
 
-static int			add_instruction(t_instr_list *instr_list, t_token *token, t_token_list *token_list, size_t *offset)
+static int			add_instruction(t_instr_list *instr_list, t_token *token,
+									t_token_list *token_list, size_t *offset)
 {
 	int					i;
 	size_t				offset_increment;
@@ -96,7 +97,8 @@ static int			add_instruction(t_instr_list *instr_list, t_token *token, t_token_l
 	return (offset_increment);
 }
 
-t_instr_list		*parse_instructions(t_token_list *token_list, t_header *header)
+t_instr_list		*parse_instructions(t_token_list *token_list,
+												t_header *header)
 {
 	size_t				offset;
 	t_token				*token;
