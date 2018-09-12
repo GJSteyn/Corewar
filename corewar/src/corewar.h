@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 13:09:13 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/12 12:05:14 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ typedef struct	s_vis
 	int		process_code;
 	int		fl;
 	char	**img;
-	char	**champs;
-	char	**desc;
+	// char	**champs;
+	char	champs[4][PROG_NAME_LENGTH];
+	// char	**desc;
+	char	desc[4][COMMENT_LENGTH];
 }				t_vis;
 
 # define PLAYER_POS(nbr, total)	(((MEM_SIZE / total) * (nbr - 1)))

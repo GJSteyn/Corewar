@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/12 08:53:33 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/12 12:05:13 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,20 @@
 
 typedef struct s_process	t_process;
 
-struct s_process	*load_bot(char *path, int player_no)
+void				find_bot_info(t_vis *vis, int fd, int player_no)
+{
+	char	hold[PROG_NAME_LENGTH + COMMENT_LENGTH + 9];
+
+	lseek(fd, AT_NAME, SEEK_SET);
+	read(fd, hold, PROG_NAME_LENGTH);
+	f_memcpy(vis->champs[player_no], hold, f_strlen(hold));
+	f_bzero(hold, PROG_NAME_LENGTH + COMMENT_LENGTH + 9);
+	lseek(fd, AT_COMMENT, SEEK_SET);
+	read(fd, hold, COMMENT_LENGTH);
+	f_memcpy(vis->desc[player_no], hold, f_strlen(hold));
+}
+
+struct s_process	*load_bot(t_vis	*vis ,char *path, int player_no)
 {
 	unsigned int		i;
 	int					fd;
@@ -29,6 +42,7 @@ struct s_process	*load_bot(char *path, int player_no)
 	}
 	lseek(fd, AT_CODE, SEEK_SET); // needs to be replaced with name parsing code
 	read(fd, g_env.memory + i, CHAMP_MAX_SIZE);
+	find_bot_info(vis, fd, player_no);
 	close(fd);
 	return (process_create(player_no, i, false));
 }
