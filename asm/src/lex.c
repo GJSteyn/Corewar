@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/12 18:25:00 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/12 18:43:28 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ t_list			*lex(char *clean_line)
 	t_list			*ret;
 	size_t			line;
 
+	if (f_strlen(clean_line) == 0)
+		lex_error("Lexical error", 1);
 	ret = list_create(destroy_token);
 	line = 1;
 	while (*clean_line)
