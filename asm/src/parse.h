@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:51:12 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 16:56:26 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/12 13:18:54 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,8 @@ void			instruction_destroy(void *instruction);
 void			parse_error(char *err_str, size_t line);
 size_t			goffset(size_t add);
 t_instr_list	*parse_instructions(t_token_list *token_list, t_header *head);
+
+void			print_instructions(t_header *header, t_instr_list *instr_list);
+void			print_tokens(t_token_list *token_list);
 
 #endif
