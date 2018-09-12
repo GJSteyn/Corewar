@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 13:09:33 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/12 08:53:33 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void				cycle(void **process)
 	bot->delay--;
 }
 
-static int			count_bots(int argc, char **argv)
+static int			count_bots(int argc, char **argv, int champ[])
 {
 	int i;
 	int count;
@@ -70,7 +70,7 @@ static int			count_bots(int argc, char **argv)
 	while (++i < argc)
 	{
 		if (f_strstr(argv[i], ".cor"))
-			count++;
+			champ[count++] = i;
 	}
 	if (count > 4)
 	{
@@ -85,23 +85,27 @@ int					main(int argc, char *argv[])
 	t_list	*process_list;
 	t_vis	*vis;
 	int		player_no;
+	int		a;
+	int		champ[4];
 
 	vis = start_vis();
 	player_no = 0;
+	a = 0;
 	if (argc < 2)
 		return (0);
-	g_env.player_total = count_bots(argc, argv);
+	g_env.player_total = count_bots(argc, argv, champ);
 	process_list = list_create(free);
-	// visualizer(vis);
-	intro(vis);
+	// intro(vis);
 	while (++player_no <= (int)g_env.player_total)
 	{
-		list_append(process_list, load_bot(argv[1], player_no));
+		list_append(process_list, load_bot(argv[champ[a]], player_no));
 		list_iterate(process_list, cycle);
+		a++;
+		f_printf("%d\n", a);
 	}
 	// while (corewar)
-	{
+	// {
 		visualizer(vis);
-	}
+	// }
 	end_vis(&vis);
 }
