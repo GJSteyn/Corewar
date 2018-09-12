@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/12 18:14:23 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/12 18:25:00 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void		add_token(char **str, size_t *line, t_list *list)
 		add_name(list, str, *line);
 	else if (f_strmatch(*str, COMMENT_CMD_STRING))
 		add_comment(list, str, *line);
-	else if (**str == '#')
+	else if (**str == '#' || **str == ';')
 		skip_line(str);
 	else
 		lex_error("Lexical error", *line);

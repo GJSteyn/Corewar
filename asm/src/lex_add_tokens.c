@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 13:25:20 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/12 18:15:33 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/12 18:22:29 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void		add_number(t_list *list, char **str, size_t line)
 	else
 		token->value.number = (int)in;
 	token->line = line;
-	*str += f_intlen(in);
+	while (f_isdigit(**str) || **str == '-')
+		(*str)++;
 	list_append(list, token);
 }
