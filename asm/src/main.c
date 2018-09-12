@@ -6,11 +6,12 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 10:53:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/11 11:48:17 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/12 14:03:02 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+#include "f_print.h"
 
 char	*path_output(char *path)
 {
@@ -39,6 +40,9 @@ int		main(int argc, char **argv)
 		path = path_output(argv[1]);
 		write_to_bin(path, header, instructions);
 		free(token_list);
+		f_printf("Bot:'%s' was created!\nIt says: '%s'. \nBot size: |%d| bytes.\n", header->prog_name, header->comment, header->prog_size);
+		f_printf("\n");
+		f_printf("Bot:'%s' was created! comment:'%s'. Bot size:|%d| bytes.\n", header->prog_name, header->comment, header->prog_size);
 		free(header);
 		free(instructions);
 		free(path);
