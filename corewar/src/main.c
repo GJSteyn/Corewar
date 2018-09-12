@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/12 12:05:13 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/12 14:22:11 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ void				find_bot_info(t_vis *vis, int fd, int player_no)
 {
 	char	hold[PROG_NAME_LENGTH + COMMENT_LENGTH + 9];
 
-	lseek(fd, AT_NAME, SEEK_SET);
-	read(fd, hold, PROG_NAME_LENGTH);
-	f_memcpy(vis->champs[player_no], hold, f_strlen(hold));
-	f_bzero(hold, PROG_NAME_LENGTH + COMMENT_LENGTH + 9);
-	lseek(fd, AT_COMMENT, SEEK_SET);
-	read(fd, hold, COMMENT_LENGTH);
-	f_memcpy(vis->desc[player_no], hold, f_strlen(hold));
+	player_no -= 1;
+    lseek(fd, AT_NAME, SEEK_SET);
+    read(fd, hold, PROG_NAME_LENGTH);
+    f_strcpy(vis->champs[player_no], hold);
+    f_bzero(hold, PROG_NAME_LENGTH + COMMENT_LENGTH + 9);
+    lseek(fd, AT_COMMENT, SEEK_SET);
+    read(fd, hold, COMMENT_LENGTH);
+    f_strcpy(vis->desc[player_no], hold);
 }
 
 struct s_process	*load_bot(t_vis	*vis ,char *path, int player_no)
@@ -109,17 +110,16 @@ int					main(int argc, char *argv[])
 		return (0);
 	g_env.player_total = count_bots(argc, argv, champ);
 	process_list = list_create(free);
-	// intro(vis);
 	while (++player_no <= (int)g_env.player_total)
 	{
-		list_append(process_list, load_bot(argv[champ[a]], player_no));
+		list_append(process_list, load_bot(vis, argv[champ[a]], player_no));
 		list_iterate(process_list, cycle);
 		a++;
-		f_printf("%d\n", a);
 	}
-	// while (corewar)
-	// {
+	while (1)
+	{
+		intro(vis);
 		visualizer(vis);
-	// }
+	}
 	end_vis(&vis);
 }

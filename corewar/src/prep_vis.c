@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_vis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/12 07:38:31 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/12 13:07:32 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ t_vis				*init_vis(void)
 
 	new = (t_vis *)f_memalloc(sizeof(t_vis));
 	new->img = NULL;
-	// new->champs = (char **)f_memalloc(sizeof(char *) * MAX_PLAYERS + 1);
-	// new->desc = (char **)f_memalloc(sizeof(char *) * MAX_PLAYERS + 1);
 	return (new);
 }
 
@@ -75,8 +73,7 @@ t_vis				*start_vis(void)
 void				end_vis(t_vis **vis)
 {
 	(void)vis;
-	// free_ar((*vis)->champs, MAX_PLAYERS + 1);
-	// free_ar((*vis)->desc, MAX_PLAYERS + 1);
+	curs_set(1);
 	free_ar((*vis)->img, (*vis)->fl);
 	endwin();
 }
