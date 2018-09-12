@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/11 14:21:50 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/12 07:38:31 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ t_vis				*start_vis(void)
 
 	new = init_vis();
 	get_logo(new);
-	// initscr();
-	// curs_set(0);
+	initscr();
+	curs_set(0);
 	wresize(stdscr, 65, 65 * 5);
 	return (new);
 }
