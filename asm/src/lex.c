@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/11 13:40:15 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/12 18:14:23 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		add_token(char **str, size_t *line, t_list *list)
 	else if (is_op(*str))
 		add_op(list, str, *line);
 	else if (**str == '"')
-		add_text(list, str, *line);
+		add_text(list, str, line);
 	else if (f_strmatch(*str, NAME_CMD_STRING))
 		add_name(list, str, *line);
 	else if (f_strmatch(*str, COMMENT_CMD_STRING))
