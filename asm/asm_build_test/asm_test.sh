@@ -1,10 +1,13 @@
 #!/bin/bash
 
-DEF_ASM="./Default_asm"
+DEF_ASM="./bots/Default_asm"
 CHL_ASM="./asm"
 
 DECOR="default_cor_files/"
 CHCOR="challenger_cor_files/"
+
+mkdir $DECOR
+mkdir $CHCOR
 
 YEL="\x1B[33m"
 NRM="\x1B[0m"
@@ -38,6 +41,7 @@ function output_bot() {
 	$CHL_ASM bots/$1
 	echo -n -e $RED
 	mv bots/$2 $CHCOR
+	cmp $DECOR$2 $CHCOR$2
 	echo -n -e $NRM
 	echo ""
 }
@@ -65,7 +69,6 @@ output_bot $BOTS $BOTC
 BOTS="Gagnant.s"
 BOTC="Gagnant.cor"
 output_bot $BOTS $BOTC
-
 
 BOTS="jumper.s"
 BOTC="jumper.cor"
@@ -264,48 +267,58 @@ BOTS="youforkmytralala.s"
 BOTC="youforkmytralala.cor"
 output_bot $BOTS $BOTC
 
-echo -e "\x1B[31m"
+BOTS="Douceur_power.s"
+BOTC="Douceur_power.cor"
+output_bot $BOTS $BOTC
 
-cmp $DECOR$"barriere.cor" $CHCOR$"barriere.cor"
-cmp $DECOR$"Car.cor" $CHCOR$"Car.cor"
-cmp $DECOR$"ex.cor" $CHCOR$"ex.cor"
-cmp $DECOR$"Gagnant.cor" $CHCOR$"Gagnant.cor"
-cmp $DECOR$"jumper.cor" $CHCOR$"jumper.cor"
-cmp $DECOR$"maxidef.cor" $CHCOR$"maxidef.cor"
-cmp $DECOR$"mortel.cor" $CHCOR$"mortel.cor"
-cmp $DECOR$"Octobre_Rouge_v4.2.cor" $CHCOR$"Octobre_Rouge_v4.2.cor"
-cmp $DECOR$"slider2.cor" $CHCOR$"slider2.cor"
-cmp $DECOR$"toto.cor" $CHCOR$"toto.cor"
-cmp $DECOR$"_.cor" $CHCOR$"_.cor"
-cmp $DECOR$"_honeybadger.cor" $CHCOR$"_honeybadger.cor"
-cmp $DECOR$"Asombra.cor" $CHCOR$"Asombra.cor"
-cmp $DECOR$"big_feet.cor" $CHCOR$"big_feet.cor"
-cmp $DECOR$"casimir.cor" $CHCOR$"casimir.cor"
-cmp $DECOR$"champ.cor" $CHCOR$"champ.cor"
-cmp $DECOR$"corelol.cor" $CHCOR$"corelol.cor"
-cmp $DECOR$"darksasuke.cor" $CHCOR$"darksasuke.cor"
-cmp $DECOR$"doge.cor" $CHCOR$"doge.cor"
-cmp $DECOR$"dubo.cor" $CHCOR$"dubo.cor"
-cmp $DECOR$"gedeon.cor" $CHCOR$"gedeon.cor"
-cmp $DECOR$"justin_bee.cor" $CHCOR$"justin_bee.cor"
-cmp $DECOR$"Kappa.cor" $CHCOR$"Kappa.cor"
-cmp $DECOR$"littlepuppy.cor" $CHCOR$"littlepuppy.cor"
-cmp $DECOR$"live.cor" $CHCOR$"live.cor"
-cmp $DECOR$"loose.cor" $CHCOR$"loose.cor"
-cmp $DECOR$"Machine-gun.cor" $CHCOR$"Machine-gun.cor"
-cmp $DECOR$"mandragore.cor" $CHCOR$"mandragore.cor"
-cmp $DECOR$"MarineKing.cor" $CHCOR$"MarineKing.cor"
-cmp $DECOR$"meowluigi.cor" $CHCOR$"meowluigi.cor"
-cmp $DECOR$"Misaka_Mikoto.cor" $CHCOR$"Misaka_Mikoto.cor"
-cmp $DECOR$"Rainbow_dash.cor" $CHCOR$"Rainbow_dash.cor"
-cmp $DECOR$"salamahenagalabadoun.cor" $CHCOR$"salamahenagalabadoun.cor"
-cmp $DECOR$"sam_2.0.cor" $CHCOR$"sam_2.0.cor"
-cmp $DECOR$"skynet.cor" $CHCOR$"skynet.cor"
-cmp $DECOR$"terminator.cor" $CHCOR$"terminator.cor"
-cmp $DECOR$"THUNDER.cor" $CHCOR$"THUNDER.cor"
-cmp $DECOR$"ultimate-surrender.cor" $CHCOR$"ultimate-surrender.cor"
-cmp $DECOR$"Varimathras.cor" $CHCOR$"Varimathras.cor"
-cmp $DECOR$"Wall.cor" $CHCOR$"Wall.cor"
-cmp $DECOR$"youforkmytralala.cor" $CHCOR$"youforkmytralala.cor"
+BOTS="Explosive_kitty.s"
+BOTC="Explosive_kitty.cor"
+output_bot $BOTS $BOTC
 
-echo -e "\x1B[0m"
+BOTS="gateau.s"
+BOTC="gateau.cor"
+output_bot $BOTS $BOTC
+
+BOTS="Kittystrophic.s"
+BOTC="Kittystrophic.cor"
+output_bot $BOTS $BOTC
+
+BOTS="mise_a_jour_windows95.s"
+BOTC="mise_a_jour_windows95.cor"
+output_bot $BOTS $BOTC
+
+BOTS="overwatch.s"
+BOTC="overwatch.cor"
+output_bot $BOTS $BOTC
+
+BOTS="run_Kitty_RUN.s"
+BOTC="run_Kitty_RUN.cor"
+output_bot $BOTS $BOTC
+
+BOTS="ultima.s"
+BOTC="ultima.cor"
+output_bot $BOTS $BOTC
+
+BOTS="bee_gees.s"
+BOTC="bee_gees.cor"
+output_bot $BOTS $BOTC
+
+BOTS="bigzork.s"
+BOTC="bigzork.cor"
+output_bot $BOTS $BOTC
+
+BOTS="fluttershy.s"
+BOTC="fluttershy.cor"
+output_bot $BOTS $BOTC
+
+BOTS="helltrain.s"
+BOTC="helltrain.cor"
+output_bot $BOTS $BOTC
+
+BOTS="turtle.s"
+BOTC="turtle.cor"
+output_bot $BOTS $BOTC
+
+BOTS="zork.s"
+BOTC="zork.cor"
+output_bot $BOTS $BOTC
