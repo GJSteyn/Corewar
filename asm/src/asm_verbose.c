@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 12:15:52 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/13 16:07:00 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/13 20:38:09 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@ char		*g_args[5] =
 	"direct",
 	"label",
 	"indirect"
+};
+
+char		g_argchar[5] =
+{
+	' ',
+	'r',
+	'%',
+	':',
+	' '
 };
 
 static void		print_value(t_token *t)
@@ -112,5 +121,71 @@ void			print_tokens(t_token_list *token_list)
 		print_value((t_token*)t->data);
 		f_printf("\n");
 		t = t->next;
+	}
+}
+
+void			print_instr(t_list_node **token, t_list_node **instr, size_t *addr)
+{
+	int					i;
+
+	while (*token)
+	{
+		if (((t_token*)(*token)->data)->type == op)
+			f_printf("%u :	%s	", *addr, g_ops[((t_token*)(*token)->data)->value.op]);
+		else if (((t_token*)(*token)->data)->type == arg)
+			f_printf("%c", g_argchar[((t_token*)(*token)->data)->value.op]);
+		else if (((t_token*)(*token)->data)->type == number)
+			f_printf("%d", ((t_token*)(*token)->data)->value.number);
+		else if (((t_token*)(*token)->data)->type == label_arg)
+			f_printf(":%s", ((t_token*)(*token)->data)->value.text);
+		else if (((t_token*)(*token)->data)->type == separator)
+			f_printf("	");
+		else if (((t_token*)(*token)->data)->type == eol)
+		{
+			f_printf("\n");
+			break ;
+		}
+		*token = (*token)->next;
+	}
+	f_printf("	%d", ((t_instruction*)(*instr)->data)->op);
+	i = -1;
+	while (++i < g_op_tab[((t_instruction*)(*instr)->data)->op - 1].argc)
+	{
+		if (((t_instruction*)(*instr)->data)->arg_type[i] == direct)
+			*addr += DIR_SIZE - (g_op_tab[((t_instruction*)(*instr)->data)->op - 1].unknown2 << 1);
+		else if (((t_instruction*)(*instr)->data)->arg_type[i] == indirect)
+			*addr += IND_SIZE;
+		else if (((t_instruction*)(*instr)->data)->arg_type[i] == reg)
+			*addr += 1;
+		f_printf("	%d", ((t_instruction*)(*instr)->data)->arg_value[i]);
+	}
+	*addr += g_op_tab[((t_instruction*)(*instr)->data)->op - 1].has_encoding_byte;
+	(*addr)++;
+	*instr = (*instr)->next;
+	f_printf("\n\n");
+}
+
+void			print_verbose(t_header *header, t_token_list *token_list, t_instr_list *instr_list)
+{
+	t_list_node		*token;
+	t_list_node		*instr;
+	size_t			addr;
+
+	f_printf("Dumping annotated program on standard output\n");
+	f_printf("Program size : %zu bytes\n", header->prog_size);
+	f_printf("Name : \"%s\"\n", header->prog_name);
+	f_printf("Comment : \"%s\"\n\n", header->comment);
+	token = token_list->head;
+	instr = instr_list->head;
+	addr = 0;
+	while (token)
+	{
+		if (((t_token*)token->data)->type == label_def)
+			f_printf("%zu : %s\n", addr, ((t_token*)token->data)->value.text);
+		else if (((t_token*)token->data)->type == eol)
+			f_printf("\n");
+		else if (((t_token*)token->data)->type == op)
+			print_instr(&token, &instr, &addr);
+		token = token->next;
 	}
 }
