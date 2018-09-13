@@ -6,13 +6,36 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 08:00:07 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/12 14:44:55 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/13 12:03:22 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <curses.h>
 #include <time.h>
 #include "corewar.h"
+
+void					init_col(void)
+{
+	start_color();
+	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(3, COLOR_GREEN, COLOR_BLACK);
+	init_pair(4, COLOR_WHITE, COLOR_BLACK);
+}
+
+static void			red_eye(int i, int l, int c)
+{
+	init_col();
+	mvprintw((i + l), (c), "    `9XXXXXXXXXXXP' `9XX'  ");
+	wattron(stdscr, COLOR_PAIR(1));
+	mvprintw((i + l), (c + 27), "CORE");
+	wattroff(stdscr, COLOR_PAIR(1));
+	mvprintw((i + l), (c + 31), "    `98v8P'   ");
+	wattron(stdscr, COLOR_PAIR(1));
+	mvprintw((i + l), (c + 45), "WAR");
+	wattroff(stdscr, COLOR_PAIR(1));
+	mvprintw((i + l), (c + 48), "   `XXP' `9XXXXXXXXXXXP'");
+}
 
 static void			print_logo(t_vis *vis, int l, int c)
 {
@@ -21,7 +44,10 @@ static void			print_logo(t_vis *vis, int l, int c)
 	i = -1;
 	while (vis->img[++i])
 	{
-		mvprintw((i + l), (c), "%s", vis->img[i]);
+		if (i == 8)
+			red_eye(i, l, c);
+		else
+			mvprintw((i + l), (c), "%s", vis->img[i]);
 	}
 }
 
@@ -74,36 +100,19 @@ static void				print_box(int l, int c, int sl, int sc)
 	}
 }
 
-void					init_col(void)
-{
-	start_color();
-	init_pair(1, COLOR_RED, COLOR_RED);
-	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(3, COLOR_GREEN, COLOR_BLACK);
-	init_pair(4, COLOR_WHITE, COLOR_BLACK);
-}
-
-#define Y_CMAMP 30
-#define FOV2	(64 * 3 / 2)
-
 void					champ_intro(t_vis *vis)
 {
 	int i;
 	(void)vis;
 	i = 0;
+	print_box(55, 173, 6, 10);
+	print_logo(vis, 7, FOV2 - (77 / 2));
+	the_corewar();
 	while (i < MAX_PLAYERS)
 	{
 		print_box(55, 173, 6, 10);
 		print_logo(vis, 7, FOV2 - (77 / 2));
-		mvprintw(Y_CMAMP, FOV2 - (96 / 2), "XXXXXX XX  XX XXXXXX      dP"
-		"\"\"8b XX  XX    db    Xb    dX XX\"\"Yb XX  dP\"Yb  XXb XX .dP\"YX");
-		mvprintw(Y_CHAMP + 1, FOV2 - (96 / 2), "  XX   XX  XX XX__       dP  "
-		" `\" XX  XX   dPYb   XXb  dXX XX__dP XX dP   Yb XXYbXX `Ybo. ");
-		mvprintw(Y_CHAMP + 2, FOV2 - (96 / 2), "  XX   XXXXXX XX\"\"       Yb  "
-		"    XXXXXX  dP__Yb  XXYbdPXX XX\"\"\"  XX Yb   dP XX YXX o.`Y8b");
-		mvprintw(Y_CHAMP + 3, FOV2 - (96 / 2), "  XX   XX  XX XXXXXX      Yboo"
-		"dP XX  XX dP\"\"\"\"Yb XX YY XX XX     XX  YbodP  XX  YX XbodP'");
-		refresh();
+		the_champions();
 		wattron(stdscr, A_BOLD);
 		mvprintw(40, FOV2 - (f_strlen(vis->champs[i]) / 2), "%s", vis->champs[i]);
 		mvprintw(42, FOV2 - (f_strlen(vis->desc[i]) / 2), "\"%s\"", vis->desc[i]);
@@ -112,16 +121,27 @@ void					champ_intro(t_vis *vis)
 		wattroff(stdscr, A_BOLD);
 		i++;
 	}
+	print_box(55, 173, 6, 10);
+	print_logo(vis, 7, FOV2 - (77 / 2));
+	ready();
+	print_box(55, 173, 6, 10);
+	print_logo(vis, 7, FOV2 - (77 / 2));
+	set();
+	charge();
+	refresh();
+	usleep(1500000);
 }
 
 void					intro(t_vis *vis)
 {
 	init_col();
 	wattron(stdscr, COLOR_PAIR(1));
+	// wattron(stdscr, A_BOLD);
 	print_core();
 	refresh();
 	usleep(100000);
 	wattroff(stdscr, COLOR_PAIR(1));
+	// wattroff(stdscr, A_BOLD);
 	print_box(55, 173, 6, 10);
 	refresh();
 	champ_intro(vis);

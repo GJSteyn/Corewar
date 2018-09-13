@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/12 12:05:14 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/13 09:24:26 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "f_string.h"
 # include "core.h"
 # include "process.h"
+# include "visualiser.h"
 
 struct			s_env
 {
