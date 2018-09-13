@@ -12,8 +12,8 @@ CHCOR="challenger_cor_files/"
 # $DEFASM  
 # mv bots/42.s $DECOR
 
-echo -e "\e[91m\e[4m"
+echo -e "\x1B[31m"
 
 cmp $DECOR$"42.s" asm_test.sh
 
-echo -e "\e[39m\e[0m"
+echo -e "\x1B[0m"
