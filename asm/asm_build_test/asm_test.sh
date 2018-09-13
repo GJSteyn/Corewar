@@ -49,233 +49,74 @@ BOTS="barriere.s"
 BOTC="barriere.cor"
 output_bot $BOTS $BOTC
 
-# BOTS="Car.s"
-# BOTC="Car.cor"
-# echo -n -e "Default    asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# # echo -n -e $YEL
-# $DEF_ASM bots/$BOTS
-# # echo -n -e $NRM
-# mv bots/$BOTC $DECOR
-# echo -n -e "challanger asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# # echo -n -e $YEL
-# $CHL_ASM bots/$BOTS
-# # echo -n -e $NRM
-# mv bots/$BOTC $CHCOR
-# echo ""
-
+BOTS="Car.s"
+BOTC="Car.cor"
+output_bot $BOTS $BOTC
 
 # # no output
-# BOTS="Death.s"
-# BOTC="Death.cor"
-# echo -n -e "Default    asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# echo -n -e $YEL
-# $DEF_ASM bots/$BOTS
-# echo -n -e $NRM
-# # mv bots/$BOTC $DECOR
-# echo -n -e "challanger asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# echo -n -e $YEL
-# $CHL_ASM bots/$BOTS
-# echo -n -e $NRM
-# # mv bots/$BOTC $CHCOR
-# echo ""
+BOTS="Death.s"
+BOTC="Death.cor"
+output_broken_bot $BOTS
 
-# BOTS="ex.s"
-# BOTC="ex.cor"
-# echo -n -e "Default    asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# # echo -n -e $YEL
-# $DEF_ASM bots/$BOTS
-# # echo -n -e $NRM
-# mv bots/$BOTC $DECOR
-# echo -n -e "challanger asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# # echo -n -e $YEL
-# $CHL_ASM bots/$BOTS
-# # echo -n -e $NRM
-# mv bots/$BOTC $CHCOR
-# echo ""
+BOTS="ex.s"
+BOTC="ex.cor"
+output_bot $BOTS $BOTC
+
+BOTS="Gagnant.s"
+BOTC="Gagnant.cor"
+output_bot $BOTS $BOTC
 
 
-# BOTS="Gagnant.s"
-# BOTC="Gagnant.cor"
-# echo -n -e "Default    asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# # echo -n -e $YEL
-# $DEF_ASM bots/$BOTS
-# # echo -n -e $NRM
-# mv bots/$BOTC $DECOR
-# echo -n -e "challanger asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# # echo -n -e $YEL
-# $CHL_ASM bots/$BOTS
-# # echo -n -e $NRM
-# mv bots/$BOTC $CHCOR
-# echo ""
-
-# BOTS="jumper.s"
-# BOTC="jumper.cor"
-# echo -n -e "Default    asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# # echo -n -e $YEL
-# $DEF_ASM bots/$BOTS
-# # echo -n -e $NRM
-# mv bots/$BOTC $DECOR
-# echo -n -e "challanger asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# # echo -n -e $YEL
-# $CHL_ASM bots/$BOTS
-# # echo -n -e $NRM
-# mv bots/$BOTC $CHCOR
-# echo ""
+BOTS="jumper.s"
+BOTC="jumper.cor"
+output_bot $BOTS $BOTC
 
 # # no output
-# echo -n -e "Default    asm: Bot:|\x1B[32m lde.s \x1B[0m| :"
-# echo -n -e $YEL
-# $DEF_ASM bots/lde.s
-# echo -n -e $NRM
-# echo -n -e "challanger asm: Bot:|\x1B[32m lde.s \x1B[0m| :"
-# echo -n -e $YEL
-# $CHL_ASM bots/lde.s
-# echo -n -e $NRM
-# echo ""
+BOTS="lde.s"
+BOTC="lde.cor"
+output_broken_bot $BOTS
 
-# echo ""
-# echo -n -e "Default    asm: Bot:|\x1B[32m leeloo.s \x1B[0m| :"
-# echo -n -e $YEL
-# $DEF_ASM bots/leeloo.s
-# echo -n -e $NRM
-# echo -n -e "challanger asm: Bot:|\x1B[32m leeloo.s \x1B[0m| :"
-# echo -n -e $YEL
-# $CHL_ASM bots/leeloo.s
-# echo -n -e $NRM
-# echo ""
+echo ""
+BOTS="leeloo.s"
+BOTC="leeloo.cor"
+output_broken_bot $BOTS $BOTC
+
+BOTS="mat.s"
+BOTC="mat.cor"
+output_broken_bot $BOTS $BOTC
 
 
-# BOTS="mat.s"
-# BOTC="mat.cor"
-# echo -n -e "Default    asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# echo -n -e $YEL
-# $DEF_ASM bots/$BOTS
-# echo -n -e $NRM
-# echo -n -e "challanger asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# echo -n -e $YEL
-# $CHL_ASM bots/$BOTS
-# echo -n -e $NRM
-# echo ""
+BOTS="maxidef.s"
+BOTC="maxidef.cor"
+output_bot $BOTS $BOTC
 
-# BOTS="maxidef.s"
-# BOTC="maxidef.cor"
-# echo -n -e "Default    asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# $DEF_ASM bots/$BOTS
-# mv bots/$BOTC $DECOR
-# echo -n -e "challanger asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# $CHL_ASM bots/$BOTS
-# mv bots/$BOTC $CHCOR
-# echo ""
 
-# BOTS="mortel.s"
-# BOTC="mortel.cor"
-# echo -n -e "Default    asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# # echo -n -e $YEL
-# $DEF_ASM bots/$BOTS
-# # echo -n -e $NRM
-# mv bots/$BOTC $DECOR
-# echo -n -e "challanger asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# # echo -n -e $YEL
-# $CHL_ASM bots/$BOTS
-# # echo -n -e $NRM
-# mv bots/$BOTC $CHCOR
-# echo ""
+BOTS="mortel.s"
+BOTC="mortel.cor"
+output_bot $BOTS $BOTC
 
-# BOTS="new.s"
-# BOTC="new.cor"
-# echo -n -e "Default    asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# echo -n -e $YEL
-# $DEF_ASM bots/$BOTS
-# echo -n -e $NRM
-# # mv bots/$BOTC $DECOR
-# echo -n -e "challanger asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# echo -n -e $YEL
-# $CHL_ASM bots/$BOTS
-# echo -n -e $NRM
-# # mv bots/$BOTC $CHCOR
-# echo ""
+BOTS="new.s"
+BOTC="new.cor"
+output_broken_bot $BOTS
 
-# BOTS="Octobre_Rouge_v4.2.s"
-# BOTC="Octobre_Rouge_v4.2.cor"
-# echo -n -e "Default    asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# # echo -n -e $YEL
-# $DEF_ASM bots/$BOTS
-# # echo -n -e $NRM
-# mv bots/$BOTC $DECOR
-# echo -n -e "challanger asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# # echo -n -e $YEL
-# $CHL_ASM bots/$BOTS
-# # echo -n -e $NRM
-# mv bots/$BOTC $CHCOR
-# echo ""
 
-# BOTS="sebc.s"
-# BOTC="sebc.cor"
-# echo -n -e "Default    asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# echo -n -e $YEL
-# $DEF_ASM bots/$BOTS
-# echo -n -e $NRM
-# # mv bots/$BOTC $DECOR
-# echo -n -e "challanger asm: Bot:|\x1B[32m "
-# echo -n $BOTS
-# echo -n -e " \x1B[0m| :"
-# echo -n -e $YEL
-# $CHL_ASM bots/$BOTS
-# echo -n -e $NRM
-# # mv bots/$BOTC $CHCOR
-# echo ""
+BOTS="Octobre_Rouge_v4.2.s"
+BOTC="Octobre_Rouge_v4.2.cor"
+output_bot $BOTS $BOTC
 
-# echo -e "\x1B[31m"
+BOTS="sebc.s"
+BOTC="sebc.cor"
+output_broken_bot $BOTS
 
-# cmp $DECOR$"barriere.cor" $CHCOR$"barriere.cor"
-# cmp $DECOR$"Car.cor" $CHCOR$"Car.cor"
-# cmp $DECOR$"ex.cor" $CHCOR$"ex.cor"
-# cmp $DECOR$"Gagnant.cor" $CHCOR$"Gagnant.cor"
-# cmp $DECOR$"jumper.cor" $CHCOR$"jumper.cor"
-# cmp $DECOR$"maxidef.cor" $CHCOR$"maxidef.cor"
-# cmp $DECOR$"mortel.cor" $CHCOR$"mortel.cor"
-# cmp $DECOR$"Octobre_Rouge_v4.2.cor" $CHCOR$"Octobre_Rouge_v4.2.cor"
+echo -e "\x1B[31m"
 
-# echo -e "\x1B[0m"
+cmp $DECOR$"barriere.cor" $CHCOR$"barriere.cor"
+cmp $DECOR$"Car.cor" $CHCOR$"Car.cor"
+cmp $DECOR$"ex.cor" $CHCOR$"ex.cor"
+cmp $DECOR$"Gagnant.cor" $CHCOR$"Gagnant.cor"
+cmp $DECOR$"jumper.cor" $CHCOR$"jumper.cor"
+cmp $DECOR$"maxidef.cor" $CHCOR$"maxidef.cor"
+cmp $DECOR$"mortel.cor" $CHCOR$"mortel.cor"
+cmp $DECOR$"Octobre_Rouge_v4.2.cor" $CHCOR$"Octobre_Rouge_v4.2.cor"
+
+echo -e "\x1B[0m"
