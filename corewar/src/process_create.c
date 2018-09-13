@@ -6,13 +6,11 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 22:48:45 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/11 10:58:25 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/12 13:07:59 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "process.h"
-
-// void 	get_next_op(struct s_process *bot);
 
 struct s_process	*process_create(int pcode, unsigned int pc, bool carry)
 {
@@ -20,16 +18,19 @@ struct s_process	*process_create(int pcode, unsigned int pc, bool carry)
 	int					i;
 
 	bot = (struct s_process*)malloc(sizeof(struct s_process));
-	bot->process_code = pcode;
+	bot->id = g_env.next_id++;
+	bot->created_by = pcode;
 	bot->live = 0;
 	bot->next_pc = pc;
 	bot->current_pc = pc;
 	bot->carry = carry;
 	bot->delay = -1;
+	bot->op = 0;
 	i = -1;
-	while (++i < REG_NUMBER)
-		bot->reg[i] = 0;
-	bot->reg[1] = pcode;
-	// get_next_op(bot);
+	f_bzero(bot->args, sizeof(bot->args));
+	f_bzero(bot->reg, sizeof(bot->reg));
+	f_bzero(bot->is_reg, sizeof(bot->is_reg));
+	bot->reg[0] = pcode;
+	list_insert(g_env.process_list, bot, 0);
 	return (bot);
 }
