@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/13 17:42:40 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/13 22:11:59 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ int		main(int argc, char *argv[])
 {
 	t_list	*process_list;
 
-	if (!(argc == 2))
+	if (!(argc == 3))
 		return (0);
 
 	// INNIT ENV
 	f_bzero(g_env.memory, MEM_SIZE);
-	g_env.player_total = 1;
+	g_env.player_total = 2;
 	g_env.last_live = 0;
 	g_env.next_id = 1;
 	g_env.process_list = list_create(free);
@@ -74,15 +74,15 @@ int		main(int argc, char *argv[])
 
 	process_list = g_env.process_list;
 	load_bot(argv[1], 1);
-	// load_bot(argv[2], 2);
+	load_bot(argv[2], 2);
 
 	// GAME LOOP
-	// while (g_env.cycles != 5000 && process_list->size)
+	// while (g_env.cycles != 20000 && process_list->size)
 	while (process_list->size)
 	{
 		f_printf("cycle no: %d | cycle_to_die %d\n", g_env.cycles, g_env.cycle_to_die);
-		list_iterate(process_list, run_cycle);
-		if (g_env.cycle_to_die <= 1)
+		// f_printf("It is now cycle %d\n", g_env.cycles);
+		if (g_env.cycle_to_die <= 0)
 		{
 			list_remove_if(process_list, kill_check);
 			if (g_env.live_counter > NBR_LIVE || g_env.last_delta == MAX_CHECKS)
@@ -92,8 +92,12 @@ int		main(int argc, char *argv[])
 			}
 			else
 				g_env.last_delta++;
-			g_env.cycle_to_die = CYCLE_TO_DIE - g_env.delta_count * CYCLE_DELTA;
+			g_env.live_counter = 0;
+			f_printf("last_delta -> %d\n", g_env.last_delta);
+			if ((g_env.cycle_to_die = CYCLE_TO_DIE - (g_env.delta_count * CYCLE_DELTA)) < 0)
+				break ;
 		}
+		list_iterate(process_list, run_cycle);
 		g_env.cycle_to_die--;
 		g_env.cycles++;
 	}

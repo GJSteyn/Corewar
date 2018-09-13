@@ -1,0 +1,1 @@
+Can't read source file ../test_champs/sdi.cor

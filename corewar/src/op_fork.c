@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 19:44:25 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/12 14:57:13 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/13 21:48:35 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	op_fork(struct s_process *bot)
 	new_bot = process_create(bot->created_by,
 		WRAP_MEM(bot->current_pc + WRAP_IDX(bot->args[0])),
 		bot->carry);
-	// new_bot->live = bot->live;
+	new_bot->live = bot->live;
 	old_reg = bot->reg;
 	new_reg = new_bot->reg;
 	i = -1;
