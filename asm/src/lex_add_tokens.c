@@ -52,7 +52,7 @@ void		add_comment(t_list *list, char **str, size_t line)
 	list_append(list, token);
 }
 
-void		add_text(t_list *list, char **str, size_t line)
+void		add_text(t_list *list, char **str, size_t *line)
 {
 	t_token		*token;
 	char		*tmp;
@@ -61,9 +61,13 @@ void		add_text(t_list *list, char **str, size_t line)
 	tmp = *str;
 	(*str)++;
 	while (**str && **str != '"')
+	{
 		(*str)++;
+		if (**str == '\n')
+			(*line)++;
+	}
 	token->type = text;
-	token->line = line;
+	token->line = *line;
 	token->value.text = f_strsub(tmp + 1, 0, *str - tmp - 1);
 	(*str)++;
 	list_append(list, token);
@@ -80,6 +84,7 @@ void		add_number(t_list *list, char **str, size_t line)
 	in = f_atol(*str, &error);
 	token->value.number = (int)in;
 	token->line = line;
-	*str += f_intlen(in);
+	while (f_isdigit(**str) || **str == '-')
+		(*str)++;
 	list_append(list, token);
 }

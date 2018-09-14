@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 12:50:58 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/11 13:38:45 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/12 18:15:12 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ bool		is_label(char *str);
 void		add_newline(t_list *list, char **str, size_t *line);
 void		add_name(t_list *list, char **str, size_t line);
 void		add_comment(t_list *list, char **str, size_t line);
-void		add_text(t_list *list, char **str, size_t line);
+void		add_text(t_list *list, char **str, size_t *line);
 void		add_number(t_list *list, char **str, size_t line);
 void		add_label_arg(t_list *list, char **str, size_t line);
 void		add_label_def(t_list *list, char **str, size_t line);

@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 18:05:12 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/11 13:40:15 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/13 09:52:51 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ static void		add_token(char **str, size_t *line, t_list *list)
 	else if (is_op(*str))
 		add_op(list, str, *line);
 	else if (**str == '"')
-		add_text(list, str, *line);
+		add_text(list, str, line);
 	else if (f_strmatch(*str, NAME_CMD_STRING))
 		add_name(list, str, *line);
 	else if (f_strmatch(*str, COMMENT_CMD_STRING))
 		add_comment(list, str, *line);
-	else if (**str == '#')
+	else if (**str == '#' || **str == ';')
 		skip_line(str);
 	else
 		lex_error("Lexical error", *line);
@@ -50,6 +50,8 @@ t_list			*lex(char *clean_line)
 	t_list			*ret;
 	size_t			line;
 
+	if (!*clean_line)
+		lex_error("Lexical error", 1);
 	ret = list_create(destroy_token);
 	line = 1;
 	while (*clean_line)
