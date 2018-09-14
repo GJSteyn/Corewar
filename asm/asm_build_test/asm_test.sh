@@ -20,7 +20,7 @@ function output_broken_bot() {
 	echo -n -e $YEL
 	$DEF_ASM bots/$1
 	echo -n -e $NRM
-	echo -n -e "challanger asm: Bot:|\x1B[32m "
+	echo -n -e "Challenger asm: Bot:|\x1B[32m "
 	echo -n $1
 	echo -n -e " \x1B[0m| :"
 	echo -n -e $YEL
@@ -35,7 +35,7 @@ function output_bot() {
 	echo -n -e " \x1B[0m| :"
 	$DEF_ASM bots/$1
 	mv bots/$2 $DECOR
-	echo -n -e "challanger asm: Bot:|\x1B[32m "
+	echo -n -e "Challenger asm: Bot:|\x1B[32m "
 	echo -n $1
 	echo -n -e " \x1B[0m| :"
 	$CHL_ASM bots/$1
