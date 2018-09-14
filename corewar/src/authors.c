@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 08:22:07 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 10:38:48 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/14 11:36:18 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ void			authors(void)
 {
 	int i;
 
-	i = 22;
+	i = 37;
 	wattron(stdscr, COLOR_PAIR(1));
 	ws_gs(i);
-	i = 29;
+	i = 44;
 	ps_km(i);
 	wattroff(stdscr, COLOR_PAIR(1));
 }

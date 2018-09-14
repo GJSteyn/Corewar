@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 11:01:12 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 11:03:09 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/14 11:56:32 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,9 @@ void				clear_box(int l, int c, int sl, int sc)
 		sl++;
 	}
 	authors();
+}
+
+void				score_box(void)
+{
+
 }

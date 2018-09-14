@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 11:24:32 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/14 11:45:46 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "f_io.h"
 #include "f_print.h"
 
-static void				get_logo(t_vis *vis)
+static void			get_logo(t_vis *vis)
 {
 	char	*file_name;
 	int		i;
@@ -67,8 +67,7 @@ t_vis				*start_vis(void)
 	get_logo(new);
 	initscr();
 	curs_set(0);
-	// wattron(stdscr, A_BOLD);
-	wresize(stdscr, 65, 65 * 5);
+	wresize(stdscr, 81, 65 * 5);
 	return (new);
 }
 
@@ -76,7 +75,6 @@ void				end_vis(t_vis **vis)
 {
 	(void)vis;
 	curs_set(1);
-	// wattroff(stdscr, A_BOLD);
 	free_ar((*vis)->img, (*vis)->fl);
 	endwin();
 }
