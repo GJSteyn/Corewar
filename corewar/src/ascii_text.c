@@ -6,66 +6,29 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:19:59 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/13 12:28:20 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/14 08:21:28 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include "visualiser.h"
 
-#define Y_CHAMP 30
-#define FOV2	(64 * 3 / 2)
+#define SLP	(500000)
 
-static void				cha_(int i)
-{
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), "  dXXX   dX    Xb"
-	"    dXXXXXb     dXXXXXb      dXXXXX    dXXX");
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), " dXXX\"  dXX    X"
-	"Xb  dXXXXXXXb   dXXXYXXXb    dXXXXXP   dXXXP");
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), "dXX'    XXX    XX"
-	"X  XXX   XXXb  XXX   `XXb  dXX'      dXX'  ");
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), "XXX     XXX    XX"
-	"X  XXX    XXX  XXX    XXX  XXX       XXX   ");
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), "XXX     XXX XXXXX"
-	"X  XXX XXXXXX  XXX    dXX  XXX       XXX   ");
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), "XXX     XXX  dXXX"
-	"X  XXX  XXXXX  XXX   .XXX  XXX       XXXXXX");
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), "XXX     XXX    XX"
-	"X  XXX    XXX  XXXxxdXXX   XXX       XXXXXP");
-}
-
-static void				rge(int i)
-{
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), "XXX     XXX    XX"
-	"X  XXX    XXX  XXXXYXYXb   XXX XXXX  XXX   ");
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), "XXb     XXX    XX"
-	"X  XXX    XXX  XXX   `XXb  XXb `XXX  XXb   ");
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), "XXX.    XXX    XX"
-	"X  XXX    XXX  XXX    XXX  XXX   XX  XXX.  ");
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), " XXXbX  XXX    XX"
-	"X  XXX    XXX  XXX    XXX   XX_XXXX   XXXbX");
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), "  YXXP  XXX    XX"
-	"X  XXX    XXX  XXX    XXX    Y~YXXY    YXXP");
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), "               XP"
-	"          XP   XP                          ");
-	mvprintw(Y_CHAMP + i++, FOV2 - (58 / 2), "               Y "
-	"          Y    Y                           ");
-}
-void				dot_dot()
+void				dot_dot(void)
 {
 	int i;
 
-	i = 6;
+	i = 7;
 	mvprintw(Y_CHAMP + i++, FOV2 - (3 / 2), ".o.");
 	mvprintw(Y_CHAMP + i++, FOV2 - (3 / 2), "`\"'");
 	refresh();
-	usleep(1500000);
-	i = 10;
-		// write (1, "\7", 1);
+	usleep(SLP);
+	i = 11;
 	mvprintw(Y_CHAMP + i++, FOV2 - (3 / 2), ".o.");
 	mvprintw(Y_CHAMP + i++, FOV2 - (3 / 2), "`\"'");
 	refresh();
-	usleep(1500000);
+	usleep(SLP);
 }
 
 void				ready(void)
@@ -73,16 +36,18 @@ void				ready(void)
 	int i;
 
 	i = 0;
-	mvprintw(Y_CHAMP + i++, FOV2 - (37 / 2), "XX\"\"Yb XXXXXX    db    XXXXb.  Yb  dP");
-	mvprintw(Y_CHAMP + i++, FOV2 - (37 / 2), "XX__dP XX__     dPYb    XI  Yb  YbdP");
-	mvprintw(Y_CHAMP + i++, FOV2 - (37 / 2), "XX\"Yb  XX\"\"    dP__Yb   XI  dY   XP");
-	mvprintw(Y_CHAMP + i++, FOV2 - (37 / 2), "XX  Yb XXXXXX dP\"\"\"\"Yb XXXXY\"   dP");
+	mvprintw(Y_CHAMP + i++, FOV2 - (37 / 2), "XX\"\"Yb XXXXXX"
+	"    db    XXXXb.  Yb  dP");
+	mvprintw(Y_CHAMP + i++, FOV2 - (37 / 2), "XX__dP XX__    "
+	" dPYb    XI  Yb  YbdP");
+	mvprintw(Y_CHAMP + i++, FOV2 - (37 / 2), "XX\"Yb  XX\"\" "
+	"   dP__Yb   XI  dY   XP");
+	mvprintw(Y_CHAMP + i++, FOV2 - (37 / 2), "XX  Yb XXXXXX dP"
+	"\"\"\"\"Yb XXXXY\"   dP");
 	refresh();
-	usleep(1500000);
+	usleep(SLP);
 	dot_dot();
 }
-
-
 
 void				set(void)
 {
@@ -94,17 +59,8 @@ void				set(void)
 	mvprintw(Y_CHAMP + i++, FOV2 - (20 / 2), "o.`YXb XX\"\"     XX");
 	mvprintw(Y_CHAMP + i++, FOV2 - (20 / 2), "XbodP' XXXXXX   XX");
 	refresh();
-	usleep(1500000);
+	usleep(SLP);
 	dot_dot();
-}
-
-void				charge(void)
-{
-	int i;
-
-	i = 0;
-	cha_(0);
-	rge(6);
 }
 
 void				the_corewar(void)

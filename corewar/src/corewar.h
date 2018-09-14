@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/13 09:24:26 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/14 11:19:50 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "f_string.h"
 # include "core.h"
 # include "process.h"
-# include "visualiser.h"
+// # include "visualiser.h"
 
 struct			s_env
 {
@@ -33,23 +33,21 @@ struct			s_env
 
 struct s_env	g_env;
 
-typedef struct	s_vis
-{
-	int		process_code;
-	int		fl;
-	char	**img;
-	// char	**champs;
-	char	champs[4][PROG_NAME_LENGTH];
-	// char	**desc;
-	char	desc[4][COMMENT_LENGTH];
-}				t_vis;
+// typedef struct	s_vis
+// {
+// 	int		process_code;
+// 	int		fl;
+// 	char	**img;
+// 	char	champs[4][PROG_NAME_LENGTH];
+// 	char	desc[4][COMMENT_LENGTH];
+// }				t_vis;
 
 # define PLAYER_POS(nbr, total)	(((MEM_SIZE / total) * (nbr - 1)))
 
-int			visualizer(t_vis *vis);
-t_vis		*init_vis();
-t_vis		*start_vis(void);
-void		end_vis(t_vis **vis);
-void		intro(t_vis *vis);
+// int			visualizer(t_vis *vis);
+// t_vis		*init_vis();
+// t_vis		*start_vis(void);
+// void		end_vis(t_vis **vis);
+// void		intro(t_vis *vis);
 
 #endif

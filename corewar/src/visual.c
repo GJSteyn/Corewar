@@ -6,15 +6,14 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 08:00:07 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/13 12:03:22 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/14 11:31:11 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <curses.h>
-#include <time.h>
 #include "corewar.h"
+#include "visualiser.h"
 
-void					init_col(void)
+void				init_col(void)
 {
 	start_color();
 	init_pair(1, COLOR_RED, COLOR_BLACK);
@@ -37,7 +36,7 @@ static void			red_eye(int i, int l, int c)
 	mvprintw((i + l), (c + 48), "   `XXP' `9XXXXXXXXXXXP'");
 }
 
-static void			print_logo(t_vis *vis, int l, int c)
+void				print_logo(t_vis *vis, int l, int c)
 {
 	int i;
 
@@ -51,7 +50,7 @@ static void			print_logo(t_vis *vis, int l, int c)
 	}
 }
 
-static void			print_core(void)
+void				print_core(void)
 {
 	int l;
 	int c;
@@ -78,73 +77,6 @@ static void			print_core(void)
 			c += 3;
 		}
 	}
-}
-
-static void				print_box(int l, int c, int sl, int sc)
-{
-	int i;
-	int temp;
-
-	temp = sc;
-	while (l--)
-	{
-		i = 0;
-		sc = temp;
-		while (i <= c)
-		{
-			mvprintw(sl, sc, " ");
-			i++;
-			sc++;
-		}
-		sl++;
-	}
-}
-
-void					champ_intro(t_vis *vis)
-{
-	int i;
-	(void)vis;
-	i = 0;
-	print_box(55, 173, 6, 10);
-	print_logo(vis, 7, FOV2 - (77 / 2));
-	the_corewar();
-	while (i < MAX_PLAYERS)
-	{
-		print_box(55, 173, 6, 10);
-		print_logo(vis, 7, FOV2 - (77 / 2));
-		the_champions();
-		wattron(stdscr, A_BOLD);
-		mvprintw(40, FOV2 - (f_strlen(vis->champs[i]) / 2), "%s", vis->champs[i]);
-		mvprintw(42, FOV2 - (f_strlen(vis->desc[i]) / 2), "\"%s\"", vis->desc[i]);
-		refresh();
-		usleep(1500000);
-		wattroff(stdscr, A_BOLD);
-		i++;
-	}
-	print_box(55, 173, 6, 10);
-	print_logo(vis, 7, FOV2 - (77 / 2));
-	ready();
-	print_box(55, 173, 6, 10);
-	print_logo(vis, 7, FOV2 - (77 / 2));
-	set();
-	charge();
-	refresh();
-	usleep(1500000);
-}
-
-void					intro(t_vis *vis)
-{
-	init_col();
-	wattron(stdscr, COLOR_PAIR(1));
-	// wattron(stdscr, A_BOLD);
-	print_core();
-	refresh();
-	usleep(100000);
-	wattroff(stdscr, COLOR_PAIR(1));
-	// wattroff(stdscr, A_BOLD);
-	print_box(55, 173, 6, 10);
-	refresh();
-	champ_intro(vis);
 }
 
 int					visualizer(t_vis *vis)

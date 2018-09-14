@@ -6,11 +6,12 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/13 09:32:03 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/14 11:24:32 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+#include "visualiser.h"
 #include "f_io.h"
 #include "f_print.h"
 

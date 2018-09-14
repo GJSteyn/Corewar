@@ -6,13 +6,14 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/12 14:22:11 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/14 11:22:01 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
+#include "visualiser.h"
 #include "list.h"
-#include <stdio.h>
+// #include <stdio.h>
 
 typedef struct s_process	t_process;
 
@@ -21,16 +22,16 @@ void				find_bot_info(t_vis *vis, int fd, int player_no)
 	char	hold[PROG_NAME_LENGTH + COMMENT_LENGTH + 9];
 
 	player_no -= 1;
-    lseek(fd, AT_NAME, SEEK_SET);
-    read(fd, hold, PROG_NAME_LENGTH);
-    f_strcpy(vis->champs[player_no], hold);
-    f_bzero(hold, PROG_NAME_LENGTH + COMMENT_LENGTH + 9);
-    lseek(fd, AT_COMMENT, SEEK_SET);
-    read(fd, hold, COMMENT_LENGTH);
-    f_strcpy(vis->desc[player_no], hold);
+	lseek(fd, AT_NAME, SEEK_SET);
+	read(fd, hold, PROG_NAME_LENGTH);
+	f_strcpy(vis->champs[player_no], hold);
+	f_bzero(hold, PROG_NAME_LENGTH + COMMENT_LENGTH + 9);
+	lseek(fd, AT_COMMENT, SEEK_SET);
+	read(fd, hold, COMMENT_LENGTH);
+	f_strcpy(vis->desc[player_no], hold);
 }
 
-struct s_process	*load_bot(t_vis	*vis ,char *path, int player_no)
+struct s_process	*load_bot(t_vis	*vis,char *path, int player_no)
 {
 	unsigned int		i;
 	int					fd;
