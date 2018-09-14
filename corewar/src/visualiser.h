@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 11:28:45 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/14 14:25:01 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 # define Y_CHAMP 30
 # define FOV2	(64 * 3 / 2)
+# define EM	(64 * 3 + 1)
 
 typedef struct	s_vis
 {
@@ -42,8 +43,10 @@ t_vis		*init_vis();
 t_vis		*start_vis(void);
 void		end_vis(t_vis **vis);
 void		intro(t_vis *vis);
-void		print_core(void);
+void		print_core(int offh, int offv);
 void		init_col(void);
+void		score_box(void);
+
 
 
 

@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 08:00:07 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 11:31:11 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/14 14:23:17 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void				init_col(void)
 {
 	start_color();
 	init_pair(1, COLOR_RED, COLOR_BLACK);
-	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(2, COLOR_RED, COLOR_RED);
 	init_pair(3, COLOR_GREEN, COLOR_BLACK);
 	init_pair(4, COLOR_WHITE, COLOR_BLACK);
 }
@@ -50,7 +50,7 @@ void				print_logo(t_vis *vis, int l, int c)
 	}
 }
 
-void				print_core(void)
+void				print_core(int offh, int offv)
 {
 	int l;
 	int c;
@@ -63,17 +63,16 @@ void				print_core(void)
 	{
 		if (i % 64 == 0)
 		{
-			printw("\n");
 			c = 3 && l++;
 		}
 		if (g_env.memory[i] > 0)
 		{
-			mvprintw(l, c, "%.2hhx ", g_env.memory[i]);
+			mvprintw(l + offv, c + offh, "%.2hhx ", g_env.memory[i]);
 			c += 3;
 		}
 		else
 		{
-			mvprintw(l, c, "__ ");
+			mvprintw(l + offv, c + offh, "-- ");
 			c += 3;
 		}
 	}
@@ -81,8 +80,10 @@ void				print_core(void)
 
 int					visualizer(t_vis *vis)
 {
-	print_core();
-	print_logo(vis, 2, 65 * 3);
+	score_box();
+	print_core(0, 0);
+	print_logo(vis, 3, 65 * 3 + 7);
+	score_box();
 	refresh();
 	usleep(1000000);
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 11:08:11 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 11:30:24 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/14 14:27:24 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void			intro(t_vis *vis)
 {
 	init_col();
 	wattron(stdscr, COLOR_PAIR(1));
-	print_core();
+	print_core(0, 0);
 	refresh();
 	usleep(100000);
 	wattroff(stdscr, COLOR_PAIR(1));

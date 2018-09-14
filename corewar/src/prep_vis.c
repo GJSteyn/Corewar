@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 11:45:46 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/14 14:28:41 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_vis				*start_vis(void)
 	get_logo(new);
 	initscr();
 	curs_set(0);
-	wresize(stdscr, 81, 65 * 5);
+	wresize(stdscr, 67, 65 * 5 - 38);
 	return (new);
 }
 
