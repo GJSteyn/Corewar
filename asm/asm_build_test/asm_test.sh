@@ -135,10 +135,6 @@ BOTS="toto.s"
 BOTC="toto.cor"
 output_bot $BOTS $BOTC
 
-BOTS="toto.s"
-BOTC="toto.cor"
-output_bot $BOTS $BOTC
-
 BOTS="_.s"
 BOTC="_.cor"
 output_bot $BOTS $BOTC
@@ -185,10 +181,6 @@ output_bot $BOTS $BOTC
 
 BOTS="justin_bee.s"
 BOTC="justin_bee.cor"
-output_bot $BOTS $BOTC
-
-BOTS="Kappa.s"
-BOTC="Kappa.cor"
 output_bot $BOTS $BOTC
 
 BOTS="Kappa.s"
