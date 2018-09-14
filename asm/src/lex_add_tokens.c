@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 13:25:20 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/11 13:32:24 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/14 12:04:04 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ void		add_number(t_list *list, char **str, size_t line)
 	token = (t_token*)f_memalloc(sizeof(t_token));
 	token->type = number;
 	in = f_atol(*str, &error);
-	if (in > INT_MAX)
-		token->value.number = INT_MAX;
-	else
-		token->value.number = (int)in;
+	token->value.number = (int)in;
 	token->line = line;
 	*str += f_intlen(in);
 	list_append(list, token);
