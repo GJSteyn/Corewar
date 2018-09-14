@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 10:53:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 07:07:29 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/14 13:52:56 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,24 @@ char	*path_output(char *path)
 	return (ret);
 }
 
+void	destroy_asm(char *path, t_header *head, t_list *instr, t_list *tk_lst)
+{
+	if (tk_lst)
+	{
+		list_clear(tk_lst);
+		free(tk_lst);
+	}
+	if (head)
+		free(head);
+	if (instr)
+	{
+		list_clear(instr);
+		free(instr);
+	}
+	if (path)
+		free(path);
+}
+
 int		main(int argc, char **argv)
 {
 	char		*no_sp;
@@ -45,13 +63,14 @@ int		main(int argc, char **argv)
 		instructions = parse_instructions(token_list, header);
 		free(no_sp);
 		path = path_output(argv[1]);
+		// print_verbose(header,token_list, instructions);
 		write_to_bin(path, header, instructions);
-		free(token_list);
+
 		f_printf("Bot:'%s' was created! Bot size:|%d| bytes.\n",
 		header->prog_name, header->prog_size);
-		free(header);
-		free(instructions);
-		free(path);
+		while(1);
+		destroy_asm(path, header, instructions, token_list);
+		
 	}
 	return (1);
 }
