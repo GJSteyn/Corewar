@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 10:53:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/12 14:12:32 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/14 07:07:29 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,16 @@
 char	*path_output(char *path)
 {
 	char	*ret;
+	int		i;
 
-	ret = f_strsub(path, 0, f_strlen(path) - 1);
-	ret = f_dynamicstring(&ret, "cor");
+	i = f_strlen(path);
+	while (i > 0 && path[i] != '.')
+		i--;
+	if (i > 0)
+		ret = f_strsub(path, 0, i);
+	else
+		ret = f_strdup(path);
+	ret = f_dynamicstring(&ret, ".cor");
 	return (ret);
 }
 
