@@ -6,7 +6,7 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 10:53:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 13:52:56 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/17 08:43:31 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,30 +47,70 @@ void	destroy_asm(char *path, t_header *head, t_list *instr, t_list *tk_lst)
 		free(path);
 }
 
-int		main(int argc, char **argv)
+int		asm_options(char **av, int *i)
+{
+	int	ret;
+	int	len;
+	int	x;
+
+	x = 0;
+	ret = 0;
+	while (av[x])
+	{
+		len = f_strlen(av[x]);
+		if (av[x][0] == '-' && av[x][1] == 'a' && len == 2)
+			ret = 1;
+		if (av[x + 1] == NULL && av[x][0] == '-' && av[x][1] != 'a' && len == 2)
+			return (-1);
+		else if (av[x][0] != '-' && len > 2)
+			*i = x;
+		x++;
+	}
+	return (ret);
+}
+
+void	asm_output(char **argv, int i, int ops)
 {
 	char		*no_sp;
-	char		*path;
+	t_list		*instructions;
 	t_list		*token_list;
 	t_header	*header;
-	t_list		*instructions;
 
-	if (argc == 2)
+	no_sp = get_line(argv[i]);
+	token_list = lex(no_sp);
+	header = parse_header(token_list);
+	instructions = parse_instructions(token_list, header);
+	if (ops == 1)
+		print_verbose(header, token_list, instructions);
+	else if (ops == 0)
 	{
-		no_sp = get_line(argv[1]);
-		token_list = lex(no_sp);
-		header = parse_header(token_list);
-		instructions = parse_instructions(token_list, header);
 		free(no_sp);
-		path = path_output(argv[1]);
-		// print_verbose(header,token_list, instructions);
-		write_to_bin(path, header, instructions);
-
+		no_sp = path_output(argv[i]);
+		write_to_bin(no_sp, header, instructions);
 		f_printf("Bot:'%s' was created! Bot size:|%d| bytes.\n",
 		header->prog_name, header->prog_size);
-		while(1);
-		destroy_asm(path, header, instructions, token_list);
-		
+	}
+	destroy_asm(no_sp, header, instructions, token_list);
+}
+
+int		main(int argc, char **argv)
+{
+	int			ops;
+	int			i;
+
+	if (argc >= 2)
+	{
+		ops = asm_options(argv, &i);
+		if (ops < 0)
+			f_printf("Invaild flag\n");
+		else
+			asm_output(argv, i, ops);
+	}
+	else
+	{
+		f_printf("Usage: %s [-a] <sourcefile.s>\n	-a : %s", argv[0],
+		"Instead of creating a .cor file, outputs a stripped and annotated"
+		"version of the code to the standard output\n");
 	}
 	return (1);
 }
