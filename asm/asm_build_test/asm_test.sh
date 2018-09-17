@@ -1,10 +1,12 @@
 #!/bin/bash
 
-DEF_ASM="./bots/Default_asm"
-CHL_ASM="../asm"
+BASEDIR=$(dirname "$0")
 
-DECOR="default_cor_files/"
-CHCOR="challenger_cor_files/"
+DEF_ASM=$BASEDIR"/bots/Default_asm"
+CHL_ASM=$BASEDIR"/../asm"
+
+DECOR=$BASEDIR"/default_cor_files/"
+CHCOR=$BASEDIR"/challenger_cor_files/"
 
 mkdir $DECOR
 mkdir $CHCOR
@@ -18,13 +20,13 @@ function output_broken_bot() {
 	echo -n $1
 	echo -n -e " \x1B[0m| :"
 	echo -n -e $YEL
-	$DEF_ASM bots/$1
+	$DEF_ASM $BASEDIR/bots/$1
 	echo -n -e $NRM
 	echo -n -e "Challenger asm: Bot:|\x1B[32m "
 	echo -n $1
 	echo -n -e " \x1B[0m| :"
 	echo -n -e $YEL
-	$CHL_ASM bots/$1
+	$CHL_ASM $BASEDIR/bots/$1
 	echo -n -e $NRM
 	echo ""
 }
@@ -33,18 +35,19 @@ function output_bot() {
 	echo -n -e "Default    asm: Bot:|\x1B[32m "
 	echo -n $1
 	echo -n -e " \x1B[0m| :"
-	$DEF_ASM bots/$1
-	mv bots/$2 $DECOR
+	$DEF_ASM $BASEDIR/bots/$1
+	mv $BASEDIR/bots/$2 $DECOR
 	echo -n -e "Challenger asm: Bot:|\x1B[32m "
 	echo -n $1
 	echo -n -e " \x1B[0m| :"
-	$CHL_ASM bots/$1
+	$CHL_ASM $BASEDIR/bots/$1
 	echo -n -e $RED
-	mv bots/$2 $CHCOR
+	mv $BASEDIR/bots/$2 $CHCOR
 	cmp $DECOR$2 $CHCOR$2
 	echo -n -e $NRM
 	echo ""
 }
+
 
 BOTS="Backward.s"
 BOTC="Backward.cor"
