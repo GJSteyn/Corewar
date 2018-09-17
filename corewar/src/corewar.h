@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/17 08:13:17 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/17 12:34:17 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@
 struct s_process	*load_bot(char *path, int player_no);
 void				get_next_op(struct s_process *bot);
 void				battle_loop(void);
+int					set_arg_value(struct s_process *bot,
+						int arg_types[MAX_ARGS_NUMBER]);
 
 //debug ulti to be removed
 void	print_memory(void);

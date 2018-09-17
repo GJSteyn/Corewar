@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:15:10 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/13 21:59:49 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/17 12:50:02 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	op_ldi(struct s_process *bot)
 	int		offset;
 	char	big_e[4];
 
-	print_op_basics(bot, "ldi");
+	// print_op_basics(bot, "ldi");
 	bot->args[0] = (bot->is_reg[0]) ? bot->reg[bot->args[0]] : bot->args[0];
 	bot->args[1] = (bot->is_reg[1]) ? bot->reg[bot->args[1]] : bot->args[1];
 	offset = bot->current_pc + WRAP_IDX(bot->args[0] + bot->args[1]);
