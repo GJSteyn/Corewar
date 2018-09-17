@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DEF_ASM="./bots/Default_asm"
-CHL_ASM="./asm"
+CHL_ASM="../asm"
 
 DECOR="default_cor_files/"
 CHCOR="challenger_cor_files/"

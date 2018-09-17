@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 13:19:08 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/11 13:38:34 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/14 14:58:50 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void		destroy_token(void *token)
 	if (((t_token*)token)->type == text || ((t_token*)token)->type == label_arg
 		|| ((t_token*)token)->type == label_def)
 		free(((t_token*)token)->value.text);
+	free(token);
+	token = NULL;
 }
 
 bool		f_strmatch(const char *str, char *match)

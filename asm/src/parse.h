@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/28 13:51:12 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/14 12:08:53 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/17 12:30:00 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char			*g_args[5];
 
 void			print_instructions(t_header *header, t_instr_list *instr_list);
 void			print_tokens(t_token_list *token_list);
-void			print_verbose(t_header *header, t_token_list *token_list, t_instr_list *instr_list);
+void			print_verbose(t_header *header, t_token_list *token_list,
+												t_instr_list *instr_list);
 
 #endif
