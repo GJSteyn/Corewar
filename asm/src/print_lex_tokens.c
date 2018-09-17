@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_lex_tokens.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 12:06:35 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/14 12:07:17 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/17 12:30:50 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void			print_instructions(t_header *header, t_instr_list *instr_list)
 		i = -1;
 		while (++i < g_op_tab[((t_instruction*)instr->data)->op - 1].argc)
 			f_printf("	ARG: type = %-8s | value = %-7d\n",
-					g_args[((t_instruction*)instr->data)->arg_type[i]], ((t_instruction*)instr->data)->arg_value[i]);
+					g_args[((t_instruction*)instr->data)->arg_type[i]],
+					((t_instruction*)instr->data)->arg_value[i]);
 		instr = instr->next;
 	}
 }
@@ -66,7 +67,8 @@ void			print_tokens(t_token_list *token_list)
 	i = 0;
 	while (t)
 	{
-		f_printf("%zu: %4zu -> %-10s|", ((t_token*)t->data)->line, i++, g_types[((t_token*)t->data)->type]);
+		f_printf("%zu: %4zu -> %-10s|", ((t_token*)t->data)->line,
+		i++, g_types[((t_token*)t->data)->type]);
 		print_value((t_token*)t->data);
 		f_printf("\n");
 		t = t->next;
