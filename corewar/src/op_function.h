@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:17:31 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/13 15:30:22 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/17 08:49:37 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@
 # define TYPE_BYTES(type)	((int[5]){0, 1, DIR_SIZE, 2, IND_SIZE}[type])
 # define DECODE(enc, n)		(TYPE_MAP(enc >> ((3 - n) * 2) & 3))
 
-# define WRAP_MEM(n)		((MEM_SIZE + (n)) % MEM_SIZE)
+# define WRAP_MEM(n)		((MEM_SIZE + ((n) % MEM_SIZE)) % MEM_SIZE)
 # define WRAP_IDX(n)		((n) % IDX_MOD)
 
 void 	(*op_function(int i))(struct s_process*);
+
+void	get_next_op(struct s_process *bot);
 
 void	op_live(struct s_process *bot);
 void	op_ld(struct s_process *bot);

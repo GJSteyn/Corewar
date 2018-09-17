@@ -6,15 +6,13 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:05:57 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/12 08:36:30 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/17 08:08:03 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 
 typedef struct s_process	t_process;
-
-void 	get_next_op(t_process *bot); // debug
 
 struct s_process	*load_bot(char *path, int player_no)
 {

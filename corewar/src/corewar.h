@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/13 14:20:14 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/17 08:13:17 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 # define PLAYER_POS(nbr, total)	(((MEM_SIZE / total) * (nbr - 1)))
 
 struct s_process	*load_bot(char *path, int player_no);
-void 				get_next_op(struct s_process *bot);
+void				get_next_op(struct s_process *bot);
+void				battle_loop(void);
 
 //debug ulti to be removed
 void	print_memory(void);

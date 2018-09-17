@@ -6,13 +6,13 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:11:51 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/13 14:15:13 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/17 08:11:11 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "op_function.h"
 
-void (*op_function(int op_code))(struct s_process*)
+void	(*op_function(int op_code))(struct s_process*)
 {
 	static void (*op[MAX_OP + 1])(struct s_process*);
 
@@ -34,11 +34,6 @@ void (*op_function(int op_code))(struct s_process*)
 		op[14] = op_lldi;
 		op[15] = op_lfork;
 		op[16] = op_aff;
-	}
-	if (!op_code || op_code > MAX_OP)
-	{
-		f_fprintf(STDERR, "op_funtion : value passed is out of range\n");
-		exit(0);
 	}
 	return (op[op_code]);
 }

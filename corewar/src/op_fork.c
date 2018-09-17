@@ -6,13 +6,11 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 19:44:25 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/13 21:48:35 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/17 08:08:30 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "op_function.h"
-
-void 	get_next_op(struct s_process *bot); // debug
 
 void	op_fork(struct s_process *bot)
 {

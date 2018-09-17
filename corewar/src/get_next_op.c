@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:16:24 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/13 19:25:24 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/17 08:59:31 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		get_arg_types(t_process *bot, int types[MAX_ARGS_NUMBER])
 	mem = g_env.memory + bot->current_pc;
 	op = g_op_tab[(int)mem[0] - 1];
 	ret = 0;
-	if (op.has_encoding) //might need to be adjusted with diffrent name
+	if (op.has_encoding)
 	{
 		enc = mem[1];
 		i = -1;
@@ -45,7 +45,7 @@ int		set_arg_value(t_process *bot, int arg_types[MAX_ARGS_NUMBER])
 	int		offset;
 	t_op	op;
 	int		i;
-	char 	big_endian[4];
+	char	big_e[4];
 	int		ind_offset;
 
 	op = g_op_tab[(int)g_env.memory[bot->current_pc] - 1];
@@ -55,7 +55,7 @@ int		set_arg_value(t_process *bot, int arg_types[MAX_ARGS_NUMBER])
 	f_bzero(bot->is_reg, sizeof(bot->is_reg));
 	while (++i < op.argc)
 	{
-		f_bzero(big_endian, 4);
+		f_bzero(big_e, 4);
 		if (arg_types[i] == T_REG)
 		{
 			bot->args[i] = g_env.memory[WRAP_MEM(offset++)] - 1;
@@ -67,37 +67,36 @@ int		set_arg_value(t_process *bot, int arg_types[MAX_ARGS_NUMBER])
 		{
 			if (!op.direct_index)
 			{
-				big_endian[0] = g_env.memory[WRAP_MEM(offset++)];
-				big_endian[1] = g_env.memory[WRAP_MEM(offset++)];
+				big_e[0] = g_env.memory[WRAP_MEM(offset++)];
+				big_e[1] = g_env.memory[WRAP_MEM(offset++)];
 			}
-			big_endian[2] = g_env.memory[WRAP_MEM(offset++)];
-			big_endian[3] = g_env.memory[WRAP_MEM(offset++)];
+			big_e[2] = g_env.memory[WRAP_MEM(offset++)];
+			big_e[3] = g_env.memory[WRAP_MEM(offset++)];
 			if (op.direct_index)
-				bot->args[i] = (short)f_big_to_little_endian(big_endian);
+				bot->args[i] = (short)f_big_to_little_endian(big_e);
 			else
-				bot->args[i] = f_big_to_little_endian(big_endian);
+				bot->args[i] = f_big_to_little_endian(big_e);
 		}
 		else if (arg_types[i] == T_IND)
 		{
-			big_endian[2] = g_env.memory[WRAP_MEM(offset++)];
-			big_endian[3] = g_env.memory[WRAP_MEM(offset++)];
-			ind_offset = (short)f_big_to_little_endian(big_endian);
+			big_e[2] = g_env.memory[WRAP_MEM(offset++)];
+			big_e[3] = g_env.memory[WRAP_MEM(offset++)];
+			ind_offset = (short)f_big_to_little_endian(big_e);
 			if (op.bytecode == 3 || op.bytecode == 13)
 				bot->args[i] = ind_offset;
 			else
 			{
 				ind_offset = (op.bytecode < 13) ? ind_offset % IDX_MOD : ind_offset;
-				big_endian[0] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
-				big_endian[1] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
-				big_endian[2] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
-				big_endian[3] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
-				bot->args[i] = f_big_to_little_endian(big_endian);
+				big_e[0] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
+				big_e[1] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
+				big_e[2] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
+				big_e[3] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
+				bot->args[i] = f_big_to_little_endian(big_e);
 			}
 		}
 		else
 			return (-1);
 	}
-	// bot->next_pc = WRAP_MEM(offset);
 	return (0);
 }
 
@@ -131,13 +130,6 @@ void 	get_next_op(t_process *bot)
 	int		op_idx;
 
 	op_idx = (int)g_env.memory[(bot->next_pc % MEM_SIZE)];
-	// if (op_idx < 1 || op_idx > 16 || assign_args(bot, op_idx))
-	// 	bot->next_pc = (bot->next_pc++) % MEM_SIZE;
-	// else
-	// {	
-	// 	bot->delay = g_op_tab[op_idx - 1].cost;
-	// 	bot->op = op_function(op_idx);
-	// }
 	if (op_idx >= 1 && op_idx <= 16)
 	{
 		bot->delay = g_op_tab[op_idx - 1].cost;
@@ -146,6 +138,4 @@ void 	get_next_op(t_process *bot)
 		else
 			bot->op = NULL;
 	}
-	// else
-		// bot->next_pc = (bot->next_pc++) % MEM_SIZE;
 }
