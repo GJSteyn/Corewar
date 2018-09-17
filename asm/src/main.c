@@ -6,12 +6,13 @@
 /*   By: pstubbs <pstubbs@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/30 10:53:19 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/17 08:43:31 by pstubbs          ###   ########.fr       */
+/*   Updated: 2018/09/17 12:25:39 by pstubbs          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include "f_print.h"
+#include "string.h"
 
 char	*path_output(char *path)
 {
@@ -58,11 +59,13 @@ int		asm_options(char **av, int *i)
 	while (av[x])
 	{
 		len = f_strlen(av[x]);
-		if (av[x][0] == '-' && av[x][1] == 'a' && len == 2)
+		if (av[x][0] == '-' && av[x][1] == 'v' && len == 2)
 			ret = 1;
-		if (av[x + 1] == NULL && av[x][0] == '-' && av[x][1] != 'a' && len == 2)
-			return (-1);
-		else if (av[x][0] != '-' && len > 2)
+		else if (av[x][0] == '-' && av[x][1] == 'i' && len == 2)
+			ret = 2;
+		else if (av[x][0] == '-' && av[x][1] == 't' && len == 2)
+			ret = 3;
+		else if (len > 2)
 			*i = x;
 		x++;
 	}
@@ -82,6 +85,10 @@ void	asm_output(char **argv, int i, int ops)
 	instructions = parse_instructions(token_list, header);
 	if (ops == 1)
 		print_verbose(header, token_list, instructions);
+	else if (ops == 2)
+		print_instructions(header, instructions);
+	else if (ops == 3)
+		print_tokens(token_list);
 	else if (ops == 0)
 	{
 		free(no_sp);
@@ -103,14 +110,18 @@ int		main(int argc, char **argv)
 		ops = asm_options(argv, &i);
 		if (ops < 0)
 			f_printf("Invaild flag\n");
+		else if (i == 0)
+			f_printf("No Sourcefile\n");
 		else
 			asm_output(argv, i, ops);
 	}
 	else
 	{
-		f_printf("Usage: %s [-a] <sourcefile.s>\n	-a : %s", argv[0],
-		"Instead of creating a .cor file, outputs a stripped and annotated"
-		"version of the code to the standard output\n");
+		f_printf("Usage: %s -[v,i,t] <sourcefile.s>\n	-v : %s", argv[0],
+		"Instead of creating a .cor file, outputs a stripped and annotated "
+		"version of the code to the standard output.\n	-i : "
+		"outputs instructions on the standard output.\n	-t : "
+		"outputs processed tokens on the standard output.\n");
 	}
 	return (1);
 }
