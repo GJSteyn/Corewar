@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 08:19:15 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 08:20:00 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/17 08:18:48 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void				rge(int i)
 	"          Y    Y                           ");
 }
 
-void				charge(void)
+void					charge(void)
 {
 	int i;
 

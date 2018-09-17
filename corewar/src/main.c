@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/14 14:16:39 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/17 13:46:41 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,14 +117,11 @@ int					main(int argc, char *argv[])
 		list_iterate(process_list, cycle);
 		a++;
 	}
-	mvprintw(1, EM, "- WSEEGERS GSTEYN PSTUBBS KMARCHAN");
 	while (1)
 	{
+		scr_size(vis);
 		intro(vis);
 		visualizer(vis);
-		/*
-		** can put a condition to play intro or not
-		*/
 	}
 	end_vis(&vis);
 }

@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 14:25:01 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/17 13:40:18 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 typedef struct	s_vis
 {
+	int		m_l;
+	int		m_c;
 	int		process_code;
 	int		fl;
 	char	**img;
@@ -46,8 +48,6 @@ void		intro(t_vis *vis);
 void		print_core(int offh, int offv);
 void		init_col(void);
 void		score_box(void);
-
-
-
+void		scr_size(t_vis *vis);
 
 #endif

@@ -1,6 +1,9 @@
 {
 	"files.associations": {
 		"iterator": "c",
-		"curses.h": "c"
+		"curses.h": "c",
+		"ios": "c",
+		"list": "c",
+		"string": "c"
 	}
 }
