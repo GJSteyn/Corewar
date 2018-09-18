@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:25:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/17 12:50:16 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/18 09:43:21 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	op_lldi(struct s_process *bot)
 	args[1] = (bot->is_reg[1]) ? bot->reg[args[1]] : args[1];
 	offset = bot->current_pc + args[0] + args[1];
 	mem = g_env.memory;
-	big_e[0] = mem[WRAP_MEM(offset)];
-	big_e[1] = mem[WRAP_MEM(offset + 1)];
-	big_e[2] = mem[WRAP_MEM(offset + 2)];
-	big_e[3] = mem[WRAP_MEM(offset + 3)];
+	big_e[0] = mem[WRAP_MEM(offset++)];
+	big_e[1] = mem[WRAP_MEM(offset++)];
+	big_e[2] = mem[WRAP_MEM(offset++)];
+	big_e[3] = mem[WRAP_MEM(offset)];
 	bot->reg[args[2]] = f_big_to_little_endian(big_e);
 	bot->carry = !(bot->reg[args[2]]);
 }

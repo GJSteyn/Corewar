@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 08:22:01 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/12 10:56:38 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/18 14:22:00 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define S_ENV_H
 
 # include "op.h"
+# include "flag.h"
 
 struct	s_env
 {
@@ -27,6 +28,8 @@ struct	s_env
 	int				cycle_to_die;
 	int				delta_count;
 	int				last_delta;
+	int				flag;
+	int				flag_args[FLAG_TOTAL];
 };
 
 struct s_env	g_env;

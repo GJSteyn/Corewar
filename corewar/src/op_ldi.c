@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:15:10 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/17 12:50:02 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/18 09:42:59 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	op_ldi(struct s_process *bot)
 	bot->args[0] = (bot->is_reg[0]) ? bot->reg[bot->args[0]] : bot->args[0];
 	bot->args[1] = (bot->is_reg[1]) ? bot->reg[bot->args[1]] : bot->args[1];
 	offset = bot->current_pc + WRAP_IDX(bot->args[0] + bot->args[1]);
-	big_e[0] = g_env.memory[WRAP_MEM(offset)];
-	big_e[1] = g_env.memory[WRAP_MEM(offset + 1)];
-	big_e[2] = g_env.memory[WRAP_MEM(offset + 2)];
-	big_e[3] = g_env.memory[WRAP_MEM(offset + 3)];
+	big_e[0] = g_env.memory[WRAP_MEM(offset++)];
+	big_e[1] = g_env.memory[WRAP_MEM(offset++)];
+	big_e[2] = g_env.memory[WRAP_MEM(offset++)];
+	big_e[3] = g_env.memory[WRAP_MEM(offset)];
 	bot->reg[bot->args[2]] = f_big_to_little_endian(big_e);
 	bot->carry = !(bot->reg[bot->args[2]]);
 }

@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 22:48:45 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/12 13:07:59 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/18 15:10:49 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 struct s_process	*process_create(int pcode, unsigned int pc, bool carry)
 {
 	struct s_process	*bot;
-	int					i;
 
 	bot = (struct s_process*)malloc(sizeof(struct s_process));
 	bot->id = g_env.next_id++;
@@ -26,7 +25,6 @@ struct s_process	*process_create(int pcode, unsigned int pc, bool carry)
 	bot->carry = carry;
 	bot->delay = -1;
 	bot->op = 0;
-	i = -1;
 	f_bzero(bot->args, sizeof(bot->args));
 	f_bzero(bot->reg, sizeof(bot->reg));
 	f_bzero(bot->is_reg, sizeof(bot->is_reg));
