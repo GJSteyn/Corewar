@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/17 13:52:20 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/18 14:08:32 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define Y_CHAMP 30
 # define FOV2	(64 * 3 / 2)
 # define EM	(64 * 3 + 1)
+#define COLOR_BACKGROUND	10
 
 typedef struct	s_vis
 {
@@ -30,6 +31,7 @@ typedef struct	s_vis
 	char	**img;
 	char	champs[4][PROG_NAME_LENGTH];
 	char	desc[4][COMMENT_LENGTH];
+	char	owner[MEM_SIZE];
 }				t_vis;
 
 void			ready(void);
@@ -49,5 +51,6 @@ void			print_core(int offh, int offv);
 void			init_col(void);
 void			score_box(void);
 void			scr_size(t_vis *vis);
+void		set_vis_mem(int i, char val, int p);
 
 #endif

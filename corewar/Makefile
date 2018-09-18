@@ -6,7 +6,7 @@
 #    By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/09/17 13:40:01 by kmarchan         ###   ########.fr        #
+#    Updated: 2018/09/18 13:17:43 by kmarchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ INC2 := -I ../liblist/include/
 LIB := -L. ../libcore/libcore.a ../liblist/liblist.a -lcurses
 
 CORE_SRC = visual.c main.c process_create.c prep_vis.c ascii_text.c charge_ascii.c \
-	authors.c geometric.c intro_vis.c scrsize.c
+	authors.c geometric.c intro_vis.c scrsize.c op_vis.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))

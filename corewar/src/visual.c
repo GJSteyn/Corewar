@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 08:00:07 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 14:23:17 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/18 14:11:57 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,29 @@ void				init_col(void)
 {
 	start_color();
 	init_pair(1, COLOR_RED, COLOR_BLACK);
-	init_pair(2, COLOR_RED, COLOR_RED);
+	init_pair(2, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(3, COLOR_GREEN, COLOR_BLACK);
-	init_pair(4, COLOR_WHITE, COLOR_BLACK);
+	init_pair(4, COLOR_CYAN, COLOR_BLACK);
+	init_pair(5, COLOR_RED, COLOR_BLACK);
+	init_pair(6, COLOR_RED, COLOR_RED);
+
+	init_pair(11, COLOR_RED, COLOR_RED);
+	init_pair(12, COLOR_MAGENTA, COLOR_MAGENTA);
+	init_pair(13, COLOR_GREEN, COLOR_GREEN);
+	init_pair(14, COLOR_CYAN, COLOR_CYAN);
 }
 
 static void			red_eye(int i, int l, int c)
 {
 	init_col();
 	mvprintw((i + l), (c), "    `9XXXXXXXXXXXP' `9XX'  ");
-	wattron(stdscr, COLOR_PAIR(1));
+	wattron(stdscr, COLOR_PAIR(5));
 	mvprintw((i + l), (c + 27), "CORE");
-	wattroff(stdscr, COLOR_PAIR(1));
+	wattroff(stdscr, COLOR_PAIR(5));
 	mvprintw((i + l), (c + 31), "    `98v8P'   ");
-	wattron(stdscr, COLOR_PAIR(1));
+	wattron(stdscr, COLOR_PAIR(5));
 	mvprintw((i + l), (c + 45), "WAR");
-	wattroff(stdscr, COLOR_PAIR(1));
+	wattroff(stdscr, COLOR_PAIR(5));
 	mvprintw((i + l), (c + 48), "   `XXP' `9XXXXXXXXXXXP'");
 }
 
@@ -85,6 +92,7 @@ int					visualizer(t_vis *vis)
 	print_logo(vis, 3, 65 * 3 + 7);
 	score_box();
 	refresh();
-	usleep(1000000);
+	// usleep(1000000);
 	return (1);
 }
+

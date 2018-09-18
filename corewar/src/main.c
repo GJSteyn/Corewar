@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/17 13:46:41 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/18 14:11:30 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,11 +117,21 @@ int					main(int argc, char *argv[])
 		list_iterate(process_list, cycle);
 		a++;
 	}
-	while (1)
-	{
-		scr_size(vis);
-		intro(vis);
+	// while (1)
+	// {
+		// scr_size(vis);
+		// intro(vis);
 		visualizer(vis);
-	}
+		set_vis_mem(64, 0xFF, 1 + COLOR_BACKGROUND);
+		set_vis_mem(164, 0xFF, 2 +COLOR_BACKGROUND);
+		set_vis_mem(165, 0xFF, 2);
+		set_vis_mem(264, 0xFF, 3 +COLOR_BACKGROUND);
+		set_vis_mem(265, 0xFF, 3);
+		set_vis_mem(364, 0xFF, 4 + COLOR_BACKGROUND);
+		set_vis_mem(365, 0xFF, 4);
+		refresh();
+	// }
+	while (1)
+	;
 	end_vis(&vis);
 }
