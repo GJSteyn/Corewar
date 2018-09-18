@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/17 13:40:18 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/17 13:52:20 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,22 @@ typedef struct	s_vis
 	char	desc[4][COMMENT_LENGTH];
 }				t_vis;
 
-void		ready(void);
-void		set(void);
-void		charge(void);
-void		the_corewar(void);
-void		the_champions(void);
-void		authors(void);
-void		clear_box(int l, int c, int sl, int sc);
-void		print_logo(t_vis *vis, int l, int c);
-int			visualizer(t_vis *vis);
-t_vis		*init_vis();
-t_vis		*start_vis(void);
-void		end_vis(t_vis **vis);
-void		intro(t_vis *vis);
-void		print_core(int offh, int offv);
-void		init_col(void);
-void		score_box(void);
-void		scr_size(t_vis *vis);
+void			ready(void);
+void			set(void);
+void			charge(void);
+void			the_corewar(void);
+void			the_champions(void);
+void			authors(void);
+void			clear_box(int l, int c, int sl, int sc);
+void			print_logo(t_vis *vis, int l, int c);
+int				visualizer(t_vis *vis);
+t_vis			*init_vis();
+t_vis			*start_vis(void);
+void			end_vis(t_vis **vis);
+void			intro(t_vis *vis);
+void			print_core(int offh, int offv);
+void			init_col(void);
+void			score_box(void);
+void			scr_size(t_vis *vis);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 08:22:07 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/14 11:36:18 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/18 08:16:34 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,3 @@ void			authors(void)
 	ps_km(i);
 	wattroff(stdscr, COLOR_PAIR(1));
 }
-

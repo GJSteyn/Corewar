@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 13:37:55 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/17 13:39:33 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/18 08:32:37 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,17 @@ static void		scr_instruction(t_vis *vis, int l, int c)
 		{
 			wclear(stdscr);
 			if (vis->m_l < 66)
+			{
 				mvvline(0, vis->m_c / 2, 0, vis->m_l);
+				mvaddch(vis->m_l / 2 - 1, vis->m_c / 2, ACS_UARROW);
+				mvaddch(vis->m_l / 2 + 1, vis->m_c / 2, ACS_DARROW);
+			}
 			if (vis->m_c < EM + 90)
+			{
 				mvhline(vis->m_l / 2, 0, 0, vis->m_c);
+				mvaddch(vis->m_l / 2, vis->m_c / 2 - 14, ACS_LARROW);
+				mvaddch(vis->m_l / 2, vis->m_c / 2 + 14, ACS_RARROW);
+			}
 			mvprintw(vis->m_l / 2, vis->m_c / 2 - 13, " Please "
 			"make window bigger ");
 			l = vis->m_l;
@@ -34,7 +42,7 @@ static void		scr_instruction(t_vis *vis, int l, int c)
 	}
 }
 
-void	scr_size(t_vis *vis)
+void			scr_size(t_vis *vis)
 {
 	int l;
 	int c;
