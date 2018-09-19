@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 08:00:07 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/18 14:11:57 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/19 09:46:43 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 void				init_col(void)
 {
 	start_color();
+	init_pair(0, COLOR_WHITE, COLOR_BLACK);
 	init_pair(1, COLOR_RED, COLOR_BLACK);
 	init_pair(2, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(3, COLOR_GREEN, COLOR_BLACK);
 	init_pair(4, COLOR_CYAN, COLOR_BLACK);
 	init_pair(5, COLOR_RED, COLOR_BLACK);
 	init_pair(6, COLOR_RED, COLOR_RED);
-
+	init_pair(10, COLOR_WHITE, COLOR_WHITE);
 	init_pair(11, COLOR_RED, COLOR_RED);
 	init_pair(12, COLOR_MAGENTA, COLOR_MAGENTA);
 	init_pair(13, COLOR_GREEN, COLOR_GREEN);
