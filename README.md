@@ -62,4 +62,9 @@ A .cor will be created with the bot name.
 # The Vm
 The virtual machine: It’s the “arena” in which your champions will be executed. It offers various functions, all of which will be useful for the battle of the champions. Obviously, the virtual machine should allow for numerous simultaneous processes; we are asking you for a gladiator fight, not a one-man show simulator.
 
-<img width="1650" alt="screen shot 2018-09-20 at 08 14 32" src="https://user-images.githubusercontent.com/24510543/45799585-4ef7e380-bcae-11e8-96db-551222cf704b.png">
+## The Vm Intro
+
+![webp net-gifmaker 4](https://user-images.githubusercontent.com/24510543/45813030-c9862a80-bcd1-11e8-9e25-feaf76d77f81.gif)
+
+```
+<img width="1650" alt="screen shot 2018-09-20 at 08 14 32" src="https://user-images.githubusercontent.com/24510543/45799585-4ef7e380-bcae-11e8-96db-551222cf704b.png">```
