@@ -61,7 +61,7 @@ A .cor will be created with the bot name.
 ---
 
 # The Vm
-The virtual machine: It’s the “arena” in which your champions will be executed. It offers various functions, all of which will be useful for the battle of the champions. Obviously, the virtual machine does allow for numerous simultaneous processes; they asked for a gladiator fight, not a one-man show simulator.
+The virtual machine is the “arena” in which the champions will fight. It offers various functions, all of which will be useful for the battle of the champions. Obviously, the virtual machine does allow for numerous simultaneous processes; they asked for a gladiator fight, not a one-man show simulator.
 
 ## The Vm Intro
 
