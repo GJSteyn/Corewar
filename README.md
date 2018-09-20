@@ -6,11 +6,12 @@ kmarchan
 gsteyn
 
 ## Introduction
-• Corewar is a very peculiar game. It’s about bringing “players” together around a “virtual machine”, which will load some “champions” who will fight against one an- other with the support of “processes”, with the objective being for these champions to stay “alive”.
+• The Corewar is a game, a very special game. It consists in making small programs fight in a virtual machine.
 
-• The processes are executed sequentially within the same virtual machine and memory space. They can therefore, among other things, write and rewrite on top of each others so to corrupt one another, force the others to execute instructions that can damage them, try to rewrite on the go the coding equivalent of a Côtes du Rhône 1982 (that is one delicious French wine!), etc...
+• The goal of the game is to prevent other programs from functioning correctly, by any means necessary.
 
-• The game ends when all the processes are dead. The winner is the last player reported to be “alive”.
+• The game will create a virtual machine in which programs (written by the players) fight. The objective of each process is to "survive". By "survive", we means execute a special instruction (live) that means "hey, i’m still alive !". These programs run simultaneously in the virtual machine, and in the same memory space, so they can write on each other. The winner of the game is the last program who ran the "live" instruction.
+
 
 Following are the instructions bots are limited too.
 
@@ -36,7 +37,7 @@ Following are the instructions bots are limited too.
 ---
 
 # The Assembler
-This is the program that will compile your champions and translate them from the language you will write them in (assembly language) into “Byte-code”.Bytecode is a machine code, which will be directly interpreted by the virtual machine.
+The Assember will allow you to write programs destined to fight. It will need to understand the assembly language, and generate binary programs that can be interpreted by the virtual machine.
 
 #### Following are the special flags we have added to our "asm".
 ```
@@ -60,11 +61,12 @@ A .cor will be created with the bot name.
 ---
 
 # The Vm
-The virtual machine: It’s the “arena” in which your champions will be executed. It offers various functions, all of which will be useful for the battle of the champions. Obviously, the virtual machine should allow for numerous simultaneous processes; we are asking you for a gladiator fight, not a one-man show simulator.
+The virtual machine: It’s the “arena” in which your champions will be executed. It offers various functions, all of which will be useful for the battle of the champions. Obviously, the virtual machine does allow for numerous simultaneous processes; they asked for a gladiator fight, not a one-man show simulator.
 
 ## The Vm Intro
 
-![webp net-gifmaker 4](https://user-images.githubusercontent.com/24510543/45813030-c9862a80-bcd1-11e8-9e25-feaf76d77f81.gif)
+![webp net-gifmaker 5](https://user-images.githubusercontent.com/24510543/45815632-8d56c800-bcd9-11e8-9b34-d860ad3649ac.gif)
+
 
 ```
 <img width="1650" alt="screen shot 2018-09-20 at 08 14 32" src="https://user-images.githubusercontent.com/24510543/45799585-4ef7e380-bcae-11e8-96db-551222cf704b.png">```
