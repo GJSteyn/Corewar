@@ -5,9 +5,10 @@
 *.cor
 .DS_Store
 *.plist
-*.json
-obj
 
 #executable
 a.out
-asm
+obj
+
+.nfs.*
+*.dSYM

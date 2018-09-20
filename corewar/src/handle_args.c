@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 09:53:25 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/18 15:22:11 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/20 11:43:46 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	set_flag(int arg_no, char *argv[], int argc)
 	j = 0;
 	while ( arg[++j] && (flag_no = GET_FLAG(arg[j])))
 	{
-		f_printf("flag -> %ld\n", flag_no);
 		if (flag_no < 0)
 			FATAL("Invalid  flag\n")
 		SET_FLAG(flag_no);

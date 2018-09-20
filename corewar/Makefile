@@ -6,7 +6,7 @@
 #    By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/09/18 14:45:30 by wseegers         ###   ########.fr        #
+#    Updated: 2018/09/20 10:36:00 by wseegers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,15 @@ CFLAGS = -Wall -Wextra -Werror -g
 INC1 := -I ../libcore/include/
 INC2 := -I ../liblist/include/
 
-LIB := -L ../libcore/ -l core -L ../liblist/ -l list 
+LIB := -L ../libcore/ -lcore -L ../liblist/ -llist -lcurses
 
 CORE_SRC = main.c process_create.c load_bot.c debug_util.c op_function.c \
 		   op_live.c op_sti.c op_and.c op_zjmp.c op_ld.c op_st.c op_fork.c \
 		   op_add.c op_xor.c op_sub.c op_or.c op_ldi.c op_lldi.c op_lfork.c \
 		   op_aff.c get_next_op.c battle_loop.c get_next_op_util.c \
-		   handle_args.c
+		   handle_args.c visual.c prep_vis.c \
+		   ascii_text.c charge_ascii.c authors.c geometric.c intro_vis.c \
+		   scrsize.c op_vis.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))

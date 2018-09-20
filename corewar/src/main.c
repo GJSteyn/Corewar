@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/18 15:10:40 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/20 11:56:03 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,43 +28,29 @@ static void init_env(void)
 	g_env.delta_count = 0;
 }
 
-// static void	print_proc(void **process)
-// {
-// 	t_process	*bot;
-
-// 	bot = (t_process*)*process;
-// 	f_printf("\n");
-// 	print_bot(bot);
-// }
-
-int		main(int argc, char *argv[])
+int					main(int argc, char *argv[])
 {
-	// t_list	*process_list;
-
 	if (argc == 1)
 		return (0);
 	init_env();
 	handle_args(argc, argv);
-
-
-	// Loading of bots
-	// process_list = g_env.process_list;
-	// load_bot(argv[1], 1);
-	// if (argc > 2)
-	// 	load_bot(argv[2], 2);
-	// if (argc > 3)
-	// 	load_bot(argv[3], 3);
-	// if (argc > 4)
-	// 	load_bot(argv[4], 4);
-
-	battle_loop();
-
-	// print_memory();
-	f_printf("\n");
+	if (IS_FLAG_SET(FLAG_NCURSES)) //fix flag
+	{
+		start_vis();
+		scr_size();
+		// intro();
+		visualizer();
+		battle_loop_vis();
+		end_vis();
+	}
+	else
+	{
+		battle_loop();
 	// (void)print_proc;
 	// f_print_bot(list_get(process_list, 0));
 	// f_printf("bots-> %d\n", g_env.process_list->size);
 	// list_iterate(g_env.process_list, print_proc);
 	f_printf("last_live-> %d\n", g_env.last_live);
 	f_printf("cycles: %d\n", g_env.cycles);
+	}
 }
