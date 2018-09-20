@@ -33,11 +33,24 @@ Following are the instructions bots are limited too.
 |lldi|Opcode 0x0e. Same as ldi, but does not apply any modulo to the addresses. It will however, modify the carry.|
 |and|Apply an & (bit-to-bit AND) over the first two arguments and store the result in a registry, which is the third argument. Opcode 0x06. Modifies the carry.|
 
+---
 
 # The Assembler
 This is the program that will compile your champions and translate them from the language you will write them in (assembly language) into “Byte-code”.Bytecode is a machine code, which will be directly interpreted by the virtual machine.
 
+#### Following are the special flags we have added to our "asm".
+
+| -v (verbose)| -i (instructions) | - t (tokens) |
+|-----------------------------------|-----------------------------------|-----------------------------------|
+|<img width="318" alt="screen shot 2018-09-20 at 09 57 06" src="https://user-images.githubusercontent.com/24510543/45803969-2de9bf80-bcbb-11e8-9bc5-298c567804c6.png">|<img width="429" alt="screen shot 2018-09-20 at 09 56 56" src="https://user-images.githubusercontent.com/24510543/45803972-2f1aec80-bcbb-11e8-950d-25dab8587655.png">|<img width="396" alt="screen shot 2018-09-20 at 09 56 31" src="https://user-images.githubusercontent.com/24510543/45803974-2fb38300-bcbb-11e8-9dd6-5c5446051b87.png">|
+
+with no flags active this will be the output.
+
+<img width="395" alt="screen shot 2018-09-20 at 09 53 12" src="https://user-images.githubusercontent.com/24510543/45803772-b1ef7780-bcba-11e8-816c-967d74296d5a.png">
+
 <img width="687" alt="screen shot 2018-09-20 at 08 23 50" src="https://user-images.githubusercontent.com/24510543/45799640-82d30900-bcae-11e8-95d3-783d7581dbce.png">
+
+---
 
 # The Vm
 The virtual machine: It’s the “arena” in which your champions will be executed. It offers various functions, all of which will be useful for the battle of the champions. Obviously, the virtual machine should allow for numerous simultaneous processes; we are asking you for a gladiator fight, not a one-man show simulator.
