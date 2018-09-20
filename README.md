@@ -72,12 +72,10 @@ A .cor will be created with the bot name.
 ---
 
 # The VM
-The virtual machine is the “arena” in which the champions will fight. It offers various functions, all of which will be useful for the battle of the champions. Obviously, the virtual machine does allow for numerous simultaneous processes; they asked for a gladiator fight, not a one-man show simulator.
+The virtual machine is the “arena” in which the champions will fight. It understands the limited instructions outlined at the beginning of the readme. All of them are useful for the battle of the champions. Obviously, the virtual machine does allow for numerous simultaneous processes; they asked for a gladiator fight, not a one-man show simulator.
 
-• If after NBR_LIVE calls to the "live" instruction all the processes alive still are
-alive,
-
-• We decrement CYCLE_TO_DIE of CYCLE_DELTA units and we start again until there are no more processes alive
+• We decrement CYCLE_TO_DIE of CYCLE_DELTA units and we start again until there are no more processes alive.
+  If a champion does not call "live" within the time, They are considered dead.
 
 • The last player who said "live" wins
 
