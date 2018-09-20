@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/19 09:48:31 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/20 11:40:24 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,19 +119,19 @@ int					main(int argc, char *argv[])
 	}
 	// while (1)
 	// {
-		// scr_size(vis);
-		// intro(vis);
+		scr_size(vis);
+		intro(vis);
 		visualizer(vis);
-		set_vis_mem(64, 0xFF, 1 + COLOR_BACKGROUND);
-		set_vis_mem(65, 0xFF, 1);
-		set_vis_mem(164, 0xFF, 2 +COLOR_BACKGROUND);
-		set_vis_mem(165, 0xFF, 2);
-		set_vis_mem(264, 0xFF, 3 +COLOR_BACKGROUND);
-		set_vis_mem(265, 0xFF, 3);
-		set_vis_mem(364, 0xFF, 4 + COLOR_BACKGROUND);
-		set_vis_mem(365, 0xFF, 4);
-		set_vis_mem(464, 0xFF, 0 + COLOR_BACKGROUND);
-		set_vis_mem(465, 0xFF, 0);
+		// set_vis_mem(64, 0xFF, 1 + COLOR_BACKGROUND);
+		// set_vis_mem(65, 0xFF, 1);
+		// set_vis_mem(164, 0xFF, 2 +COLOR_BACKGROUND);
+		// set_vis_mem(165, 0xFF, 2);
+		// set_vis_mem(264, 0xFF, 3 +COLOR_BACKGROUND);
+		// set_vis_mem(265, 0xFF, 3);
+		// set_vis_mem(364, 0xFF, 4 + COLOR_BACKGROUND);
+		// set_vis_mem(365, 0xFF, 4);
+		// set_vis_mem(464, 0xFF, 0 + COLOR_BACKGROUND);
+		// set_vis_mem(465, 0xFF, 0);
 		refresh();
 	// }
 	while (1)
