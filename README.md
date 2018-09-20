@@ -20,7 +20,7 @@ gsteyn
   
     •   The Champion
 
-each section has its own unique challenges. We will outline each section in the following.
+Each section has its own unique challenges.
 
 #####       Following are the instructions the Assembler, VM and Champion are limited too.
 
