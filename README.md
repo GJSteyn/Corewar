@@ -59,7 +59,7 @@ The Assember will take a ".s" file written in assembly code and convert it bytec
 |-----------------------------------|-----------------------------------|-----------------------------------|
 |<img width="318" alt="screen shot 2018-09-20 at 09 57 06" src="https://user-images.githubusercontent.com/24510543/45803969-2de9bf80-bcbb-11e8-9bc5-298c567804c6.png">|<img width="429" alt="screen shot 2018-09-20 at 09 56 56" src="https://user-images.githubusercontent.com/24510543/45803972-2f1aec80-bcbb-11e8-950d-25dab8587655.png">|<img width="396" alt="screen shot 2018-09-20 at 09 56 31" src="https://user-images.githubusercontent.com/24510543/45803974-2fb38300-bcbb-11e8-9dd6-5c5446051b87.png">|
 
-with no flags active this will be the output.
+With no flags active this will be the output.
 
 <img width="395" alt="screen shot 2018-09-20 at 09 53 12" src="https://user-images.githubusercontent.com/24510543/45803772-b1ef7780-bcba-11e8-816c-967d74296d5a.png">
 
@@ -86,7 +86,3 @@ Basically the role of the virtual machine is to run the programs that are passed
 ## The Vm Intro
 
 ![webp net-gifmaker 5](https://user-images.githubusercontent.com/24510543/45815632-8d56c800-bcd9-11e8-9b34-d860ad3649ac.gif)
-
-
-```
-<img width="1650" alt="screen shot 2018-09-20 at 08 14 32" src="https://user-images.githubusercontent.com/24510543/45799585-4ef7e380-bcae-11e8-96db-551222cf704b.png">```
