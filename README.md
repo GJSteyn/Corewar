@@ -86,3 +86,21 @@ Basically the role of the virtual machine is to run the programs that are passed
 ## The Vm Intro
 
 ![webp net-gifmaker 5](https://user-images.githubusercontent.com/24510543/45815632-8d56c800-bcd9-11e8-9b34-d860ad3649ac.gif)
+
+---
+
+# The Bot
+
+Like the other sections, the bot is limited to using the instructions outlined at the beginning.
+For this Corwar project, the bot isnt very important, it just needs to beat the bot "zork".
+
+#### How she works
+
+While she calls her own live command she forks off her process, looks for the opponent's live command and replaces' it with her own.
+She is super simple.
+
+#### Following is the Source code and bytecode Ivy.
+
+| Source Code  | Bytecode | 
+|--------------|-----------|
+|<img width="769" alt="screen shot 2018-09-21 at 12 24 12" src="https://user-images.githubusercontent.com/24510543/45875767-edf90a00-bd98-11e8-9409-ac1a858a2a1d.png">|<img width="672" alt="screen shot 2018-09-21 at 12 09 43" src="https://user-images.githubusercontent.com/24510543/45875056-dde02b00-bd96-11e8-87bc-690b8630ae8a.png">|
