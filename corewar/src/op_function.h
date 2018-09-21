@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:17:31 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/17 08:49:37 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 07:14:18 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "process.h"
 # include "f_print.h"
 # include "s_env.h"
+# include "visualiser.h"
 
 # define HAS_ENCODE(op) 	(g_op_tab[op].has_encoding)
 # define IS_INDEX(op)		(g_op_tab[op].direct_index)
@@ -50,6 +51,9 @@ void	op_fork(struct s_process *bot);
 void	op_lldi(struct s_process *bot);
 void	op_lfork(struct s_process *bot);
 void	op_aff(struct s_process *bot);
+
+void	op_st_vis(struct s_process *bot);
+void	op_sti_vis(struct s_process *bot);
 
 // debugging
 void	print_memory(void);

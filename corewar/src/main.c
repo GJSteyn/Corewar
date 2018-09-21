@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/20 11:56:03 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 07:26:31 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int					main(int argc, char *argv[])
 	{
 		start_vis();
 		scr_size();
-		// intro();
+		if (!IS_FLAG_SET(FLAG_NO_INTRO))
+			intro();
 		visualizer();
 		battle_loop_vis();
 		end_vis();
@@ -46,11 +47,7 @@ int					main(int argc, char *argv[])
 	else
 	{
 		battle_loop();
-	// (void)print_proc;
-	// f_print_bot(list_get(process_list, 0));
-	// f_printf("bots-> %d\n", g_env.process_list->size);
-	// list_iterate(g_env.process_list, print_proc);
-	f_printf("last_live-> %d\n", g_env.last_live);
-	f_printf("cycles: %d\n", g_env.cycles);
+		f_printf("last_live-> %d\n", g_env.last_live);
+		f_printf("cycles: %d\n", g_env.cycles);
 	}
 }

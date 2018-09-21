@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/20 11:18:30 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 08:11:15 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,15 @@
 # define COLOR_BACKGROUND	10
 # define ASCII_DEMON_ROWS	22
 
+# define GET_OWNER(pos)			(g_env.vis_env.owner[pos])
+# define SET_OWNER(pos, owner)	(GET_OWNER(pos) = owner)
+# define GET_MEM(pos)			(g_env.memory[pos])
+# define TO_PC(player)			(player + COLOR_BACKGROUND)
+# define PAINT_MEM(val, pos)	(set_vis_mem(pos, val, GET_OWNER(pos)))
+# define PAINT_PC(val, pos)		(set_vis_mem(pos, val, TO_PC(GET_OWNER(pos))))
+
+# define SET_VIS_MEM(pos, val, owner) {SET_OWNER(pos,owner);PAINT_MEM(val,pos);}
+
 void			ready(void);
 void			set(void);
 void			charge(void);
@@ -40,6 +49,6 @@ void			print_core(int offh, int offv);
 void			init_col(void);
 void			score_box(void);
 void			scr_size(void);
-void			set_vis_mem(int i, char val, int p);
+void			set_vis_mem(int position, char val, int colour);
 
 #endif

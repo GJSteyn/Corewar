@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   op_vis.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:53:59 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/18 14:11:36 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/21 08:03:07 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "corewar.h"
 #include "visualiser.h"
-
-		// set_vis_mem(WRAP(offset), big_e[0], g_env->vis->owners[bot->current_pc]);
 
 void		set_vis_mem(int i, char val, int p)
 {

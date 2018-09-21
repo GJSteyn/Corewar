@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 14:21:03 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/20 11:38:24 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 07:26:56 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FLAG_H
 
 # define FLAG_TOTAL			5
-# define FLAG				"dsvna"
+# define FLAG				"dsvnai"
 # define HAS_VALS			"dsv"
 # define HAS_VAL(f)			(f_strchr(HAS_VALS, f))
 # define GET_FLAG(c)		(f_strchr(FLAG, c) - FLAG)
@@ -27,6 +27,7 @@
 # define FLAG_VERBOSE		2
 # define FLAG_NCURSES		3
 # define FLAG_AFF			4
+# define FLAG_NO_INTRO		5
 
 # define VERB_LIVES			1
 # define VERB_CYCLES		2

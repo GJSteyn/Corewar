@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 08:01:06 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/20 12:11:52 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 09:51:44 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	battle_loop(void)
 	process_list = g_env.process_list;
 	while (process_list->size)
 	{
-		// f_printf("cycle no: %d | cycle_to_die %d\n", g_env.cycles, g_env.cycle_to_die);
 		if (g_env.cycle_to_die <= 0)
 		{
 			list_remove_if(process_list, kill_check);
@@ -63,14 +62,24 @@ void	battle_loop(void)
 			else
 				g_env.last_delta++;
 			g_env.live_counter = 0;
-			// f_printf("last_delta -> %d\n", g_env.last_delta);
-			if ((g_env.cycle_to_die = CYCLE_TO_DIE - (g_env.delta_count * CYCLE_DELTA)) < 0)
+			if ((g_env.cycle_to_die =
+				CYCLE_TO_DIE - (g_env.delta_count * CYCLE_DELTA)) < 0)
 				break ;
 		}
 		list_iterate(process_list, run_cycle);
 		g_env.cycle_to_die--;
 		g_env.cycles++;
 	}
+}
+
+
+static void	paint_champs(void)
+{
+	int i;
+
+	i = -1;
+	while (++i < MEM_SIZE)
+		set_vis_mem(i, g_env.memory[i], g_env.vis_env.owner[i]);
 }
 
 static void	run_cycle_vis(void **process)
@@ -85,18 +94,20 @@ static void	run_cycle_vis(void **process)
 			bot->op(bot);
 		else
 			bot->next_pc = (bot->next_pc + 1) % MEM_SIZE;
+		PAINT_MEM(GET_MEM(bot->current_pc), bot->current_pc);
 		bot->current_pc = bot->next_pc;
 		get_next_op(bot);
-		set_vis_mem(bot->current_pc, g_env.memory[bot->current_pc] ,0);
+		PAINT_PC(GET_MEM(bot->current_pc), bot->current_pc);
 	}
-	return ;
 }
 
 void	battle_loop_vis(void)
 {
 	t_list	*process_list;
+	bool	pause;
 
 	process_list = g_env.process_list;
+	paint_champs();
 	while (process_list->size)
 	{
 		if (g_env.cycle_to_die <= 0)
