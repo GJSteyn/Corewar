@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 08:00:07 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/20 11:10:39 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 13:52:59 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,54 @@ static void			red_eye(int i, int l, int c)
 	mvprintw((i + l), (c + 48), "   `XXP' `9XXXXXXXXXXXP'");
 }
 
-void				print_logo(t_vis *vis, int l, int c)
+void				print_logoa(int i, int l, int c)
+{
+	mvprintw((i++ + l), c, "          .                           "
+	"                            .");
+	mvprintw((i++ + l), c, "        .n                   .         "
+	"        .                   n.");
+	mvprintw((i++ + l), c, "  .   .dP                  dP          "
+	"         9b                  9b.   .");
+	mvprintw((i++ + l), c, " 4    qXb         .     . dX           "
+	"          Xb .     .         dXp    t");
+	mvprintw((i++ + l), c, "dX.   9IXb      .dXb    xx '\"         "
+	"           \"' xx    dXb.     dXIP   .Xb");
+	mvprintw((i++ + l), c, "9XXb._ \"\"\"\"  _.dXXXXb dXXXXbo.     "
+	"            .odXXXXb dXXXXb._  \"\"\"\" _.dXXP");
+	mvprintw((i++ + l), c, " 9XXXXXXXXXXXXXXXXXXXVXXXXXXXXOo.      "
+	"     .oOXXXXXXXXVXXXXXXXXXXXXXXXXXXXP");
+	mvprintw((i++ + l), c, "  `9XXXXXXXXXXXXXXXXXXXXX'~   ~`OOO8b  "
+	" d8OOO'~   ~`XXXXXXXXXXXXXXXXXXXXXP'");
+}
+
+void				print_logo(int l, int c)
 {
 	int i;
 
-	i = -1;
-	while (vis->img[++i])
-	{
-		if (i == 8)
-			red_eye(i, l, c);
-		else
-			mvprintw((i + l), (c), "%s", vis->img[i]);
-	}
+	i = 0;
+
+	print_logoa(i, l, c);
+	i = 8;
+	red_eye(i++, l, c);
+	mvprintw((i++ + l), c, "       '\"\"\"\"\"\"\"'      9X.       "
+	"   .db|db.          .XP    '\"\"\"\"\"\"\"'");
+	mvprintw((i++ + l), c, "                        )b.  .dbo.dP'`v"
+	"'`9b.odb.  .dX(");
+	mvprintw((i++ + l), c, "                      ,dXXXXXXXXXXXb   "
+	"  dXXXXXXXXXXXb.");
+	mvprintw((i++ + l), c, "                     dXXXXXXXXXXXP'   ."
+	"   `9XXXXXXXXXXXb");
+	mvprintw((i++ + l), c, "                    dXXXXXXXXXXXXb   d|"
+	"b   dXXXXXXXXXXXXb");
+	mvprintw((i++ + l), c, "                    9XXb'   `XXXXXb.dX|"
+	"Xb.dXXXXX'   `dXXP");
+	mvprintw((i++ + l), c, "                     `'      9XXXXXX(  "
+	" )XXXXXXP      `'");
+	mvprintw((i++ + l), c, "                              XXXX X.`E'.X XXXX");
+	mvprintw((i++ + l), c, "                              XP^X'`R   W'`X^XX");
+	mvprintw((i++ + l), c, "                              X. O  `   '  A )X");
+	mvprintw((i++ + l), c, "                              `C  `       '  R'");
+	mvprintw((i++ + l), c, "                               `             '");
 }
 
 void				print_core(int offh, int offv)
@@ -93,7 +129,7 @@ int					visualizer(void)
 	vis = &g_env.vis_env;
 	score_box();
 	print_core(0, 0);
-	print_logo(vis, 3, 65 * 3 + 7);
+	print_logo(3, 65 * 3 + 7);
 	score_box();
 	refresh();
 	// usleep(1000000);

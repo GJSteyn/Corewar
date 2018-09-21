@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visualiser.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/21 08:11:15 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 13:53:18 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void			the_corewar(void);
 void			the_champions(void);
 void			authors(void);
 void			clear_box(int l, int c, int sl, int sc);
-void			print_logo(t_vis *vis, int l, int c);
+void			print_logo(int l, int c);
 int				visualizer(void);
 void			start_vis(void);
 void			end_vis(void);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intro_vis.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 11:08:11 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/20 11:32:45 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 13:55:21 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ static void			champ_intro(t_vis *vis)
 
 	i = -1;
 	clear_box(55, 173, 6, 10);
-	print_logo(vis, 7, FOV2 - (77 / 2));
+	print_logo(7, FOV2 - (77 / 2));
 	the_corewar();
 	while (++i < g_env.player_total)
 	{
 		clear_box(55, 173, 6, 10);
-		print_logo(vis, 7, FOV2 - (77 / 2));
+		print_logo(7, FOV2 - (77 / 2));
 		the_champions();
 		print_champ_names(vis, i);
 	}
 	clear_box(55, 173, 6, 10);
-	print_logo(vis, 7, FOV2 - (77 / 2));
+	print_logo(7, FOV2 - (77 / 2));
 	ready();
 	clear_box(55, 173, 6, 10);
-	print_logo(vis, 7, FOV2 - (77 / 2));
+	print_logo(7, FOV2 - (77 / 2));
 	set();
 	charge();
 	refresh();
