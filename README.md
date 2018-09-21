@@ -80,7 +80,7 @@ The virtual machine is the “arena” in which the champions will fight. It und
 • The last player who said "live" wins
 
 ### TLDR
-Basically the role of the virtual machine is to run the programs that are passed as parameters to it.
+Basically, the role of the virtual machine is to run the programs that are passed as parameters to it.
 
 
 ## The Vm Intro
@@ -92,14 +92,14 @@ Basically the role of the virtual machine is to run the programs that are passed
 # The Bot
 
 Like the other sections, the bot is limited to using the instructions outlined at the beginning.
-For this Corwar project, the bot isnt very important, it just needs to beat the bot "zork".
+For this Corewar project, the bot isn't very important, it just needs to beat the bot "zork".
 
 #### How she works
 
-While she calls her own live command she forks off her process, looks for the opponent's live command and replaces' it with her own.
+While she calls her own live command she forks off her process, looks for the opponent's live command and replaces it with her own.
 She is super simple.
 
-#### Following is the Source code and bytecode Ivy.
+#### The following is the Source code and Bytecode for Ivy.
 
 | Source Code  | Bytecode | 
 |--------------|-----------|
