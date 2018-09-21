@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 15:08:20 by wseegers          #+#    #+#             */
-/*   Updated: 2018/08/17 11:02:30 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 10:41:21 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	free_i(void)
 
 	stdi = f_stdio(0);
 	f_closef(stdi);
-	f_memdel((void**)&stdi);
 }
 
 static void	free_o(void)
@@ -30,7 +29,6 @@ static void	free_o(void)
 
 	stdo = f_stdio(1);
 	f_closef(stdo);
-	f_memdel((void**)&stdo);
 }
 
 static void	free_e(void)
@@ -39,7 +37,6 @@ static void	free_e(void)
 
 	stde = f_stdio(2);
 	f_closef(stde);
-	f_memdel((void**)&stde);
 }
 
 t_file		*f_stdio(int std_fd)

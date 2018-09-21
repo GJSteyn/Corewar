@@ -4,6 +4,7 @@
 		"curses.h": "c",
 		"ios": "c",
 		"list": "c",
-		"string": "c"
+		"string": "c",
+		"op_function.h": "c"
 	}
 }
