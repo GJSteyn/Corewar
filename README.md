@@ -65,7 +65,7 @@ With no flags active this will be the output.
 
 A .cor will be created with the bot name.
 
-#### The Following is the Source code and bytecode for bot "zork.cor"
+#### The Following is the Source code and bytecode for bot "zork"
 
 | Source Code  | Bytecode | 
 |--------------|-----------|
