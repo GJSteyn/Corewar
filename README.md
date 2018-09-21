@@ -65,9 +65,11 @@ With no flags active this will be the output.
 
 A .cor will be created with the bot name.
 
-#### The Following is the bytecode for bot "zork.cor"
+#### The Following is the Source code and bytecode for bot "zork.cor"
 
-<img width="687" alt="screen shot 2018-09-20 at 08 23 50" src="https://user-images.githubusercontent.com/24510543/45799640-82d30900-bcae-11e8-95d3-783d7581dbce.png">
+| Source Code  | Bytecode | 
+|--------------|-----------|
+|<img width="484" alt="screen shot 2018-09-21 at 13 05 48" src="https://user-images.githubusercontent.com/24510543/45877610-b4c39880-bd9e-11e8-91e7-6a294330e9e0.png">|<img width="687" alt="screen shot 2018-09-20 at 08 23 50" src="https://user-images.githubusercontent.com/24510543/45799640-82d30900-bcae-11e8-95d3-783d7581dbce.png">|
 
 ---
 
