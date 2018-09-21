@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 08:22:01 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/20 11:12:15 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 11:36:27 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ struct	s_env
 	int				flag;
 	int				flag_args[FLAG_TOTAL];
 	struct s_vis	vis_env;
+	bool			pause;
 };
 
 struct s_env	g_env;

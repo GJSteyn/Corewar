@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 14:21:03 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/21 07:26:56 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 12:05:29 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FLAG_H
 
 # define FLAG_TOTAL			5
-# define FLAG				"dsvnai"
+# define FLAG				" dsvnai"
 # define HAS_VALS			"dsv"
 # define HAS_VAL(f)			(f_strchr(HAS_VALS, f))
 # define GET_FLAG(c)		(f_strchr(FLAG, c) - FLAG)
@@ -22,12 +22,12 @@
 # define SET_FARG(f, n)		(g_env.flag_args[f] = n)
 # define GET_FARG(f)		(g_env.flag_args[f])
 
-# define FLAG_MEM_DUMP		0
-# define FLAG_DUMP_CYCLE	1
-# define FLAG_VERBOSE		2
-# define FLAG_NCURSES		3
-# define FLAG_AFF			4
-# define FLAG_NO_INTRO		5
+# define FLAG_MEM_DUMP		1
+# define FLAG_DUMP_CYCLE	2
+# define FLAG_VERBOSE		3
+# define FLAG_NCURSES		4
+# define FLAG_AFF			5
+# define FLAG_NO_INTRO		6
 
 # define VERB_LIVES			1
 # define VERB_CYCLES		2

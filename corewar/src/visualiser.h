@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/21 08:11:15 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 12:06:19 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define PAINT_PC(val, pos)		(set_vis_mem(pos, val, TO_PC(GET_OWNER(pos))))
 
 # define SET_VIS_MEM(pos, val, owner) {SET_OWNER(pos,owner);PAINT_MEM(val,pos);}
+
+# define PAUSE	(g_env.pause = !g_env.pause)
 
 void			ready(void);
 void			set(void);

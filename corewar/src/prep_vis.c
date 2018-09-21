@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/21 10:53:51 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 11:08:29 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ void			start_vis(void)
 	init_vis();
 	get_logo();
 	initscr();
+	noecho();
+	nocbreak();
+	timeout(1);
 	curs_set(0);
 }
 

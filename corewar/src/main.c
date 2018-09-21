@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/21 10:52:56 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 11:36:44 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	init_env(void)
 	g_env.cycle_to_die = CYCLE_TO_DIE;
 	g_env.last_delta = 0;
 	g_env.delta_count = 0;
+	g_env.pause = false;
 }
 
 int			main(int argc, char *argv[])
