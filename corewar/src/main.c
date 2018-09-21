@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/21 07:26:31 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 10:52:56 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 typedef struct s_process	t_process;
 
-static void init_env(void)
+static void	init_env(void)
 {
 	f_bzero(g_env.memory, MEM_SIZE);
 	g_env.player_total = 4;
@@ -28,13 +28,15 @@ static void init_env(void)
 	g_env.delta_count = 0;
 }
 
-int					main(int argc, char *argv[])
+int			main(int argc, char *argv[])
 {
 	if (argc == 1)
 		return (0);
 	init_env();
 	handle_args(argc, argv);
-	if (IS_FLAG_SET(FLAG_NCURSES)) //fix flag
+	if (!g_env.player_total)
+		FATAL("No Players found!\n");
+	if (IS_FLAG_SET(FLAG_NCURSES))
 	{
 		start_vis();
 		scr_size();

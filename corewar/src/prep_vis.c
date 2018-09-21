@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/21 10:44:15 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/21 10:53:51 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void			get_logo(void)
 	t_file	*file;
 
 	i = 0;
-	file_name = "corewar_ascii.txt";
+	file_name = "resources/corewar_ascii.txt";
 	file = f_openf(file_name, 'r');
 	g_env.vis_env.img = (char **)f_memalloc(sizeof(char *) * ASCII_DEMON_ROWS);
 	while (f_next_line(&line, file))

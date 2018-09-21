@@ -13,3 +13,4 @@ obj
 .nfs.*
 *.dSYM
 .vscode/settings.json
+corewar/corewar
