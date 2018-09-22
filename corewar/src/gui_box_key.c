@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 11:01:12 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/22 15:36:39 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/22 16:22:17 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void				clear_box(int l, int c, int sl, int sc)
 void				key(void)
 {
 	mvprintw(GUI_X, GUI_Y + 45, "KEY");
-	mvprintw(GUI_X + 2, GUI_Y + 45, "%- 20s [%s]", "Pause:", "space");
-	mvprintw(GUI_X + 4, GUI_Y + 45, "%- 20s [%s]", "Quit:", "Q");
-	mvprintw(GUI_X + 6, GUI_Y + 45, "%- 20s [%s]", "Speed:", "s] / [f");
+	mvprintw(GUI_X + 2, GUI_Y + 45, "%- 20s [%s]", "PAUSE:", "space");
+	mvprintw(GUI_X + 4, GUI_Y + 45, "%- 20s [%s]", "QUIT:", "Q");
+	mvprintw(GUI_X + 6, GUI_Y + 45, "%- 20s [%s]", "SPEED:", "s] / [f");
 }
 
 void				score_box(void)
