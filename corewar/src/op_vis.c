@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_vis.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:53:59 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/21 08:03:07 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/22 12:40:13 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,27 @@ void		set_vis_mem(int i, char val, int p)
 	mvprintw(lin, col, "%.2hhx", val);
 	wattroff(stdscr, WA_BOLD);
 	wattroff(stdscr, COLOR_PAIR(p));
+}
+
+void		dead(int offv, int offh, int player_color)
+{
+	int i;
+
+	i = 2;
+	wattron(stdscr, COLOR_PAIR(player_color));
+	mvprintw(offv + i++, offh, "            _                   _           ");
+	mvprintw(offv + i++, offh, "          _( )      _____      ( )_         ");
+	mvprintw(offv + i++, offh, "         (_,  \\    /     \\    /  ,_)   "
+	"     ");
+	mvprintw(offv + i++, offh, "             '\'\\,/        \\,/'/'      "
+	"      ");
+	mvprintw(offv + i++, offh, "               '\\| {X} {X} |/'              ");
+	mvprintw(offv + i++, offh, "                 (_  /^\\  _)                ");
+	mvprintw(offv + i++, offh, "                   /HHHHH\\              "
+	"    ");
+	mvprintw(offv + i++, offh, "              _,/'/\\ ___ /\\'\\,_       "
+	"     ");
+	mvprintw(offv + i++, offh, "            (_, /           \\ ,_)           ");
+	mvprintw(offv + i++, offh, "              (_)           (_)             ");
+	wattroff(stdscr, COLOR_PAIR(player_color));
 }
