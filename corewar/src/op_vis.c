@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 12:53:59 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/22 13:55:23 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/22 14:43:24 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			set_vis_mem(int i, char val, int p)
 	col += (i % 64) * 3;
 	if (val)
 		mvprintw(lin, col, "%.2hhx", val);
-	else 
+	else
 		mvprintw(lin, col, "--");
 	wattroff(stdscr, WA_BOLD);
 	wattroff(stdscr, COLOR_PAIR(p));
@@ -79,7 +79,7 @@ static void		victor(int offv, int offh)
 	wattroff(stdscr, COLOR_PAIR(8));
 }
 
-void		printf_dead(int player)
+void			printf_dead(int player)
 {
 	int x;
 	int y;
@@ -89,7 +89,7 @@ void		printf_dead(int player)
 	dead(x, y, player);
 }
 
-void		printf_victor(int player)
+void			printf_victor(int player)
 {
 	int x;
 	int y;

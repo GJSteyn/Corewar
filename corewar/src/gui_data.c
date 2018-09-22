@@ -6,26 +6,13 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 10:56:35 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/22 14:32:50 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/22 14:42:42 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "corewar.h"
 #include "visualiser.h"
-
-// #define GUI_X 26
-// #define GUI_Y EM + 2
-// #define LIN 40
-// #define COL 90
-// #define PL_1X 37
-// #define PL_1Y GUI_Y
-// #define PL_2X 37
-// #define PL_2Y GUI_Y + 45
-// #define PL_3X 51
-// #define PL_3Y GUI_Y
-// #define PL_4X 51
-// #define PL_4Y GUI_Y + 45
 
 static void		set_champ(void)
 {

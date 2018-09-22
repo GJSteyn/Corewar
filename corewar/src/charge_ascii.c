@@ -6,10 +6,9 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 08:19:15 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/17 08:18:48 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/22 14:45:33 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "visualiser.h"
 #include "corewar.h"
