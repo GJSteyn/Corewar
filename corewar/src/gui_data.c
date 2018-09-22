@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 10:56:35 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/22 12:38:49 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/22 14:32:50 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 #include "corewar.h"
 #include "visualiser.h"
 
-#define GUI_X 26
-#define GUI_Y EM + 2
-#define LIN 40
-#define COL 90
-#define PL_1X 37
-#define PL_1Y GUI_Y
-#define PL_2X 37
-#define PL_2Y GUI_Y + 45
-#define PL_3X 51
-#define PL_3Y GUI_Y
-#define PL_4X 51
-#define PL_4Y GUI_Y + 45
+// #define GUI_X 26
+// #define GUI_Y EM + 2
+// #define LIN 40
+// #define COL 90
+// #define PL_1X 37
+// #define PL_1Y GUI_Y
+// #define PL_2X 37
+// #define PL_2Y GUI_Y + 45
+// #define PL_3X 51
+// #define PL_3Y GUI_Y
+// #define PL_4X 51
+// #define PL_4Y GUI_Y + 45
 
 static void		set_champ(void)
 {
@@ -58,16 +58,16 @@ static void		player_headings(void)
 {
 	mvprintw(PL_1X + 4, PL_1Y, "Forks:");
 	mvprintw(PL_1X + 6, PL_1Y, "Lives:");
-	mvprintw(PL_1X + 8, PL_1Y, "Cycle of last live:");
+	mvprintw(PL_1X + 8, PL_1Y, "Last live:");
 	mvprintw(PL_2X + 4, PL_2Y, "Forks:");
 	mvprintw(PL_2X + 6, PL_2Y, "Lives:");
-	mvprintw(PL_2X + 8, PL_2Y, "Cycle of last live:");
+	mvprintw(PL_2X + 8, PL_2Y, "Last live:");
 	mvprintw(PL_3X + 4, PL_3Y, "Forks:");
 	mvprintw(PL_3X + 6, PL_3Y, "Lives;");
-	mvprintw(PL_3X + 8, PL_3Y, "Cycle of last live:");
+	mvprintw(PL_3X + 8, PL_3Y, "Last live:");
 	mvprintw(PL_4X + 4, PL_4Y, "Forks:");
 	mvprintw(PL_4X + 6, PL_4Y, "Lives:");
-	mvprintw(PL_4X + 8, PL_4Y, "Cycle of last live:");
+	mvprintw(PL_4X + 8, PL_4Y, "Last live:");
 }
 
 void			update_player_data(int player, int fork, int live, int last_l)
@@ -100,9 +100,9 @@ void			update_player_data(int player, int fork, int live, int last_l)
 
 void			update_gui_data(int cycledelta, int cycletodie, int process)
 {
-	mvprintw(GUI_X + 2, GUI_Y + 15, "% 10d", cycledelta);
-	mvprintw(GUI_X + 4, GUI_Y + 15, "% 10d", cycletodie);
-	mvprintw(GUI_X + 6, GUI_Y + 15, "% 10d", process);
+	mvprintw(GUI_X + 2, GUI_Y + 30, "% 10d", cycledelta);
+	mvprintw(GUI_X + 4, GUI_Y + 30, "% 10d", cycletodie);
+	mvprintw(GUI_X + 6, GUI_Y + 30, "% 10d", process);
 }
 
 void			set_gui_headings(void)
@@ -114,8 +114,12 @@ void			set_gui_headings(void)
 	set_champ();
 	player_headings();
 	refresh();
-	update_gui_data(100, 200, 300);
-	update_player_data(1, 200, 300, 100000);
-	dead(PL_4X, PL_4Y, 4);
-	refresh();
+	// update_gui_data(100, 200, 300);
+	// update_player_data(1, 200, 300, 100000);
+	// update_player_data(1, 200, 300, 100000);
+	// printf_victor(3);
+	// printf_dead(2);
+	// printf_dead(1);
+	// printf_dead(4);
+	// refresh();
 }

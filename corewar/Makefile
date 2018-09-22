@@ -6,7 +6,7 @@
 #    By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/09/22 10:57:41 by kmarchan         ###   ########.fr        #
+#    Updated: 2018/09/22 14:31:36 by kmarchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CORE_SRC = main.c process_create.c load_bot.c debug_util.c op_function.c \
 		   op_add.c op_xor.c op_sub.c op_or.c op_ldi.c op_lldi.c op_lfork.c \
 		   op_aff.c get_next_op.c battle_loop.c get_next_op_util.c \
 		   handle_args.c visual.c prep_vis.c \
-		   ascii_text.c charge_ascii.c authors.c geometric.c intro_vis.c \
+		   ascii_text.c charge_ascii.c authors.c gui_box_key.c intro_vis.c \
 		   scrsize.c op_vis.c gui_data.c
 CORE = $(addprefix src/, $(CORE_SRC))
 

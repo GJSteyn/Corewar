@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/22 12:38:02 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/22 13:39:51 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,18 @@
 # define EM	(64 * 3 + 1)
 # define COLOR_BACKGROUND	10
 # define ASCII_DEMON_ROWS	22
+# define GUI_X 26
+# define GUI_Y EM + 2
+# define LIN 40
+# define COL 90
+# define PL_1X 37
+# define PL_1Y GUI_Y
+# define PL_2X 37
+# define PL_2Y GUI_Y + 45
+# define PL_3X 51
+# define PL_3Y GUI_Y
+# define PL_4X 51
+# define PL_4Y GUI_Y + 45
 
 # define GET_OWNER(pos)			(g_env.vis_env.owner[pos])
 # define SET_OWNER(pos, owner)	(GET_OWNER(pos) = owner)
@@ -52,6 +64,7 @@ void			set_gui_headings(void);
 void			update_gui_data(int cycledelta, int cycletodie, int process);
 void			scr_size(void);
 void			set_vis_mem(int position, char val, int colour);
-void			dead(int offv, int offh, int player_color);
+void			printf_dead(int player);
+void			printf_victor(int player);
 
 #endif
