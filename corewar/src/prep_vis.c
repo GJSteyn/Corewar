@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/22 11:19:52 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/22 12:43:31 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 #include "f_io.h"
 #include "f_print.h"
 
-// static void			init_vis(void)
-// {
-// 	g_env.vis_env.img = NULL;
-// }
-
-static void			red_eye(int i, int l, int c)
+static void		red_eye(int i, int l, int c)
 {
 	init_col();
 	mvprintw((i + l), (c), "    `9XXXXXXXXXXXP' `9XX'  ");
@@ -34,7 +29,7 @@ static void			red_eye(int i, int l, int c)
 	mvprintw((i + l), (c + 48), "   `XXP' `9XXXXXXXXXXXP'");
 }
 
-void				print_logoa(int i, int l, int c)
+void			print_logoa(int i, int l, int c)
 {
 	mvprintw((i++ + l), c, "          .                           "
 	"                            .");
@@ -54,12 +49,11 @@ void				print_logoa(int i, int l, int c)
 	" d8OOO'~   ~`XXXXXXXXXXXXXXXXXXXXXP'");
 }
 
-void				print_logo(int l, int c)
+void			print_logo(int l, int c)
 {
 	int i;
 
 	i = 0;
-
 	print_logoa(i, l, c);
 	i = 8;
 	red_eye(i++, l, c);
@@ -86,7 +80,6 @@ void				print_logo(int l, int c)
 
 void			start_vis(void)
 {
-	// init_vis();
 	initscr();
 	curs_set(0);
 }
