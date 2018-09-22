@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 08:00:07 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/22 14:42:49 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/22 16:13:42 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int					visualizer(void)
 	vis = &g_env.vis_env;
 	score_box();
 	print_core(0, 0);
-	print_logo(3, 65 * 3 + 7);
+	print_logo(3, 65 * 3 + 5);
 	score_box();
 	refresh();
 	return (1);
