@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 08:01:06 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/21 11:46:39 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/22 16:45:30 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	run_cycle(void **process)
 	bot->delay--;
 	if (bot->delay > 0)
 		return ;
-	if (!bot->delay && bot->op)
+	if ((!bot->delay) && bot->op)
 		bot->op(bot);
 	else
 		bot->next_pc = (bot->next_pc + 1) % MEM_SIZE;
@@ -40,7 +40,6 @@ static bool	kill_check(void *process)
 		bot->live = 0;
 		return (false);
 	}
-	// f_printf("[%u]Kill @ %d\n", bot->id, bot->delay);
 	return (true);
 }
 
@@ -54,18 +53,23 @@ void	battle_loop(void)
 		if (g_env.cycle_to_die <= 0)
 		{
 			list_remove_if(process_list, kill_check);
-			if (g_env.live_counter > NBR_LIVE || g_env.last_delta == MAX_CHECKS)
+			if (g_env.live_counter >= NBR_LIVE || g_env.last_delta == MAX_CHECKS)
 			{
 				g_env.delta_count++;
 				g_env.last_delta = 1;
+				g_env.cycle_to_die = CYCLE_TO_DIE - (g_env.delta_count * CYCLE_DELTA);
+				(VERB_CYCLES) ? f_printf("Cycle to die is now %d\n", g_env.cycle_to_die) : 0;
 			}
 			else
+			{
 				g_env.last_delta++;
+				if ((g_env.cycle_to_die =
+					CYCLE_TO_DIE - (g_env.delta_count * CYCLE_DELTA)) < 0)
+					break ;
+			}
 			g_env.live_counter = 0;
-			if ((g_env.cycle_to_die =
-				CYCLE_TO_DIE - (g_env.delta_count * CYCLE_DELTA)) < 0)
-				break ;
 		}
+		(VERB_CYCLES) ? f_printf("It is now cycle %d\n", g_env.cycles) : 0;
 		list_iterate(process_list, run_cycle);
 		g_env.cycle_to_die--;
 		g_env.cycles++;
@@ -146,7 +150,7 @@ void	battle_loop_vis(void)
 		if (g_env.cycle_to_die <= 0)
 		{
 			list_remove_if(process_list, kill_check_vis);
-			if (g_env.live_counter > NBR_LIVE || g_env.last_delta == MAX_CHECKS)
+			if (g_env.live_counter >= NBR_LIVE || g_env.last_delta == MAX_CHECKS)
 			{
 				g_env.delta_count++;
 				g_env.last_delta = 1;

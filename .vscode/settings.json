@@ -5,6 +5,7 @@
 		"ios": "c",
 		"list": "c",
 		"string": "c",
-		"op_function.h": "c"
+		"op_function.h": "c",
+		"functional": "c"
 	}
 }

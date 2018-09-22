@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:16:24 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/17 12:41:13 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/22 12:27:05 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ int		get_arg_types(t_process *bot, int types[MAX_ARGS_NUMBER])
 	mem = g_env.memory + bot->current_pc;
 	op = g_op_tab[(int)mem[0] - 1];
 	ret = 0;
+	i = -1;
 	if (op.has_encoding)
 	{
 		enc = mem[1];
-		i = -1;
 		while (++i < op.argc)
 		{
-			if (!((types[i] = DECODE(enc, i)) & op.arg_type[i]))
+			if (!((types[i] = DECODE(enc, i)) && (types[i] & op.arg_type[i])))
 				ret = -1;
 		}
 	}
-	else
-		types[0] = op.arg_type[0];
+	else if (!((types[0] = op.arg_type[0]) && (types[0] & op.arg_type[++i])))
+		ret = -1;
 	return (ret);
 }
 
@@ -59,7 +59,7 @@ int		assign_args(t_process *bot, int op_idx)
 		next += TYPE_BYTES(arg_types[i]);
 		next -= (arg_types[i] == T_DIR && op.direct_index) ? 2 : 0;
 	}
-	bot->next_pc = bot->current_pc + next;
+	bot->next_pc = (next) ? bot->current_pc + next : bot->current_pc + 1;
 	if (ret < 0 || set_arg_value(bot, arg_types) < 0)
 		return (-1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/20 11:50:26 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/22 13:46:05 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ int					set_arg_value(struct s_process *bot,
 //debug ulti to be removed
 void	print_memory(void);
 void	print_bot(struct s_process *bot);
-void	print_op_basics(struct s_process *bot, char *op);
+int		print_op_basics(struct s_process *bot, char *op);
 
 #endif

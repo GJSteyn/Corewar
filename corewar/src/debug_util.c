@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 20:25:29 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/12 13:55:02 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/22 13:30:59 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	print_bot(struct s_process *bot)
 	// }
 }
 
-void	print_op_basics(struct s_process *bot, char *op)
+int		print_op_basics(struct s_process *bot, char *op)
 {
-	f_printf("[%2d](%#.4x -> %#.4x) %s\n", bot->id, bot->current_pc, bot->next_pc, op);
+	f_printf("[%4d] (%#.4x -> %#.4x) %s\n", bot->id, bot->current_pc, bot->next_pc, op);
+	return(0);
 }

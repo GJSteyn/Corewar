@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:17:31 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/21 07:14:18 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/22 14:52:07 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,12 @@ void	op_aff(struct s_process *bot);
 void	op_st_vis(struct s_process *bot);
 void	op_sti_vis(struct s_process *bot);
 
+void	op_live_verb(struct s_process *bot);
+void	op_zjmp_verb(struct s_process *bot);
+void	op_sti_verb(struct s_process *bot);
+
 // debugging
 void	print_memory(void);
 void	print_bot(struct s_process *bot);
-void	print_op_basics(struct s_process *bot, char *op);
+int		print_op_basics(struct s_process *bot, char *op);
 #endif
