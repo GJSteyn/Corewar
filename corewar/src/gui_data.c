@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 10:56:35 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/22 14:42:42 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/22 15:53:28 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,23 +85,24 @@ void			update_player_data(int player, int fork, int live, int last_l)
 	}
 }
 
-void			update_gui_data(int cycledelta, int cycletodie, int process)
+void			update_gui_data(void)
 {
-	mvprintw(GUI_X + 2, GUI_Y + 30, "% 10d", cycledelta);
-	mvprintw(GUI_X + 4, GUI_Y + 30, "% 10d", cycletodie);
-	mvprintw(GUI_X + 6, GUI_Y + 30, "% 10d", process);
+	mvprintw(GUI_X + 2, GUI_Y + 30, "% 10d", g_env.cycles);
+	mvprintw(GUI_X + 4, GUI_Y + 27, "% 5d / % 5d", g_env.cycle_to_die,
+	CYCLE_TO_DIE - g_env.delta_count * CYCLE_DELTA);
+	mvprintw(GUI_X + 6, GUI_Y + 30, "% 10d", g_env.process_list->size);
 }
 
 void			set_gui_headings(void)
 {
 	mvprintw(GUI_X, GUI_Y, "AT WAR!");
-	mvprintw(GUI_X + 2, GUI_Y, "CYCLE DELTA:");
+	mvprintw(GUI_X + 2, GUI_Y, "CYCLE NUMBER:");
 	mvprintw(GUI_X + 4, GUI_Y, "CYCLE TO DIE:");
 	mvprintw(GUI_X + 6, GUI_Y, "PROCESSES:");
 	set_champ();
 	player_headings();
 	refresh();
-	// update_gui_data(100, 200, 300);
+	update_gui_data();
 	// update_player_data(1, 200, 300, 100000);
 	// update_player_data(1, 200, 300, 100000);
 	// printf_victor(3);

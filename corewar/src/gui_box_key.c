@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/14 11:01:12 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/22 14:42:46 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/22 15:36:39 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void				key(void)
 void				score_box(void)
 {
 	set_gui_headings();
-	update_gui_data(100, 200, 300);
 	wattron(stdscr, COLOR_PAIR(5));
 	mvhline(50, EM + 1, 0, 89);
 	mvvline(24, EM + 45, 0, 41);

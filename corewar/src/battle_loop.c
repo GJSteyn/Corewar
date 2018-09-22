@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle_loop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 08:01:06 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/21 10:22:51 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/22 15:37:04 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ void	battle_loop_vis(void)
 				break ;
 		}
 		list_iterate(process_list, run_cycle_vis);
+		update_gui_data();
 		refresh();
 		usleep(1000);
 		g_env.cycle_to_die--;

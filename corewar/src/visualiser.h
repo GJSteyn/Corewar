@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/22 13:39:51 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/22 15:35:24 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void			print_core(int offh, int offv);
 void			init_col(void);
 void			score_box(void);
 void			set_gui_headings(void);
-void			update_gui_data(int cycledelta, int cycletodie, int process);
+void			update_gui_data(void);
 void			scr_size(void);
 void			set_vis_mem(int position, char val, int colour);
 void			printf_dead(int player);
