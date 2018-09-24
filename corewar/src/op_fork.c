@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_fork.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 19:44:25 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/17 12:49:42 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/24 13:34:37 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	op_fork(struct s_process *bot)
 
 	// print_op_basics(bot, "fork");
 	// f_printf("----->@ %#.4x\n", WRAP_MEM(bot->current_pc + WRAP_IDX(bot->args[0])));
+	g_env.vis_env.player_forks[-bot->created_by - 1]++;
 	new_bot = process_create(bot->created_by,
 		WRAP_MEM(bot->current_pc + WRAP_IDX(bot->args[0])),
 		bot->carry);

@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/22 12:43:31 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/24 12:39:40 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,12 @@ void			print_logo(int l, int c)
 	mvprintw((i++ + l), c, "                              X. O  `   '  A )X");
 	mvprintw((i++ + l), c, "                              `C  `       '  R'");
 	mvprintw((i++ + l), c, "                               `             '");
+}
+
+void			init_vis(void)
+{
+	f_memset(g_env.vis_env.player_forks, 0, MAX_PLAYERS);
+	f_memset(g_env.vis_env.player_live, 0, MAX_PLAYERS);
 }
 
 void			start_vis(void)

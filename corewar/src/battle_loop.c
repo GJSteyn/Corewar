@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 08:01:06 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/22 15:37:04 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/24 12:58:30 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,10 @@ void	battle_loop_vis(void)
 		}
 		list_iterate(process_list, run_cycle_vis);
 		update_gui_data();
+		update_player_data(1, 1);
+		update_player_data(2, 1);
+		update_player_data(3, 1);
+		update_player_data(4, 1);
 		refresh();
 		usleep(1000);
 		g_env.cycle_to_die--;

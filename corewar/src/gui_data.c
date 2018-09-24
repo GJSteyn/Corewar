@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 10:56:35 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/22 16:10:43 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/24 13:21:31 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,30 +57,32 @@ static void		player_headings(void)
 	mvprintw(PL_4X + 8, PL_4Y, "Last live:");
 }
 
-void			update_player_data(int player, int fork, int live, int last_l)
+void			update_player_data(int player, int last_l) // int fork, int live,
 {
+	// (void)fork;
+	// (void)live;
 	if (player == 1)
 	{
-		mvprintw(PL_1X + 4, PL_1Y + 30, "% 10d", fork);
-		mvprintw(PL_1X + 6, PL_1Y + 30, "% 10d", live);
+		mvprintw(PL_1X + 4, PL_1Y + 30, "% 10d", g_env.vis_env.player_forks[0]);
+		mvprintw(PL_1X + 6, PL_1Y + 30, "% 10d", g_env.vis_env.player_live[0]);
 		mvprintw(PL_1X + 8, PL_1Y + 30, "% 10d", last_l);
 	}
 	else if (player == 2)
 	{
-		mvprintw(PL_2X + 4, PL_2Y + 30, "% 10d", fork);
-		mvprintw(PL_2X + 6, PL_2Y + 30, "% 10d", live);
+		mvprintw(PL_2X + 4, PL_2Y + 30, "% 10d", g_env.vis_env.player_forks[1]);
+		mvprintw(PL_2X + 6, PL_2Y + 30, "% 10d", g_env.vis_env.player_live[1]);
 		mvprintw(PL_2X + 8, PL_2Y + 30, "% 10d", last_l);
 	}
 	else if (player == 3)
 	{
-		mvprintw(PL_3X + 4, PL_3Y + 30, "% 10d", fork);
-		mvprintw(PL_3X + 6, PL_3Y + 30, "% 10d", live);
+		mvprintw(PL_3X + 4, PL_3Y + 30, "% 10d", g_env.vis_env.player_forks[2]);
+		mvprintw(PL_3X + 6, PL_3Y + 30, "% 10d", g_env.vis_env.player_live[2]);
 		mvprintw(PL_3X + 8, PL_3Y + 30, "% 10d", last_l);
 	}
 	else
 	{
-		mvprintw(PL_4X + 4, PL_4Y + 30, "% 10d", fork);
-		mvprintw(PL_4X + 6, PL_4Y + 30, "% 10d", live);
+		mvprintw(PL_4X + 4, PL_4Y + 30, "% 10d", g_env.vis_env.player_forks[3]);
+		mvprintw(PL_4X + 6, PL_4Y + 30, "% 10d", g_env.vis_env.player_live[3]);
 		mvprintw(PL_4X + 8, PL_4Y + 30, "% 10d", last_l);
 	}
 }
