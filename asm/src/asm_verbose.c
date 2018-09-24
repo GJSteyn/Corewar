@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 12:15:52 by gsteyn            #+#    #+#             */
-/*   Updated: 2018/09/14 13:22:52 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/24 12:47:15 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ static void		print_instr(t_list_node **instr, size_t *addr)
 	encoding_byte_to_bin(((t_instruction*)(*instr)->data), &bin, &i);
 	f_printf("	%d", ((t_instruction*)(*instr)->data)->op);
 	if (g_op_tab[((t_instruction*)(*instr)->data)->op - 1].has_encoding_byte)
-		f_printf(" %d", bin);
+		f_printf(" %hhu", bin);
 	i = -1;
 	while (++i < g_op_tab[((t_instruction*)(*instr)->data)->op - 1].argc)
 	{
