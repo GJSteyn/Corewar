@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scrsize.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 13:37:55 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/20 11:18:20 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/22 14:49:08 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void		scr_instruction(t_vis *vis, int l, int c)
 
 void			scr_size(void)
 {
-	int l;
-	int c;
-	t_vis *vis;
+	int		l;
+	int		c;
+	t_vis	*vis;
 
 	vis = &g_env.vis_env;
 	getmaxyx(stdscr, vis->m_l, vis->m_c);

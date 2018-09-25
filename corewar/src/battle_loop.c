@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 08:01:06 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/25 12:50:39 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 13:37:46 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,11 @@ void	battle_loop_vis(void)
 				break ;
 		}
 		list_iterate(process_list, run_cycle_vis);
+		update_gui_data();
+		update_player_data(1, 1);
+		update_player_data(2, 1);
+		update_player_data(3, 1);
+		update_player_data(4, 1);
 		refresh();
 		g_env.cycle_to_die--;
 		g_env.cycles++;

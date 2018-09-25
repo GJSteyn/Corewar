@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 06:25:52 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/22 16:06:24 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 13:56:02 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@ void	op_live(struct s_process *bot)
 {
 	int		player_nbr;
 
+	// needs to be reviewed
 	player_nbr = -bot->args[0];
 	if (player_nbr > 0 && player_nbr <= (int)g_env.player_total)
+	{
+		g_env.vis_env.player_live[player_nbr - 1]++;
 		g_env.last_live = player_nbr;
+	}
 	bot->live++;
 	g_env.live_counter++;
 }

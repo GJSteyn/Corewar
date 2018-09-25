@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 19:44:25 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/25 10:10:05 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 14:00:07 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	op_fork(struct s_process *bot)
 	int					*old_reg;
 	int					*new_reg;
 
+	// must be reviewed;
+	g_env.vis_env.player_forks[(int)g_env.vis_env.owner[bot->current_pc] - 1]++;
 	new_bot = process_create(bot->created_by,
 		WRAP_MEM(bot->current_pc + WRAP_IDX(bot->args[0])),
 		bot->carry);
