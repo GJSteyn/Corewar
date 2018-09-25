@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/21 11:36:44 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 10:03:21 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	init_env(void)
 	g_env.last_delta = 0;
 	g_env.delta_count = 0;
 	g_env.pause = false;
+	g_env.flag = 0;
+	g_env.flag_args[FLAG_MEM_DUMP] = INT_MAX;
 }
 
 int			main(int argc, char *argv[])

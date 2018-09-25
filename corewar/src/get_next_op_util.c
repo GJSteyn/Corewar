@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 09:01:30 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/21 13:25:02 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 11:58:16 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ static int	set_ind(t_process *bot, int *poffset, int i, t_op op)
 	int		offset;
 	int		ind_offset;
 	char	big_e[4];
+	int		pc;
 
+	pc = bot->next_pc;
 	offset = *poffset;
 	big_e[0] = 0;
 	big_e[1] = 0;
@@ -31,10 +33,10 @@ static int	set_ind(t_process *bot, int *poffset, int i, t_op op)
 	else
 	{
 		ind_offset = (op.bytecode < 13) ? ind_offset % IDX_MOD : ind_offset;
-		big_e[0] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
-		big_e[1] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
-		big_e[2] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
-		big_e[3] = g_env.memory[WRAP_MEM(bot->current_pc + ind_offset++)];
+		big_e[0] = g_env.memory[WRAP_MEM(pc + ind_offset++)];
+		big_e[3] = g_env.memory[WRAP_MEM(pc + ind_offset++)];
+		big_e[1] = g_env.memory[WRAP_MEM(pc + ind_offset++)];
+		big_e[2] = g_env.memory[WRAP_MEM(pc + ind_offset)];
 		bot->args[i] = f_big_to_little_endian(big_e);
 	}
 	*poffset = offset;
@@ -70,8 +72,6 @@ static int	set_reg(t_process *bot, int *poffset, int i)
 
 	offset = *poffset;
 	bot->args[i] = g_env.memory[WRAP_MEM(offset++)] - 1;
-	// if (i == 2)
-		// f_printf("arg[%d]: %d\n", i, bot->args[i]);
 	if (bot->args[i] < 0 || bot->args[i] > REG_NUMBER - 1)
 		return (-1);
 	bot->is_reg[i] = true;
@@ -85,8 +85,8 @@ int			set_arg_value(t_process *bot, int arg_types[MAX_ARGS_NUMBER])
 	t_op	op;
 	int		i;
 
-	op = g_op_tab[(int)g_env.memory[bot->current_pc] - 1];
-	offset = WRAP_MEM(bot->current_pc + 1 + op.has_encoding);
+	op = g_op_tab[(int)g_env.memory[bot->next_pc] - 1];
+	offset = WRAP_MEM(bot->next_pc + 1 + op.has_encoding);
 	i = -1;
 	while (++i < op.argc)
 		if (arg_types[i] == T_REG)

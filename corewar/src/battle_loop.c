@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 08:01:06 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/22 16:45:30 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 12:50:39 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,11 @@ static bool	kill_check(void *process)
 void	battle_loop(void)
 {
 	t_list	*process_list;
+	int		mem_dump;
 
+	mem_dump = g_env.flag_args[FLAG_MEM_DUMP];
 	process_list = g_env.process_list;
-	while (process_list->size)
+	while (process_list->size && g_env.cycles <= mem_dump)
 	{
 		if (g_env.cycle_to_die <= 0)
 		{
@@ -138,13 +140,15 @@ void	handle_key_press()
 void	battle_loop_vis(void)
 {
 	t_list	*process_list;
+	int		check_key;
 
 	process_list = g_env.process_list;
 	paint_champs();
 
+	check_key = 5;
 	while (process_list->size)
 	{
-		handle_key_press();
+		CHECK_INPUT(INPUT_CHECK_DELAY);
 		if (g_env.pause)
 			continue;
 		if (g_env.cycle_to_die <= 0)
@@ -164,8 +168,8 @@ void	battle_loop_vis(void)
 		}
 		list_iterate(process_list, run_cycle_vis);
 		refresh();
-		usleep(1000);
 		g_env.cycle_to_die--;
 		g_env.cycles++;
 	}
+	while (getch() != 'q');
 }

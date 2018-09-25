@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/21 12:06:19 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 12:52:43 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@
 # define TO_PC(player)			(player + COLOR_BACKGROUND)
 # define PAINT_MEM(val, pos)	(set_vis_mem(pos, val, GET_OWNER(pos)))
 # define PAINT_PC(val, pos)		(set_vis_mem(pos, val, TO_PC(GET_OWNER(pos))))
+
+# define INPUT_CHECK_DELAY	(5)
+# define CHECK_INPUT(n) if (!--check_key&&(check_key = n))handle_key_press();
+# define FUNNY_IF if (24 == 24)
 
 # define SET_VIS_MEM(pos, val, owner) {SET_OWNER(pos,owner);PAINT_MEM(val,pos);}
 

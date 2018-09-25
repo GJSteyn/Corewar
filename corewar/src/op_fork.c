@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 19:44:25 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/17 12:49:42 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 10:10:05 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	op_fork(struct s_process *bot)
 	int					*old_reg;
 	int					*new_reg;
 
-	// print_op_basics(bot, "fork");
-	// f_printf("----->@ %#.4x\n", WRAP_MEM(bot->current_pc + WRAP_IDX(bot->args[0])));
 	new_bot = process_create(bot->created_by,
 		WRAP_MEM(bot->current_pc + WRAP_IDX(bot->args[0])),
 		bot->carry);
@@ -31,4 +29,28 @@ void	op_fork(struct s_process *bot)
 	while (++i < REG_NUMBER)
 		new_reg[i] = old_reg[i];
 	get_next_op(new_bot);
+}
+
+void	op_fork_verb(struct s_process *bot)
+{
+	struct s_process	*new_bot;
+	int					i;
+	int					*old_reg;
+	int					*new_reg;
+
+	new_bot = process_create(bot->created_by,
+		WRAP_MEM(bot->current_pc + WRAP_IDX(bot->args[0])),
+		bot->carry);
+	new_bot->live = bot->live;
+	old_reg = bot->reg;
+	new_reg = new_bot->reg;
+	i = -1;
+	while (++i < REG_NUMBER)
+		new_reg[i] = old_reg[i];
+	get_next_op(new_bot);
+	START_VERB(
+		PRINT_PROCESS("fork");
+		PRINT_ARG(bot->args[0]);
+		f_printf(" (%d)", bot->current_pc + WRAP_IDX(bot->args[0]));
+		PRINT_ENDL;)
 }

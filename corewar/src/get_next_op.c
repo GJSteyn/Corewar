@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:16:24 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/22 12:27:05 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 12:13:36 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		get_arg_types(t_process *bot, int types[MAX_ARGS_NUMBER])
 	char	*mem;
 	int		ret;
 
-	mem = g_env.memory + bot->current_pc;
+	mem = g_env.memory + bot->next_pc;
 	op = g_op_tab[(int)mem[0] - 1];
 	ret = 0;
 	i = -1;
@@ -59,10 +59,10 @@ int		assign_args(t_process *bot, int op_idx)
 		next += TYPE_BYTES(arg_types[i]);
 		next -= (arg_types[i] == T_DIR && op.direct_index) ? 2 : 0;
 	}
-	bot->next_pc = (next) ? bot->current_pc + next : bot->current_pc + 1;
 	if (ret < 0 || set_arg_value(bot, arg_types) < 0)
-		return (-1);
-	return (0);
+		ret = -1;
+	bot->next_pc = (next) ? bot->next_pc + next + ret : bot->next_pc + 1 + ret;
+	return (ret);
 }
 
 void	get_next_op(t_process *bot)
