@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 08:01:06 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/25 13:37:46 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 18:45:50 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,18 @@ static void	run_cycle(void **process)
 	bot->delay--;
 	if (bot->delay > 0)
 		return ;
-	if ((!bot->delay) && bot->op)
+	if (bot->delay <= 0 && bot->op)
+	{
 		bot->op(bot);
+		bot->op = NULL;
+	}
 	else
-		bot->next_pc = (bot->next_pc + 1) % MEM_SIZE;
-	bot->current_pc = bot->next_pc;
-	get_next_op(bot);
+	{
+		// bot->next_pc = (bot->next_pc + 1) % MEM_SIZE;
+		bot->current_pc = bot->next_pc;
+		get_next_op(bot);
+		bot->delay--;
+	}
 }
 
 static bool	kill_check(void *process)
@@ -48,6 +54,7 @@ void	battle_loop(void)
 	t_list	*process_list;
 	int		mem_dump;
 
+	memcpy(g_env.tmp_memory, g_env.memory, MEM_SIZE);
 	mem_dump = g_env.flag_args[FLAG_MEM_DUMP];
 	process_list = g_env.process_list;
 	while (process_list->size && g_env.cycles <= mem_dump)
@@ -73,6 +80,7 @@ void	battle_loop(void)
 		}
 		(VERB_CYCLES) ? f_printf("It is now cycle %d\n", g_env.cycles) : 0;
 		list_iterate(process_list, run_cycle);
+		memcpy(g_env.memory, g_env.tmp_memory, MEM_SIZE);
 		g_env.cycle_to_die--;
 		g_env.cycles++;
 	}

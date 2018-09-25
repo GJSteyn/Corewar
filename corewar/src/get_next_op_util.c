@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 09:01:30 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/25 11:58:16 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 18:30:54 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static int	set_ind(t_process *bot, int *poffset, int i, t_op op)
 	{
 		ind_offset = (op.bytecode < 13) ? ind_offset % IDX_MOD : ind_offset;
 		big_e[0] = g_env.memory[WRAP_MEM(pc + ind_offset++)];
-		big_e[3] = g_env.memory[WRAP_MEM(pc + ind_offset++)];
 		big_e[1] = g_env.memory[WRAP_MEM(pc + ind_offset++)];
-		big_e[2] = g_env.memory[WRAP_MEM(pc + ind_offset)];
+		big_e[2] = g_env.memory[WRAP_MEM(pc + ind_offset++)];
+		big_e[3] = g_env.memory[WRAP_MEM(pc + ind_offset)];
 		bot->args[i] = f_big_to_little_endian(big_e);
 	}
 	*poffset = offset;

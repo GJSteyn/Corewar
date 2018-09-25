@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 08:22:01 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/21 11:36:27 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 18:25:02 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 struct	s_env
 {
 	char			memory[MEM_SIZE];
+	char			tmp_memory[MEM_SIZE];
 	unsigned int	player_total;
 	int				last_live;
 	unsigned int	next_id;
