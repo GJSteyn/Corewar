@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:16:24 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/25 12:13:36 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/25 14:43:53 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int		assign_args(t_process *bot, int op_idx)
 	if (ret < 0 || set_arg_value(bot, arg_types) < 0)
 		ret = -1;
 	bot->next_pc = (next) ? bot->next_pc + next + ret : bot->next_pc + 1 + ret;
+	bot->next_pc = WRAP_MEM(bot->next_pc);
 	return (ret);
 }
 
