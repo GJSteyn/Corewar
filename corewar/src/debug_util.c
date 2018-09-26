@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 20:25:29 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/12 13:55:02 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 15:09:58 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,26 @@ void	print_bot(struct s_process *bot)
 void	print_op_basics(struct s_process *bot, char *op)
 {
 	f_printf("[%2d](%#.4x -> %#.4x) %s\n", bot->id, bot->current_pc, bot->next_pc, op);
+}
+
+void				print_mem(void)
+{
+	int i;
+
+	i = -1;
+	while (++i < MEM_SIZE)
+	{
+		if (i % 32 == 0)
+		{
+			f_printf("\n0x%.4x :", i);
+		}
+		if (g_env.memory[i] > 0)
+		{
+			f_printf("%.2hhx ", g_env.memory[i]);
+		}
+		else
+		{
+			f_printf("00 ");
+		}
+	}
 }
