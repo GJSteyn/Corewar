@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:16:24 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 10:59:39 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 17:53:10 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,8 @@ void	get_next_op(t_process *bot)
 	if (op_idx >= 1 && op_idx <= 16)
 	{
 		bot->delay = g_op_tab[op_idx - 1].cost;
-		// if (bot->id == 14)
-		// 	f_printf("---------------> op %d\n", op_idx);
 		if (!(assign_args(bot, op_idx)))
-			bot->op = op_function(op_idx);
+			bot->op = g_op_function(op_idx);
 		else
 		{
 			bot->op = NULL;

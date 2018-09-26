@@ -6,11 +6,11 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:17:31 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/25 10:45:04 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 17:52:10 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OP
+#ifndef OP_FUNCTION_H
 # define OP_FUNCTION_H
 
 # include <stdlib.h>
@@ -32,7 +32,7 @@
 # define WRAP_MEM(n)		((MEM_SIZE + ((n) % MEM_SIZE)) % MEM_SIZE)
 # define WRAP_IDX(n)		((n) % IDX_MOD)
 
-void 	(*op_function(int i))(struct s_process*);
+void	(*g_op_function(int i))(struct s_process*);
 
 void	get_next_op(struct s_process *bot);
 

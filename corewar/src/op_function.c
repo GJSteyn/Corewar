@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:11:51 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 16:46:16 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 17:53:26 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	set_functions(void (*op[MAX_OP + 1])(struct s_process*))
 	op[16] = op_aff;
 }
 
-void	(*op_function(int op_code))(struct s_process*)
+void	(*g_op_function(int op_code))(struct s_process*)
 {
 	static void (*op[MAX_OP + 1])(struct s_process*);
 
