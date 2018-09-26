@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 17:01:54 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 18:01:56 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int			main(int argc, char *argv[])
 	else
 	{
 		battle_loop();
-		f_printf("last_live-> %d\n", g_env.last_live);
-		f_printf("cycles: %d\n", g_env.cycles);
+		f_printf("[%d]\"%s\" is the winner!\n", g_env.last_live, g_env.vis_env.champs[g_env.last_live - 1]);
 	}
 }

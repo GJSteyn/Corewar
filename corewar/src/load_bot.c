@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:05:57 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 16:45:25 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 18:09:31 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,8 @@ struct s_process	*load_bot(char *path, int player_no)
 		INVALID_BOT(path);
 	lseek(fd, AT_CODE, SEEK_SET);
 	size = read(fd, g_env.memory + i, CHAMP_MAX_SIZE);
-	if (IS_FLAG_SET(FLAG_NCURSES))
-	{
-		find_bot_info(fd, player_no);
-		f_memset(g_env.vis_env.owner + i, player_no, size);
-	}
+	find_bot_info(fd, player_no);
+	f_memset(g_env.vis_env.owner + i, player_no, size);
 	close(fd);
 	bot = process_create(-player_no, i, false);
 	get_next_op(bot);
