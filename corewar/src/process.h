@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 22:46:08 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/20 10:34:14 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 17:51:01 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "list.h"
 # include "s_env.h"
 
-struct	s_process
+struct				s_process
 {
 	unsigned int	id;
 	int				created_by;
