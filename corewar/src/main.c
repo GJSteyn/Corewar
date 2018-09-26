@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/25 10:03:21 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 13:41:12 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int			main(int argc, char *argv[])
 {
 	if (argc == 1)
 		return (0);
+	vm_sound();
 	init_env();
 	handle_args(argc, argv);
 	if (!g_env.player_total)

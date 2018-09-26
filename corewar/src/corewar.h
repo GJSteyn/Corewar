@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 13:07:00 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 13:42:17 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void				battle_loop_vis(void);
 int					kill(bool (*kill_check)(void*));
 int					set_arg_value(struct s_process *bot,
 						int arg_types[MAX_ARGS_NUMBER]);
+void				vm_sound(void);
 
 # define FATAL(c)	{f_printf(c); exit(0);}
 
