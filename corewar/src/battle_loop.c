@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 08:01:06 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/25 18:45:50 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 11:03:12 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	run_cycle(void **process)
 
 	bot = (t_process*)*process;
 	bot->delay--;
+	// if (bot->id == 14)
+	// 	f_printf("next %d\n", bot->next_pc);
 	if (bot->delay > 0)
 		return ;
 	if (bot->delay <= 0 && bot->op)
@@ -29,8 +31,6 @@ static void	run_cycle(void **process)
 	}
 	else
 	{
-		// bot->next_pc = (bot->next_pc + 1) % MEM_SIZE;
-		bot->current_pc = bot->next_pc;
 		get_next_op(bot);
 		bot->delay--;
 	}

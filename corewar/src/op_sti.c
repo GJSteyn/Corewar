@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 07:50:28 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/25 18:26:35 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 11:04:02 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	op_sti_verb(struct s_process *bot)
 	int		*args;
 	char	big_e[4];
 
-	mem = g_env.memory;
+	mem = g_env.tmp_memory;
 	args = bot->args;
 	START_VERB(
 		PRINT_PROCESS("sti");
@@ -80,11 +80,11 @@ void	op_sti_vis(struct s_process *bot)
 	offset = bot->current_pc + WRAP_IDX(args[1] + args[2]);
 	player = GET_OWNER(bot->current_pc);
 	SET_VIS_MEM(WRAP_MEM(offset), big_e[0], player);
-	g_env.tmp_memory[WRAP_MEM(offset++)] = big_e[0];
+	g_env.memory[WRAP_MEM(offset++)] = big_e[0];
 	SET_VIS_MEM(WRAP_MEM(offset), big_e[1], player);
-	g_env.tmp_memory[WRAP_MEM(offset++)] = big_e[1];
+	g_env.memory[WRAP_MEM(offset++)] = big_e[1];
 	SET_VIS_MEM(WRAP_MEM(offset), big_e[2], player);
-	g_env.tmp_memory[WRAP_MEM(offset++)] = big_e[2];
+	g_env.memory[WRAP_MEM(offset++)] = big_e[2];
 	SET_VIS_MEM(WRAP_MEM(offset), big_e[3], player);
-	g_env.tmp_memory[WRAP_MEM(offset)] = big_e[3];
+	g_env.memory[WRAP_MEM(offset)] = big_e[3];
 }

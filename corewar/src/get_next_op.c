@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 14:16:24 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/25 14:43:53 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 10:59:39 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		assign_args(t_process *bot, int op_idx)
 	}
 	if (ret < 0 || set_arg_value(bot, arg_types) < 0)
 		ret = -1;
-	bot->next_pc = (next) ? bot->next_pc + next + ret : bot->next_pc + 1 + ret;
+	bot->next_pc = (next) ? bot->next_pc + next : bot->next_pc + 1;
 	bot->next_pc = WRAP_MEM(bot->next_pc);
 	return (ret);
 }
@@ -71,12 +71,20 @@ void	get_next_op(t_process *bot)
 	int		op_idx;
 
 	op_idx = (int)g_env.memory[(bot->next_pc % MEM_SIZE)];
+	bot->current_pc = bot->next_pc;
 	if (op_idx >= 1 && op_idx <= 16)
 	{
 		bot->delay = g_op_tab[op_idx - 1].cost;
+		// if (bot->id == 14)
+		// 	f_printf("---------------> op %d\n", op_idx);
 		if (!(assign_args(bot, op_idx)))
 			bot->op = op_function(op_idx);
 		else
+		{
 			bot->op = NULL;
+			bot->delay++;
+		}
 	}
+	else
+		bot->next_pc = (bot->next_pc + 1) % MEM_SIZE;
 }

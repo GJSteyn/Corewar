@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 22:48:45 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/18 15:10:49 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 10:55:24 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ struct s_process	*process_create(int pcode, unsigned int pc, bool carry)
 	bot->next_pc = pc;
 	bot->current_pc = pc;
 	bot->carry = carry;
-	bot->delay = -1;
+	bot->delay = 0;
 	bot->op = 0;
 	f_bzero(bot->args, sizeof(bot->args));
 	f_bzero(bot->reg, sizeof(bot->reg));
