@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+         #
+#    By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/09/22 14:31:36 by kmarchan         ###   ########.fr        #
+#    Updated: 2018/09/26 13:36:25 by wseegers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,9 @@ CORE_SRC = main.c process_create.c load_bot.c debug_util.c op_function.c \
 		   op_live.c op_sti.c op_and.c op_zjmp.c op_ld.c op_st.c op_fork.c \
 		   op_add.c op_xor.c op_sub.c op_or.c op_ldi.c op_lldi.c op_lfork.c \
 		   op_aff.c get_next_op.c battle_loop.c get_next_op_util.c \
-		   handle_args.c visual.c prep_vis.c \
+		   handle_args.c visual.c prep_vis.c battle_loop_util.c \
 		   ascii_text.c charge_ascii.c authors.c gui_box_key.c intro_vis.c \
-		   scrsize.c op_vis.c gui_data.c
+		   scrsize.c op_vis.c gui_data.c battle_loop_vis.c
 CORE = $(addprefix src/, $(CORE_SRC))
 
 OBJ_LIST = $(patsubst %.c, %.o, $(CORE))

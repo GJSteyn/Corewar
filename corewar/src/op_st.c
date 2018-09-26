@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 18:14:33 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 11:03:22 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 12:19:35 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	op_st_verb(struct s_process *bot)
 			PRINT_ENDL;)
 		f_little_to_big_endian(bot->reg[bot->args[0]], big_e);
 		offset = bot->current_pc + WRAP_IDX(bot->args[1]);
-		g_env.tmp_memory[WRAP_MEM(offset++)] = big_e[0];
-		g_env.tmp_memory[WRAP_MEM(offset++)] = big_e[1];
-		g_env.tmp_memory[WRAP_MEM(offset++)] = big_e[2];
-		g_env.tmp_memory[WRAP_MEM(offset)] = big_e[3];
+		g_env.memory[WRAP_MEM(offset++)] = big_e[0];
+		g_env.memory[WRAP_MEM(offset++)] = big_e[1];
+		g_env.memory[WRAP_MEM(offset++)] = big_e[2];
+		g_env.memory[WRAP_MEM(offset)] = big_e[3];
 	}
 }

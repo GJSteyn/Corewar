@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/25 13:10:50 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 12:49:27 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void			init_col(void);
 void			score_box(void);
 void			set_gui_headings(void);
 void			update_gui_data(void);
-void			update_player_data(int player, int last_l);
+void			update_player_data(void);
 void			scr_size(void);
 void			set_vis_mem(int position, char val, int colour);
 void			printf_dead(int player);

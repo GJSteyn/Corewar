@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 07:50:28 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 11:04:02 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 12:19:44 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	op_sti_verb(struct s_process *bot)
 	int		*args;
 	char	big_e[4];
 
-	mem = g_env.tmp_memory;
+	mem = g_env.memory;
 	args = bot->args;
 	START_VERB(
 		PRINT_PROCESS("sti");

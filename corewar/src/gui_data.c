@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gui_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 10:56:35 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/24 13:21:31 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/26 12:49:16 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,33 +57,23 @@ static void		player_headings(void)
 	mvprintw(PL_4X + 8, PL_4Y, "Last live:");
 }
 
-void			update_player_data(int player, int last_l) // int fork, int live,
+void			update_player_data(void)
 {
-	// (void)fork;
-	// (void)live;
-	if (player == 1)
+	struct s_vis	*vis_env;
+	int				x;
+	int				y;
+	unsigned int 	player;
+
+	vis_env = &g_env.vis_env;
+	player = 0;
+	while (++player <= g_env.player_total)
 	{
-		mvprintw(PL_1X + 4, PL_1Y + 30, "% 10d", g_env.vis_env.player_forks[0]);
-		mvprintw(PL_1X + 6, PL_1Y + 30, "% 10d", g_env.vis_env.player_live[0]);
-		mvprintw(PL_1X + 8, PL_1Y + 30, "% 10d", last_l);
-	}
-	else if (player == 2)
-	{
-		mvprintw(PL_2X + 4, PL_2Y + 30, "% 10d", g_env.vis_env.player_forks[1]);
-		mvprintw(PL_2X + 6, PL_2Y + 30, "% 10d", g_env.vis_env.player_live[1]);
-		mvprintw(PL_2X + 8, PL_2Y + 30, "% 10d", last_l);
-	}
-	else if (player == 3)
-	{
-		mvprintw(PL_3X + 4, PL_3Y + 30, "% 10d", g_env.vis_env.player_forks[2]);
-		mvprintw(PL_3X + 6, PL_3Y + 30, "% 10d", g_env.vis_env.player_live[2]);
-		mvprintw(PL_3X + 8, PL_3Y + 30, "% 10d", last_l);
-	}
-	else
-	{
-		mvprintw(PL_4X + 4, PL_4Y + 30, "% 10d", g_env.vis_env.player_forks[3]);
-		mvprintw(PL_4X + 6, PL_4Y + 30, "% 10d", g_env.vis_env.player_live[3]);
-		mvprintw(PL_4X + 8, PL_4Y + 30, "% 10d", last_l);
+		x = (player == 1 || player == 2) ? PL_1X : PL_3X;
+		y = 30;
+		y += (player == 1 || player == 3) ? PL_1Y : PL_2Y;
+		mvprintw(x + 4, y, "% 10d", vis_env->player_forks[player - 1]);
+		mvprintw(x + 6, y, "% 10d", vis_env->player_live[player - 1]);
+		mvprintw(x + 8, y, "% 10d", vis_env->player_last_live[player - 1]);
 	}
 }
 

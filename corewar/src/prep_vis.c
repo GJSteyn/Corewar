@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/25 13:10:34 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 12:28:49 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,9 @@ void			print_logo(int l, int c)
 
 void			init_vis(void)
 {
-	f_bzero(g_env.vis_env.player_forks, MAX_PLAYERS);
-	f_bzero(g_env.vis_env.player_live, MAX_PLAYERS);
+	f_bzero(g_env.vis_env.player_last_live, MAX_PLAYERS * 4);
+	f_bzero(g_env.vis_env.player_forks, MAX_PLAYERS * 4);
+	f_bzero(g_env.vis_env.player_live, MAX_PLAYERS * 4);
 }
 
 void			start_vis(void)
