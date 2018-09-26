@@ -6,7 +6,7 @@
 /*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 13:42:17 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/26 14:19:34 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # include <curses.h>
 # include <limits.h>
+# include <signal.h>
 
 # include "op.h"
 # include "s_op.h"
@@ -37,10 +38,9 @@ struct s_process	*load_bot(char *path, int player_no);
 void				get_next_op(struct s_process *bot);
 void				battle_loop(void);
 void				battle_loop_vis(void);
-int					kill(bool (*kill_check)(void*));
+int					kill_process(bool (*kill_check)(void*));
 int					set_arg_value(struct s_process *bot,
 						int arg_types[MAX_ARGS_NUMBER]);
-void				vm_sound(void);
 
 # define FATAL(c)	{f_printf(c); exit(0);}
 

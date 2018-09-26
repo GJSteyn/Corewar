@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle_loop_vis.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 13:00:29 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 13:38:45 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 14:18:08 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void		battle_loop_vis(void)
 		CHECK_INPUT(INPUT_CHECK_DELAY);
 		if (g_env.pause)
 			continue;
-		if (g_env.cycle_to_die <= 0 && kill(kill_check_vis))
+		if (g_env.cycle_to_die <= 0 && kill_process(kill_check_vis))
 			break ;
 		list_iterate(process_list, run_cycle_vis);
 		update_gui_data();

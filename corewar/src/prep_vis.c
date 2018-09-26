@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prep_vis.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/26 12:28:49 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 14:19:23 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "visualiser.h"
 #include "f_io.h"
 #include "f_print.h"
+#include <signal.h>
 
 static void		red_eye(int i, int l, int c)
 {
@@ -87,6 +88,7 @@ void			init_vis(void)
 
 void			start_vis(void)
 {
+	vm_sound();
 	initscr();
 	noecho();
 	nocbreak();
@@ -97,5 +99,6 @@ void			start_vis(void)
 void			end_vis(void)
 {
 	curs_set(1);
+	kill(g_env.vis_env.sound_pid, SIGKILL);
 	endwin();
 }

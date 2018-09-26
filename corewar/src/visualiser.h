@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visualiser.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/26 12:49:27 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 14:13:03 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void			scr_size(void);
 void			set_vis_mem(int position, char val, int colour);
 void			printf_dead(int player);
 void			printf_victor(int player);
+void			vm_sound(void);
 
 #endif
