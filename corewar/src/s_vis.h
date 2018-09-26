@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 10:45:59 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 12:26:12 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 14:01:17 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct	s_vis
 	char	champs[4][PROG_NAME_LENGTH];
 	char	desc[4][COMMENT_LENGTH];
 	char	owner[MEM_SIZE];
+	int		vis_delay;
 }				t_vis;
 
 #endif

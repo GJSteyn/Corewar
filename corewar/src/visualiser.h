@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/26 12:49:27 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 14:39:21 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <curses.h>
 # include "corewar.h"
 # include "s_vis.h"
+
+#define INITIAL_DELAY 5000 
+#define MIN_DELAY 0
+#define MAX_DELAY 100000
 
 # define Y_CHAMP 30
 # define FOV2	(64 * 3 / 2)

@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 13:00:29 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 13:38:45 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 14:40:43 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	run_cycle_vis(void **process)
 
 static void	handle_key_press(void)
 {
-	int c;
+	int		c;
 
 	if ((c = getch()))
 	{
@@ -72,6 +72,14 @@ static void	handle_key_press(void)
 			end_vis();
 			exit(0);
 		}
+		else if (c == 's')
+			g_env.vis_env.vis_delay += 1000;
+		else if (c == 'f')
+			g_env.vis_env.vis_delay -= 1000;
+		if (g_env.vis_env.vis_delay < MIN_DELAY)
+			g_env.vis_env.vis_delay = MIN_DELAY;
+		else if (g_env.vis_env.vis_delay > MAX_DELAY)
+			g_env.vis_env.vis_delay = MAX_DELAY;
 	}
 }
 
@@ -82,7 +90,6 @@ void		battle_loop_vis(void)
 
 	process_list = g_env.process_list;
 	paint_champs();
-
 	check_key = 5;
 	while (process_list->size)
 	{
@@ -97,6 +104,8 @@ void		battle_loop_vis(void)
 		refresh();
 		g_env.cycle_to_die--;
 		g_env.cycles++;
+		usleep(g_env.vis_env.vis_delay);
 	}
-	while (getch() != 'q');
+	while (getch() != 'q')
+		;
 }
