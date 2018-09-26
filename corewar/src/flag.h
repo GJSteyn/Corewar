@@ -6,16 +6,16 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 14:21:03 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/22 16:13:50 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 15:51:20 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FLAG_H
 # define FLAG_H
 
-# define FLAG_TOTAL			5
-# define FLAG				" dsvnai"
-# define HAS_VALS			"dsv"
+# define FLAG_TOTAL			8
+# define FLAG				" dsvcainm"
+# define HAS_VALS			"dvsn"
 # define HAS_VAL(f)			(f_strchr(HAS_VALS, f))
 # define GET_FLAG(c)		(f_strchr(FLAG, c) - FLAG)
 # define INVALID_FLAG		(-FLAG)
@@ -28,6 +28,8 @@
 # define FLAG_NCURSES		4
 # define FLAG_AFF			5
 # define FLAG_NO_INTRO		6
+# define FLAG_PL_NO			7
+# define FLAG_NO_MUSIC		8
 
 # define SET_FLAG(f)		(g_env.flag |= (1 << f))
 # define IS_FLAG_SET(f)		(g_env.flag & (1 << f))

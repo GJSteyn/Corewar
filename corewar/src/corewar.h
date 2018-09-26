@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 14:19:34 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/26 16:34:44 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,7 @@ int					kill_process(bool (*kill_check)(void*));
 int					set_arg_value(struct s_process *bot,
 						int arg_types[MAX_ARGS_NUMBER]);
 
-# define FATAL(c)	{f_printf(c); exit(0);}
-
 //debug ulti to be removed
-void	print_memory(void);
-void	print_bot(struct s_process *bot);
-int		print_op_basics(struct s_process *bot, char *op);
+int					fatal(char *str);
 
 #endif

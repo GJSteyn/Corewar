@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 14:13:19 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/26 16:34:44 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct s_process	t_process;
 static void	init_env(void)
 {
 	f_bzero(g_env.memory, MEM_SIZE);
+	f_bzero(g_env.flag_args, FLAG_TOTAL * 4);
 	g_env.player_total = 4;
 	g_env.last_live = 0;
 	g_env.next_id = 1;
@@ -38,7 +39,7 @@ int			main(int argc, char *argv[])
 	init_env();
 	handle_args(argc, argv);
 	if (!g_env.player_total)
-		FATAL("No Players found!\n");
+		fatal("No Players found!\n");
 	if (IS_FLAG_SET(FLAG_NCURSES))
 	{
 		start_vis();

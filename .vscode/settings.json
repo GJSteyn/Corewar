@@ -6,6 +6,8 @@
 		"list": "c",
 		"string": "c",
 		"op_function.h": "c",
-		"functional": "c"
+		"functional": "c",
+		"corewar.h": "c",
+		"chrono": "c"
 	}
 }
