@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/13 09:17:22 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/26 14:48:55 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 16:54:32 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,21 @@
 # include "corewar.h"
 # include "s_vis.h"
 
-#define INITIAL_DELAY 5000 
+
+# define START_VERB(print)	if (VERB_OPS){print}
+# define PRINT_PROCESS(op)	(f_printf("P %4d | "op, bot->id))
+# define PRINT_OFFSET		(f_printf("       |"))
+# define PRINT_ARG(n)		(f_printf(" %d", n))
+# define PRINT_ARG0			(f_printf(" %d", bot->args[0]))
+# define PRINT_ARG1			(f_printf(" %d", bot->args[1]))
+# define PRINT_ARG2			(f_printf(" %d", bot->args[2]))
+# define PRINT_REG(r)		(f_printf(" r%d", r))
+# define PRINT_ENDL			(f_printf("\n"))
+# define PRINT_OK			(f_printf(" OK"));
+# define PRINT_FAIL			(f_printf(" FAILED"));
+
+# define IS_VERB_SET(v)		(g_env.flag_args[FLAG_VERBOSE] & v)
+#define INITIAL_DELAY 2000 
 #define MIN_DELAY 0
 #define MAX_DELAY 100000
 

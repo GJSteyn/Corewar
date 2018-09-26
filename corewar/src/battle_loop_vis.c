@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 13:00:29 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 15:14:42 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 16:59:09 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,5 @@ void		battle_loop_vis(void)
 		usleep(g_env.vis_env.vis_delay);
 	}
 	while (getch() != 'q')
-		;
+		printf_victor(g_env.last_live);
 }
