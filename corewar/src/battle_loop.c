@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle_loop.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 08:01:06 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 14:17:56 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/26 16:47:34 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	battle_loop(void)
 	{
 		if (g_env.cycle_to_die <= 0 && kill_process(kill_check))
 			break ;
-		(VERB_CYCLES) ? f_printf("It is now cycle %d\n", g_env.cycles) : 0;
 		list_iterate(process_list, run_cycle);
 		g_env.cycle_to_die--;
 		g_env.cycles++;

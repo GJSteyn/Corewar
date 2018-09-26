@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   op_lfork.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 11:27:31 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/24 13:36:24 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/26 16:41:50 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "op_function.h"
-
-void 	get_next_op(struct s_process *bot); // debug
 
 void	op_lfork(struct s_process *bot)
 {
@@ -21,7 +19,6 @@ void	op_lfork(struct s_process *bot)
 	int					*old_reg;
 	int					*new_reg;
 
-	// print_op_basics(bot, "lfork");
 	g_env.vis_env.player_forks[-bot->created_by - 1]++;
 	new_bot = process_create(bot->created_by,
 		WRAP_MEM(bot->current_pc + bot->args[0]),

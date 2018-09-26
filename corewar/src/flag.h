@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 14:21:03 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 15:51:20 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 16:47:16 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FLAG_H
 
 # define FLAG_TOTAL			8
-# define FLAG				" dsvcainm"
-# define HAS_VALS			"dvsn"
+# define FLAG				" dscainm"
+# define HAS_VALS			"dsn"
 # define HAS_VAL(f)			(f_strchr(HAS_VALS, f))
 # define GET_FLAG(c)		(f_strchr(FLAG, c) - FLAG)
 # define INVALID_FLAG		(-FLAG)
@@ -24,21 +24,14 @@
 
 # define FLAG_MEM_DUMP		1
 # define FLAG_DUMP_CYCLE	2
-# define FLAG_VERBOSE		3
-# define FLAG_NCURSES		4
-# define FLAG_AFF			5
-# define FLAG_NO_INTRO		6
-# define FLAG_PL_NO			7
-# define FLAG_NO_MUSIC		8
+# define FLAG_NCURSES		3
+# define FLAG_AFF			4
+# define FLAG_NO_INTRO		5
+# define FLAG_PL_NO			6
+# define FLAG_NO_MUSIC		7
 
 # define SET_FLAG(f)		(g_env.flag |= (1 << f))
 # define IS_FLAG_SET(f)		(g_env.flag & (1 << f))
-
-# define VERB_LIVES			(IS_VERB_SET(1))
-# define VERB_CYCLES		(IS_VERB_SET(2))
-# define VERB_OPS			(IS_VERB_SET(4))
-# define VERB_DEATHS		(IS_VERB_SET(8))
-# define VERB_PC			(IS_VERB_SET(16))
 
 # define START_VERB(print)	if (VERB_OPS){print}
 # define PRINT_PROCESS(op)	(f_printf("P %4d | "op, bot->id))

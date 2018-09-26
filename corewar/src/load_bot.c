@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/07 11:05:57 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/21 07:32:53 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 16:45:25 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ typedef struct s_process	t_process;
 
 #define INVALID_BOT(bot) {f_printf("%s is not a valid bot\n", bot); exit(0);}
 
-static void				find_bot_info(int fd, int player_no)
+static void			find_bot_info(int fd, int player_no)
 {
 	char	hold[PROG_NAME_LENGTH + COMMENT_LENGTH + 9];
 

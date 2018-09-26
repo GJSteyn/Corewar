@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle_loop_util.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 13:03:14 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 14:17:34 by gsteyn           ###   ########.fr       */
+/*   Updated: 2018/09/26 16:48:00 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int		kill_process(bool (*kill_check)(void*))
 		g_env.delta_count++;
 		g_env.last_delta = 1;
 		g_env.cycle_to_die = CYCLE_TO_DIE - (g_env.delta_count * CYCLE_DELTA);
-		if (VERB_CYCLES && !IS_FLAG_SET(FLAG_NCURSES))
-			f_printf("Cycle to die is now %d\n", g_env.cycle_to_die);
 	}
 	else
 	{

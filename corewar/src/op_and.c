@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 08:39:52 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/25 09:29:37 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 16:44:43 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,4 @@ void	op_and(struct s_process *bot)
 	args[1] = (bot->is_reg[1]) ? bot->reg[args[1]] : args[1];
 	bot->reg[args[2]] = args[0] & args[1];
 	bot->carry = !(bot->reg[args[2]]);
-}
-
-void	op_and_verb(struct s_process *bot)
-{
-	int		*args;
-
-	args = bot->args;
-	args[0] = (bot->is_reg[0]) ? bot->reg[args[0]] : args[0];
-	args[1] = (bot->is_reg[1]) ? bot->reg[args[1]] : args[1];
-	bot->reg[args[2]] = args[0] & args[1];
-	bot->carry = !(bot->reg[args[2]]);
-	START_VERB(
-	PRINT_PROCESS("and");
-	PRINT_ARG(args[0]);
-	PRINT_ARG(args[1]);
-	PRINT_REG(args[2] + 1);
-	PRINT_ENDL;)
 }
