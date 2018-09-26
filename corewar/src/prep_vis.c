@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/11 07:41:32 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/26 14:38:15 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 15:53:55 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,13 @@ void			start_vis(void)
 	g_env.vis_env.vis_delay = INITIAL_DELAY;
 	timeout(0);
 	curs_set(0);
+	if (!IS_FLAG_SET(FLAG_NO_MUSIC) || IS_FLAG_SET(FLAG_NO_INTRO))
+		vm_sound();
 }
 
 void			end_vis(void)
 {
 	curs_set(1);
+	kill(g_env.vis_env.sound_pid, SIGKILL);
 	endwin();
 }

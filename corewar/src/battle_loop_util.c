@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle_loop_util.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 13:03:14 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 13:36:42 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 14:17:34 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 typedef struct s_process	t_process;
 
-int		kill(bool (*kill_check)(void*))
+int		kill_process(bool (*kill_check)(void*))
 {
 	t_list	*process_list;
 
