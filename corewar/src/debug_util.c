@@ -6,7 +6,7 @@
 /*   By: kmarchan <kmarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/09 20:25:29 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 15:09:58 by kmarchan         ###   ########.fr       */
+/*   Updated: 2018/09/26 15:22:08 by kmarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void				print_mem(void)
 	{
 		if (i % 32 == 0)
 		{
-			f_printf("\n0x%.4x :", i);
+			f_printf("\n0x%.4x : ", i);
 		}
 		if (g_env.memory[i] > 0)
 		{
