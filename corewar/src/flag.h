@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 14:21:03 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 16:47:16 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/26 16:48:51 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,5 @@
 
 # define SET_FLAG(f)		(g_env.flag |= (1 << f))
 # define IS_FLAG_SET(f)		(g_env.flag & (1 << f))
-
-# define START_VERB(print)	if (VERB_OPS){print}
-# define PRINT_PROCESS(op)	(f_printf("P %4d | "op, bot->id))
-# define PRINT_OFFSET		(f_printf("       |"))
-# define PRINT_ARG(n)		(f_printf(" %d", n))
-# define PRINT_ARG0			(f_printf(" %d", bot->args[0]))
-# define PRINT_ARG1			(f_printf(" %d", bot->args[1]))
-# define PRINT_ARG2			(f_printf(" %d", bot->args[2]))
-# define PRINT_REG(r)		(f_printf(" r%d", r))
-# define PRINT_ENDL			(f_printf("\n"))
-# define PRINT_OK			(f_printf(" OK"));
-# define PRINT_FAIL			(f_printf(" FAILED"));
-
-# define IS_VERB_SET(v)		(g_env.flag_args[FLAG_VERBOSE] & v)
 
 #endif
