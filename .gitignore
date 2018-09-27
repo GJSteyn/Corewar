@@ -14,3 +14,9 @@ obj
 *.dSYM
 .vscode/settings.json
 corewar/corewar
+resources/*
+*.json
+obj
+
+#executable
+a.out

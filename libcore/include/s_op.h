@@ -6,14 +6,14 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/29 14:56:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/10 09:01:28 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/27 11:33:18 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef S_OP_H
 # define S_OP_H
 
-#include <stdbool.h>
+# include <stdbool.h>
 
 struct	s_op
 {
