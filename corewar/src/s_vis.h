@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_vis.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/20 10:45:59 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 14:48:49 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/27 12:41:04 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_vis
 	char	owner[MEM_SIZE];
 	int		vis_delay;
 	pid_t	sound_pid;
+	int		sound_status;
 }				t_vis;
 
 #endif

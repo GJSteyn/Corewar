@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   battle_loop_vis.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gsteyn <gsteyn@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 13:00:29 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 16:59:09 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/27 12:42:39 by gsteyn           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,19 @@ static void	handle_key_press(void)
 	if ((c = getch()))
 	{
 		if (c == ' ')
+		{
+			if (g_env.vis_env.sound_status == 1)
+			{
+				kill(g_env.vis_env.sound_pid, SIGSTOP);
+				g_env.vis_env.sound_status = 0;
+			}
+			else
+			{
+				kill(g_env.vis_env.sound_pid, SIGCONT);
+				g_env.vis_env.sound_status = 1;
+			}
 			PAUSE;
+		}
 		else if (c == 'q')
 		{
 			end_vis();
