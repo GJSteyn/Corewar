@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:49:09 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 16:34:44 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/27 10:22:08 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int					kill_process(bool (*kill_check)(void*));
 int					set_arg_value(struct s_process *bot,
 						int arg_types[MAX_ARGS_NUMBER]);
 
-//debug ulti to be removed
 int					fatal(char *str);
+void				print_memory(void);
 
 #endif

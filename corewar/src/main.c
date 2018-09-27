@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 17:09:15 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 18:01:56 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/27 10:41:02 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int			main(int argc, char *argv[])
 	{
 		start_vis();
 		scr_size();
+		if (!IS_FLAG_SET(FLAG_NO_MUSIC) && !IS_FLAG_SET(FLAG_NO_INTRO))
+		vm_sound();
 		if (!IS_FLAG_SET(FLAG_NO_INTRO))
 			intro();
 		visualizer();
@@ -53,6 +55,9 @@ int			main(int argc, char *argv[])
 	else
 	{
 		battle_loop();
-		f_printf("[%d]\"%s\" is the winner!\n", g_env.last_live, g_env.vis_env.champs[g_env.last_live - 1]);
+		if (g_env.last_live)
+			f_printf("[%d]\"%s\" is the winner!\n", g_env.last_live, g_env.vis_env.champs[g_env.last_live - 1]);
+		else
+			f_printf("Nobody lives!\n");
 	}
 }

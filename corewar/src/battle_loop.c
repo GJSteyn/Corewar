@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 08:01:06 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 16:47:34 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/27 10:24:28 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,6 @@ void	battle_loop(void)
 		g_env.cycle_to_die--;
 		g_env.cycles++;
 	}
+	if(IS_FLAG_SET(FLAG_MEM_DUMP))
+		print_memory();
 }

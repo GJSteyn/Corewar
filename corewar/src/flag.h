@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/18 14:21:03 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/26 16:48:51 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/27 10:34:28 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FLAG_H
 
 # define FLAG_TOTAL			8
-# define FLAG				" dscainm"
+# define FLAG				" dscainml"
 # define HAS_VALS			"dsn"
 # define HAS_VAL(f)			(f_strchr(HAS_VALS, f))
 # define GET_FLAG(c)		(f_strchr(FLAG, c) - FLAG)
@@ -29,6 +29,7 @@
 # define FLAG_NO_INTRO		5
 # define FLAG_PL_NO			6
 # define FLAG_NO_MUSIC		7
+# define FLAG_LIVE			8
 
 # define SET_FLAG(f)		(g_env.flag |= (1 << f))
 # define IS_FLAG_SET(f)		(g_env.flag & (1 << f))

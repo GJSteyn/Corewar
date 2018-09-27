@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 09:01:30 by wseegers          #+#    #+#             */
-/*   Updated: 2018/09/25 18:30:54 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/27 11:00:31 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@ typedef struct s_process	t_process;
 
 static int	set_ind(t_process *bot, int *poffset, int i, t_op op)
 {
-	int		offset;
 	int		ind_offset;
 	char	big_e[4];
 	int		pc;
 
 	pc = bot->next_pc;
-	offset = *poffset;
 	big_e[0] = 0;
 	big_e[1] = 0;
-	big_e[2] = g_env.memory[WRAP_MEM(offset++)];
-	big_e[3] = g_env.memory[WRAP_MEM(offset++)];
+	big_e[2] = g_env.memory[WRAP_MEM((*poffset)++)];
+	big_e[3] = g_env.memory[WRAP_MEM((*poffset)++)];
 	ind_offset = (short)f_big_to_little_endian(big_e);
 	if (op.bytecode == 3 || op.bytecode == 13)
 		bot->args[i] = ind_offset;
@@ -39,7 +37,6 @@ static int	set_ind(t_process *bot, int *poffset, int i, t_op op)
 		big_e[3] = g_env.memory[WRAP_MEM(pc + ind_offset)];
 		bot->args[i] = f_big_to_little_endian(big_e);
 	}
-	*poffset = offset;
 	bot->is_reg[i] = false;
 	return (0);
 }
