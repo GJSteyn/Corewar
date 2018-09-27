@@ -6,7 +6,7 @@
 #    By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/30 06:27:18 by wseegers          #+#    #+#              #
-#    Updated: 2018/09/27 11:26:10 by wseegers         ###   ########.fr        #
+#    Updated: 2018/09/27 11:48:39 by wseegers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,6 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror
 INC := -I include
 
-# CORE_SRC = f_bzero.c f_isspace.c f_memalloc.c f_strlen.c f_atol.c f_isdigit.c \
-# 			f_strcmp.c f_strncpy.c f_strchr.c f_strsub.c f_strnew.c \
-# 			f_little_to_big_endian.c f_big_to_little_endian.c f_dynamicstring.c \
-# 			f_isspace_notnewl.c f_putstr_err.c op.c
-# CORE = $(addprefix src/, $(CORE_SRC))
 F_IO_SRC = f_feedf.c f_initf.c f_openf.c f_readf.c f_writef.c f_stdio.c\
 		   f_next_line.c f_skip_line.c f_closef.c
 F_IO = $(addprefix f_io/, $(F_IO_SRC))

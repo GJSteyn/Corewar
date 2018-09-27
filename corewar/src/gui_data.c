@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/22 10:56:35 by kmarchan          #+#    #+#             */
-/*   Updated: 2018/09/26 12:49:16 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/09/27 11:47:19 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,4 @@ void			set_gui_headings(void)
 	player_headings();
 	refresh();
 	update_gui_data();
-	// update_player_data(1, 200, 300, 100000);
-	// update_player_data(1, 200, 300, 100000);
-	// printf_victor(3);
-	// printf_dead(2);
-	// printf_dead(1);
-	// printf_dead(4);
-	// refresh();
 }
