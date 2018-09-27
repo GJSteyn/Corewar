@@ -6,7 +6,7 @@
 #    By: wseegers <wseegers@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/30 11:12:55 by kmarchan          #+#    #+#              #
-#    Updated: 2018/09/26 16:44:20 by wseegers         ###   ########.fr        #
+#    Updated: 2018/09/27 11:41:30 by wseegers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ OBJ_LIST = $(patsubst %.c, %.o, $(CORE))
 BIN_PATH = obj
 BIN = $(addprefix $(BIN_PATH)/, $(OBJ_LIST))
 DEP := $(BIN:%.o=%.d)
+SND_PATH = $(realpath ../sound/Corewar_VM_Sound.mov)
 
 all : $(NAME)
 
@@ -44,7 +45,8 @@ $(NAME) : $(BIN)
 $(BIN_PATH)/%.o :  %.c
 	@mkdir -p $(BIN_PATH)
 	@mkdir -p $(addprefix $(BIN_PATH)/,$(dir $<))
-	$(CC) $(CFLAGS) $(INC1) $(INC2) -MMD -c $< -o $@
+	$(CC) -DSOUND='"$(SND_PATH)"' $(CFLAGS) $(INC1) $(INC2) -MMD -c $< -o $@
+
 
 -include $(DEP)
 
